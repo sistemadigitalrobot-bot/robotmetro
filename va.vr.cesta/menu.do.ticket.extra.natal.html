@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Extra Natal</title>
+</head>
+<body style="margin:0; padding:0; font-family:Arial, sans-serif; text-align:center; overflow:hidden;">
+
+    <!-- Imagem do Menu com texto sobreposto -->
+    <div style="margin-top:-5px; margin-right:8px;">
+        <div style="position:relative; display:inline-block;">
+            <img src="../icones/icone.titulo.png" alt="Título" style="width:330px; height:120px;">
+            <span style="position:absolute; top:50%; right:-25%; transform:translate(-50%, -50%);
+                         font-size:23px; font-weight:bold; color:white;">TICKET EXTRA NATAL</span>
+        </div>
+    </div>
+
+    <!-- Itens com imagens e áreas clicáveis reduzidas -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; width:auto; margin:5px auto;">
+
+        <!-- TICKET EXTRA NATAL? -->
+        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-14px;">
+            <img src="../icones/icone.botao.png" alt="ticket extra natal?" style="width:410px; height:130px;">
+            <a href="conteudos.do.ticket.extra.natal/ticket.extra.natal.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">TICKET EXTRA NATAL?</span>
+            </a>
+        </div>
+
+        <!-- QUAL O VALOR? -->
+        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-44px;">
+            <img src="../icones/icone.botao.png" alt="qual o valor?" style="width:410px; height:130px;">
+            <a href="conteudos.do.ticket.extra.natal/qual.o.valor.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">QUAL O VALOR?</span>
+            </a>
+        </div>
+
+        <!-- ONDE É DEPOSITADO? -->
+        <div style="position:relative; display:inline-block; margin-top:-54px; margin-right:-355px;">
+            <img src="../icones/icone.botao.png" alt="onde é depositado?" style="width:410px; height:130px;">
+            <a href="conteudos.do.ticket.extra.natal/onde.e.depositado.html"
+               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">ONDE É DEPOSITADO?</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Ícones de navegação com controle de posição de textos e imagens -->
+    <div style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:flex-start;">
+
+        <!-- Menu Principal -->
+        <div style="text-align:left;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-left:12px;">MENU</span>
+                <span style="display:block; margin-left:-3px;">PRINCIPAL</span>
+            </div>
+            <a href="../menu.principal.html">
+                <img src="../icones/casinha.png" alt="Home" style="width:68px; height:68px; margin-top:4px; margin-left:-1px;">
+            </a>
+        </div>
+
+        <!-- Menu Anterior (direita) -->
+        <div style="text-align:right;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-right:55px;">MENU</span>
+                <span style="display:block; margin-right:38px;">ANTERIOR</span>
+            </div>
+            <a href="../menu.do.va.vr.cesta.html">
+                <img src="../icones/voltar.png" alt="Voltar" style="width:68px; height:68px; margin-top:4px; margin-right:40px;">
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Script de atividade -->
+    <script>
+        const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+        eventos.forEach(evento => {
+            document.addEventListener(evento, () => {
+                parent.postMessage("atividade", "*");
+            });
+        });
+
+        const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+        if (divComScroll) {
+            divComScroll.addEventListener('scroll', () => {
+                parent.postMessage("atividade", "*");
+            });
+        }
+    </script>
+
+</body>
+</html>
