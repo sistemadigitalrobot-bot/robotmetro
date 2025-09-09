@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Auxílio Creche</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 650px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute; 
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            /* TÍTULO - CRECHE */
+            .titulo-container img { width: 200px; height: 120px; top: -5px; left: 373px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; top: 43px; left: 373px; transform: translateX(-50%); }
+
+            /* QUEM TEM DIREITO? */
+            .btn-quem-tem-direito img { width: 410px; height: 130px; top: -32px; left: -14px; }
+            .btn-quem-tem-direito a   { width: 348px; height: 70px; top: 36px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-quem-tem-direito a span { font-size: 19px; }
+
+            /* QUAL O VALOR DO AUXÍLIO? */
+            .btn-qual-o-valor-do-auxilio img { width: 410px; height: 130px; top: -32px; right: -20px; }
+            .btn-qual-o-valor-do-auxilio a   { width: 348px; height: 70px; top: 36px; right: 181px; transform: translate(50%, -50%); }
+            .btn-qual-o-valor-do-auxilio a span { font-size: 19px; }
+
+            /* COMO SOLICITAR? */
+            .btn-como-solicitar img { width: 410px; height: 130px; top: 53px; left: -14px; }
+            .btn-como-solicitar a   { width: 348px; height: 70px; top: 121px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-como-solicitar a span { font-size: 19px; }
+
+            /* SOBRE DESPESAS EXTRAS */
+            .btn-sobre-despesas-extras img { width: 410px; height: 130px; top: 53px; right: -20px; }
+            .btn-sobre-despesas-extras a   { width: 348px; height: 70px; top: 121px; right: 181px; transform: translate(50%, -50%); }
+            .btn-sobre-despesas-extras a span { font-size: 19px; }
+
+            /* ENVIO DOS COMPROVANTES */
+            .btn-envio-dos-comprovantes img { width: 410px; height: 130px; top: 137px; left: -14px; }
+            .btn-envio-dos-comprovantes a   { width: 348px; height: 70px; top: 205px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-envio-dos-comprovantes a span { font-size: 19px; }
+
+            /* REEMBOLSO NÃO FOI PAGO */
+            .btn-reembolso-nao-foi-pago img { width: 410px; height: 130px; top: 137px; right: -20px; }
+            .btn-reembolso-nao-foi-pago a   { width: 348px; height: 70px; top: 205px; right: 181px; transform: translate(50%, -50%); }
+            .btn-reembolso-nao-foi-pago a span { font-size: 19px; }
+
+            /* O QUE É REEMBOLSADO? */
+            .btn-o-que-e-reembolsado img { width: 410px; height: 130px; top: 222px; left: 170px; }
+            .btn-o-que-e-reembolsado a   { width: 348px; height: 70px; top: 290px; right: 23px; transform: translate(-50%, -50%); }
+            .btn-o-que-e-reembolsado a span { font-size: 19px; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+          .botoes-scroll { 
+            height: 65vh; 
+            margin-top: 135px; 
+          }
+
+            /* TÍTULO - CRECHE */
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; top: 48px; left: 473px; transform: translateX(-50%); }
+
+            /* QUEM TEM DIREITO? */
+            .btn-quem-tem-direito img { width: 680px; height: 180px; top: -20px; left: 473px; transform: translateX(-50%); }
+            .btn-quem-tem-direito a   { width: 580px; height: 90px; top: 31px; left: 482px; transform: translateX(-50%); }
+            .btn-quem-tem-direito a span { font-size: 33px; }
+
+            /* QUAL O VALOR DO AUXÍLIO? */
+            .btn-qual-o-valor-do-auxilio img { width: 680px; height: 180px; top: 120px; left: 473px; transform: translateX(-50%); }
+            .btn-qual-o-valor-do-auxilio a   { width: 580px; height: 90px; top: 172px; left: 482px; transform: translateX(-50%); }
+            .btn-qual-o-valor-do-auxilio a span { font-size: 33px; }
+
+            /* COMO SOLICITAR? */
+            .btn-como-solicitar img { width: 680px; height: 180px; top: 259px; left: 473px; transform: translateX(-50%); }
+            .btn-como-solicitar a   { width: 580px; height: 90px; top: 308px; left: 480px; transform: translateX(-50%); }
+            .btn-como-solicitar a span { font-size: 33px; }
+
+            /* SOBRE DESPESAS EXTRAS */
+            .btn-sobre-despesas-extras img { width: 680px; height: 180px; top: 397px; left: 473px; transform: translateX(-50%); }
+            .btn-sobre-despesas-extras a   { width: 580px; height: 90px; top: 448px; left: 480px; transform: translateX(-50%); }
+            .btn-sobre-despesas-extras a span { font-size: 33px; }
+
+            /* ENVIO DOS COMPROVANTES */
+            .btn-envio-dos-comprovantes img { width: 680px; height: 180px; top: 536px; left: 473px; transform: translateX(-50%); }
+            .btn-envio-dos-comprovantes a   { width: 580px; height: 90px; top: 586px; left: 480px; transform: translateX(-50%); }
+            .btn-envio-dos-comprovantes a span { font-size: 33px; }
+
+            /* REEMBOLSO NÃO FOI PAGO */
+            .btn-reembolso-nao-foi-pago img { width: 680px; height: 180px; top: 674px; left: 473px; transform: translateX(-50%); }
+            .btn-reembolso-nao-foi-pago a   { width: 580px; height: 90px; top: 724px; left: 482px; transform: translateX(-50%); }
+            .btn-reembolso-nao-foi-pago a span { font-size: 33px; }
+
+            /* O QUE É REEMBOLSADO? */
+            .btn-o-que-e-reembolsado img { width: 680px; height: 180px; top: 811px; left: 473px; transform: translateX(-50%); }
+            .btn-o-que-e-reembolsado a   { width: 580px; height: 90px; top: 861px; left: 482px; transform: translateX(-50%); }
+            .btn-o-que-e-reembolsado a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 24px; bottom: 129px; right: 70px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .txt-anterior  { font-size: 24px; bottom: 100px; right: 45px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .icone-voltar  { width: 96px; height: 96px; bottom: 5px; right: 55px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { position: fixed; bottom: 2px; width: 100%; padding: 0 20px; }
+        .rodape-conteudo { display: flex; align-items: center; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="../icones/icone.titulo.png" alt="Título">
+        <span>CRECHE</span>
+    </div>
+
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-quem-tem-direito">
+                <img src="../icones/icone.botao.png" alt="Quem tem direito?">
+                <a href="conteudos.do.auxilio.creche/quem.tem.direito.html"><span>QUEM TEM DIREITO?</span></a>
+            </div>
+
+            <div class="botao btn-qual-o-valor-do-auxilio">
+                <img src="../icones/icone.botao.png" alt="Qual o valor do auxílio?">
+                <a href="conteudos.do.auxilio.creche/qual.o.valor.do.auxilio.html"><span>QUAL O VALOR DO AUXÍLIO?</span></a>
+            </div>
+
+            <div class="botao btn-como-solicitar">
+                <img src="../icones/icone.botao.png" alt="Como solicitar?">
+                <a href="conteudos.do.auxilio.creche/como.solicitar.html"><span>COMO SOLICITAR?</span></a>
+            </div>
+
+            <div class="botao btn-sobre-despesas-extras">
+                <img src="../icones/icone.botao.png" alt="Sobre despesas extras">
+                <a href="conteudos.do.auxilio.creche/sobre.despesas.extras.html"><span>SOBRE DESPESAS EXTRAS</span></a>
+            </div>
+
+            <div class="botao btn-envio-dos-comprovantes">
+                <img src="../icones/icone.botao.png" alt="Envio dos comprovantes">
+                <a href="conteudos.do.auxilio.creche/envio.dos.comprovantes.html"><span>ENVIO DOS COMPROVANTES</span></a>
+            </div>
+
+            <div class="botao btn-reembolso-nao-foi-pago">
+                <img src="../icones/icone.botao.png" alt="Reembolso não foi pago">
+                <a href="conteudos.do.auxilio.creche/reembolso.nao.foi.pago.html"><span>REEMBOLSO NÃO FOI PAGO</span></a>
+            </div>
+
+            <div class="botao btn-o-que-e-reembolsado">
+                <img src="../icones/icone.botao.png" alt="O que é reembolsado?">
+                <a href="conteudos.do.auxilio.creche/o.que.e.reembolsado.html"><span>O QUE É REEMBOLSADO?</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="rodape-conteudo">
+            <!-- MENU PRINCIPAL -->
+            <div>
+                <span class="txt-menu">MENU</span>
+                <span class="txt-principal">PRINCIPAL</span>
+                <a href="../menu.principal.html">
+                    <img class="icone-casinha" src="../icones/casinha.png" alt="Home">
+                </a>
+            </div>
+
+            <!-- MENU ANTERIOR -->
+            <div>
+                <span class="txt-menu2">MENU</span>
+                <span class="txt-anterior">ANTERIOR</span>
+                <a href="../menu.de.auxilios.html">
+                    <img class="icone-voltar" src="../icones/voltar.png" alt="Voltar">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE ATIVIDADE -->
+    <script>
+        const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+        eventos.forEach(evento => {
+            document.addEventListener(evento, () => {
+                parent.postMessage("atividade", "*");
+            });
+        });
+
+        const divComScroll = document.querySelector('.botoes-scroll');
+        if (divComScroll) {
+            divComScroll.addEventListener('scroll', () => {
+                parent.postMessage("atividade", "*");
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
