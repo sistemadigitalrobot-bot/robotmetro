@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Deseja Atendimento Presencial?</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="database.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      background-color: transparent !important;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div id="tela-principal">
+  <div style="margin-top:-5px; margin-left:10px;">
+    <div style="position:relative; display:inline-block;">
+      <img src="icones/icone.titulo.png" alt="Menu" style="width:560px; height:120px;">
+      <span style="position:absolute; top:50%; right:-28%; transform:translate(-50%, -50%); 
+                   font-size:23px; font-weight:bold; color:white;">DESEJA ATENDIMENTO PRESENCIAL?</span>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; margin-top:20px;">
+    <div onclick="registrarAtendimentoPresencial()" style="position:relative; display:inline-block; cursor:pointer;">
+      <img src="icones/icone.botao.png" alt="Quero atendimento" style="width:100px; height:130px;">
+      <span style="position:absolute; top:51%; right:14%; transform:translate(-50%, -50%); 
+                   font-size:19px; font-weight:bold; color:white;">SIM</span>
+    </div>
+
+    <div onclick="registrarNegativa()" style="position:relative; display:inline-block; cursor:pointer;">
+      <img src="icones/icone.botao.png" alt="Não quero atendimento" style="width:100px; height:130px;">
+      <span style="position:absolute; top:51%; right:7%; transform:translate(-50%, -50%); 
+                   font-size:19px; font-weight:bold; color:white;">NÃO</span>
+    </div>
+  </div>
+
+  <!-- Menu Principal -->
+  <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+    <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+    <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+    <a href="menu.principal.html">
+      <img src="icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+    </a>
+  </div>
+
+  <!-- Menu Anterior -->
+  <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+    <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+    <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+    <div onclick="window.history.go(-2)" style="position:relative; display:inline-block; cursor:pointer;">
+      <img src="icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+    </div>
+  </div>
+</div>
+
+<script>
+  const firebaseConfigAtendimento = {
+    apiKey: "AIzaSyCTTUHbs5Sj5ySCf3l4mW8gwEmYgdidzq0",
+    authDomain: "relatorio-atendimentos.firebaseapp.com",
+    databaseURL: "https://relatorio-atendimentos-default-rtdb.firebaseio.com",
+    projectId: "relatorio-atendimentos",
+    storageBucket: "relatorio-atendimentos.appspot.com",
+    messagingSenderId: "626822825046",
+    appId: "1:626822825046:web:63a49fd4ec30588485a7f7"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfigAtendimento);
+  }
+
+  const db = firebase.database();
+
+  const matricula = localStorage.getItem("matricula") || "";
+  const nome = localStorage.getItem("nome") || "";
+  const cargo = localStorage.getItem("cargo") || "";
+  const coordenacao = localStorage.getItem("coordenacao") || "";
+  const gerencia = localStorage.getItem("gerencia") || "";
+  const tituloPagina = localStorage.getItem("tituloPagina") || "";
+
+  function registrarAtendimentoPresencial() {
+    const agora = new Date();
+    const data = agora.toLocaleDateString('pt-BR') + " " + agora.toLocaleTimeString('pt-BR');
+    const id = Date.now();
+
+    const dados = {
+      matricula: matricula,
+      nome: nome,
+      cargo: cargo,
+      coordenacao: coordenacao,
+      gerencia: gerencia,
+      titulo: tituloPagina,
+      data: data,
+      desejaAtendimento: "Quero atendimento"
+    };
+
+    db.ref("atendimentos/" + id).set(dados, () => {
+      document.body.innerHTML = `
+        <div style="margin: 0 auto; width: 600px; text-align:center; color:white; font-size:25px; font-family:Arial, sans-serif;">
+          <p style="text-align:center; margin-top: 45px;">Prezado(a) Colaborador(a),</p>
+          <div style="text-align:justify; margin-bottom: 25px;">
+            <p>
+              Solicitamos, por gentileza, que compareça à recepção do RH nos dias de atendimento presencial, que são às segundas, quartas
+              e sextas-feiras, nos horários das 8h às 12h e das 13h30 às 17h.
+            </p>
+          </div>
+          <p style="text-align:center;">Agradecemos pela atenção.</p>
+        </div>
+
+        <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+          <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+          <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+          <a href="menu.principal.html">
+            <img src="icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+          </a>
+        </div>
+
+        <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+          <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+          <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+          <div onclick="window.history.go(-2)" style="position:relative; display:inline-block; cursor:pointer;">
+            <img src="icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function registrarNegativa() {
+    const agora = new Date();
+    const data = agora.toLocaleDateString('pt-BR') + " " + agora.toLocaleTimeString('pt-BR');
+    const id = Date.now();
+
+    db.ref("atendimentos/" + id).set({
+      matricula: matricula,
+      nome: nome,
+      cargo: cargo,
+      coordenacao: coordenacao,
+      gerencia: gerencia,
+      titulo: tituloPagina,
+      data: data,
+      desejaAtendimento: "Não quero atendimento"
+    }, () => {
+      window.location.href = "menu.principal.html";
+    });
+  }
+</script>
+
+<!-- Script de atividade -->
+<script>
+  const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+  eventos.forEach(evento => {
+    document.addEventListener(evento, () => {
+      parent.postMessage("atividade", "*");
+    });
+  });
+
+  // Adicionando scroll em elementos com barra de rolagem
+  const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+  if (divComScroll) {
+    divComScroll.addEventListener('scroll', () => {
+      parent.postMessage("atividade", "*");
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Avaliações</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; text-align: center; }
+    .linha-avaliacao {
+      margin-bottom: 12px;
+      padding: 10px;
+      background: #fff;
+      border-left: 5px solid #00BFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    #relatorio { display: none; text-align: left; margin-top: 30px; }
+    #senha-container { margin-top: 50px; }
+    input[type="password"] {
+      font-size: 24px; padding: 10px; width: 200px; text-align: center;
+    }
+    .teclado button {
+      font-size: 20px; margin: 5px; padding: 10px 20px;
+    }
+    .botao-topo {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #00BFFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    .botao-topo.roxo {
+     background: linear-gradient(135deg, #5e2c82, #a262d3, #e0b3ff);
+     color: black;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+     border: none;
+     text-shadow: -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+               -1px  1px 0 #fff,
+                1px  1px 0 #fff;
+     }
+
+    .botao-topo.azul {
+     background: linear-gradient(135deg, #0f52ba, #5dade2, #b0d4f1);
+     color: black;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+     border: none;
+     text-shadow: -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+               -1px  1px 0 #fff,
+                1px  1px 0 #fff;
+     }
+
+    .botao-topo.cinza {
+     background: linear-gradient(135deg, #666666, #aaaaaa, #dddddd);
+     color: black;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+     border: none;
+     text-shadow: -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+               -1px  1px 0 #fff,
+                1px  1px 0 #fff;
+     }
+
+    .botao-topo.verde {
+     background: linear-gradient(135deg, #228b22, #32cd32, #a8e4a0);
+     color: white;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+     border: none;
+     text-shadow: -1px -1px 0 #000,
+                1px -1px 0 #000,
+               -1px  1px 0 #000,
+                1px  1px 0 #000;
+     }
+
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhXpOwgxHhM-wBya29WFI0409Z7SCtKVE",
+      authDomain: "avaliacoes-siterobot.firebaseapp.com",
+      databaseURL: "https://avaliacoes-siterobot-default-rtdb.firebaseio.com",
+      projectId: "avaliacoes-siterobot",
+      storageBucket: "avaliacoes-siterobot.firebasestorage.app",
+      messagingSenderId: "719756570719",
+      appId: "1:719756570719:web:082f51de46b7f891deebea"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+</head>
+<body>
+  <h1>Relatório de Avaliações</h1>
+
+  <!-- Botões visíveis antes da senha -->
+  <div id="botoes-iniciais">
+    <a href="index.html" class="botao-topo roxo">Voltar para o Site</a>
+    <a href="relatorio-atendimentos.html" class="botao-topo azul">Relatório de Atendimento</a>
+  </div>
+
+  <!-- Novo botão: aparece após a senha correta -->
+  <a href="#" onclick="voltarParaInicio();" class="botao-topo cinza" id="botao-voltar-inicio" style="display:none;">Voltar para o Início</a>
+<a href="#" onclick="baixarExcel();" class="botao-topo verde" id="botao-baixar-excel" style="display:none;">Baixar em Excel</a>
+
+
+  <!-- Campo de senha -->
+  <div id="senha-container">
+    <p>Digite a senha para acessar:</p>
+    <input type="password" id="senha" readonly>
+    <div class="teclado">
+      <div>
+        <button onclick="digitar('1')">1</button>
+        <button onclick="digitar('2')">2</button>
+        <button onclick="digitar('3')">3</button>
+      </div>
+      <div>
+        <button onclick="digitar('4')">4</button>
+        <button onclick="digitar('5')">5</button>
+        <button onclick="digitar('6')">6</button>
+      </div>
+      <div>
+        <button onclick="digitar('7')">7</button>
+        <button onclick="digitar('8')">8</button>
+        <button onclick="digitar('9')">9</button>
+      </div>
+      <div>
+        <button onclick="limpar()">Limpar</button>
+        <button onclick="digitar('0')">0</button>
+        <button onclick="verificarSenha()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Relatório será carregado aqui -->
+  <div id="relatorio"></div>
+
+  <script>
+    function digitar(num) {
+      const campo = document.getElementById('senha');
+      if (campo.value.length < 6) {
+        campo.value += num;
+      }
+    }
+
+    function limpar() {
+      document.getElementById('senha').value = '';
+    }
+
+    function verificarSenha() {
+      const senha = document.getElementById('senha').value;
+      db.ref("senhaRelatorio").once("value").then(snapshot => {
+        const senhaCorreta = snapshot.val();
+        if (senha === senhaCorreta) {
+          document.getElementById('senha-container').style.display = 'none';
+          document.getElementById('relatorio').style.display = 'block';
+          mostrarRelatorio();
+          document.getElementById('botoes-iniciais').style.display = 'none';
+          document.getElementById('botao-voltar-inicio').style.display = 'inline-block';
+          document.getElementById('botao-baixar-excel').style.display = 'inline-block';
+        } else {
+          alert('Senha incorreta.');
+          limpar();
+        }
+      }).catch(error => {
+        console.error("Erro na verificação da senha:", error);
+        alert("Erro ao verificar senha.");
+      });
+    }
+
+    function mostrarRelatorio() {
+  const container = document.getElementById("relatorio");
+  const agora = new Date();
+  db.ref("avaliacoes").once("value", (snapshot) => {
+    const dados = snapshot.val();
+    if (!dados) return;
+    Object.values(dados).forEach(item => {
+      const dataStr = item.data || "";
+      const [dia, mes, anoHora] = dataStr.split("/");
+      const [ano, hora] = (anoHora || "").split(" ");
+      const dataItem = new Date(`${ano}-${mes}-${dia}T${hora || "00:00"}`);
+      const diffDias = (agora - dataItem) / (1000 * 60 * 60 * 24);
+      if (!isNaN(diffDias) && diffDias <= 30) {
+        const div = document.createElement("div");
+        div.className = "linha-avaliacao";
+        div.textContent = `Página Avaliada: ${item.titulo} / Avaliação de Estrelas: ${item.valor} estrelas / Data: ${dia}/${mes}/${ano} / Hora: ${hora || '--:--'}`;
+        container.appendChild(div);
+      }
+    });
+  });
+}
+
+
+function baixarExcel() {
+  db.ref("avaliacoes").once("value", (snapshot) => {
+    const dados = snapshot.val();
+    if (!dados) return;
+
+    const linhas = [["Página Avaliada", "Avaliação de Estrelas", "Data", "Hora"]];
+    const agora = new Date();
+
+    Object.values(dados).forEach(item => {
+      const dataStr = item.data || "";
+      const [dia, mes, anoHora] = dataStr.split("/");
+      const [ano, hora] = (anoHora || "").split(" ");
+      const dataItem = new Date(`${ano}-${mes}-${dia}T${hora || "00:00"}`);
+      const diffDias = (agora - dataItem) / (1000 * 60 * 60 * 24);
+      if (!isNaN(diffDias) && diffDias <= 30) {
+        linhas.push([
+          item.titulo || "",
+          item.valor || "",
+          `${dia}/${mes}/${ano}`,
+          hora || "--:--"
+        ]);
+      }
+    });
+
+    let csvContent = "\uFEFF" + linhas.map(e => e.join(";")).join("\n");
+    let blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "relatorio-avaliacoes.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+
+
+function voltarParaInicio() {
+      document.getElementById('relatorio').innerHTML = '';
+      document.getElementById('relatorio').style.display = 'none';
+      document.getElementById('senha-container').style.display = 'block';
+      document.getElementById('botoes-iniciais').style.display = 'block';
+      document.getElementById('botao-voltar-inicio').style.display = 'none';
+    document.getElementById('botao-baixar-excel').style.display = 'none';
+      limpar();
+    }
+  </script>
+</body>
+</html>

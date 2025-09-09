@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Avaliação</title>
+  <style>
+    body {
+      background-color: transparent !important;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    #estrelas {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .estrela {
+      font-size: 65px;
+      cursor: pointer;
+      color: white;
+      transition: color 0.2s;
+      position: relative;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
+                   -1px 1px 0 #000, 1px 1px 0 #000;
+      user-select: none;
+    }
+
+    .amarela {
+      color: gold;
+    }
+
+    #mensagem {
+      margin-top: 30px;
+      font-size: 24px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    #mensagem.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .numero {
+      /* Ajuste vertical dos números aqui: */
+      --posicao-y: -40%; /* exemplo: -40% para descer um pouco, mude como quiser */
+
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, var(--posicao-y));
+      font-size: 17px;
+      font-family: 'Arial', sans-serif; /* altere para a fonte que preferir */
+      font-weight: 400; /* normal, sem negrito */
+      color: black;
+      pointer-events: none;
+      text-shadow: none;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhXpOwgxHhM-wBya29WFI0409Z7SCtKVE",
+      authDomain: "avaliacoes-siterobot.firebaseapp.com",
+      databaseURL: "https://avaliacoes-siterobot-default-rtdb.firebaseio.com",
+      projectId: "avaliacoes-siterobot",
+      storageBucket: "avaliacoes-siterobot.firebasestorage.app",
+      messagingSenderId: "719756570719",
+      appId: "1:719756570719:web:082f51de46b7f891deebea"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+</head>
+<body>
+  <h2>Como você avalia esta informação?</h2>
+  <div id="estrelas" role="radiogroup" aria-label="Avaliação de estrelas">
+    <span class="estrela" data-valor="1" role="radio" tabindex="0" aria-checked="false" aria-label="1 estrela">★<span class="numero">1</span></span>
+    <span class="estrela" data-valor="2" role="radio" tabindex="-1" aria-checked="false" aria-label="2 estrelas">★<span class="numero">2</span></span>
+    <span class="estrela" data-valor="3" role="radio" tabindex="-1" aria-checked="false" aria-label="3 estrelas">★<span class="numero">3</span></span>
+    <span class="estrela" data-valor="4" role="radio" tabindex="-1" aria-checked="false" aria-label="4 estrelas">★<span class="numero">4</span></span>
+    <span class="estrela" data-valor="5" role="radio" tabindex="-1" aria-checked="false" aria-label="5 estrelas">★<span class="numero">5</span></span>
+  </div>
+  <div id="mensagem">Obrigado por avaliar.</div>
+  <script>
+    
+    const nome = localStorage.getItem("nome") || "Desconhecido";
+    const matricula = localStorage.getItem("matricula") || "N/A";
+    const titulo = localStorage.getItem("tituloPagina") || "Página Avaliada";
+
+    const estrelas = document.querySelectorAll(".estrela");
+    const mensagem = document.getElementById("mensagem");
+
+    function setFocusStar(index) {
+      estrelas.forEach((e, i) => {
+        e.setAttribute("tabindex", i === index ? "0" : "-1");
+      });
+      estrelas[index].focus();
+    }
+
+    estrelas.forEach((estrela, index) => {
+      estrela.addEventListener("click", () => {
+        avaliar(index + 1);
+      });
+
+      estrela.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+          e.preventDefault();
+          const nextIndex = (index + 1) % estrelas.length;
+          setFocusStar(nextIndex);
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+          e.preventDefault();
+          const prevIndex = (index - 1 + estrelas.length) % estrelas.length;
+          setFocusStar(prevIndex);
+        } else if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          avaliar(index + 1);
+        }
+      });
+    });
+
+    function avaliar(valor) {
+      estrelas.forEach((e, i) => {
+        e.classList.toggle("amarela", i < valor);
+        e.setAttribute("aria-checked", i === valor - 1 ? "true" : "false");
+      });
+
+      const agora = new Date();
+      const dataFormatada = agora.toLocaleDateString('pt-BR') + " " + agora.toLocaleTimeString('pt-BR');
+      const id = Date.now();
+
+      db.ref("avaliacoes/" + id).set({
+        matricula: matricula,
+        nome: nome,
+        titulo: titulo,
+        valor: valor,
+        data: dataFormatada
+      });
+
+      mensagem.classList.add("show");
+
+      setTimeout(() => {
+        window.location.href = "menu.principal.html";
+      }, 2000);
+    }
+  </script>
+
+<!-- Script de atividade -->
+
+<script>
+  const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+  eventos.forEach(evento => {
+    document.addEventListener(evento, () => {
+      parent.postMessage("atividade", "*");
+    });
+  });
+
+  // Adicionando scroll em elementos com barra de rolagem
+  const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+  if (divComScroll) {
+    divComScroll.addEventListener('scroll', () => {
+      parent.postMessage("atividade", "*");
+    });
+  }
+</script>
+
+
+</body>
+</html>
