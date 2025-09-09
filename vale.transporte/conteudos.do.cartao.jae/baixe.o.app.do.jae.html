@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Vale Transporte/Cartão Jaé/Baixe o App do Jaé</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      background-color: transparent;
+    }
+
+    /* Containers das telas de QR (ambas ocupam a tela inteira; ficam escondidas até serem usadas) */
+    .qrcode-container {
+      display: none;
+      position: fixed;
+      inset: 0;            /* top/left/bottom/right: 0 */
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      background-color: transparent;
+    }
+
+    /* Área interna para posicionamento absoluto independente de título e QR */
+    .qr-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    /* --- ANDROID --- */
+    #tela-qr-android #tituloQRAndroid {
+      position: absolute;
+      top: 25px; /* ajuste livre */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: white;
+      pointer-events: none;  /* não clicável */
+      cursor: default;
+    }
+    #tela-qr-android #qrAndroid {
+      position: absolute;
+      top: 115px; /* ajuste livre independente do título */
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;  /* não clicável */
+      cursor: default;
+    }
+
+    /* --- IOS --- */
+    #tela-qr-ios #tituloQRIOS {
+      position: absolute;
+      top: 25px; /* pode ser diferente do Android */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: white;
+      pointer-events: none;
+      cursor: default;
+    }
+    #tela-qr-ios #qrIOS {
+      position: absolute;
+      top: 115px; /* ajuste livre independente do título */
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .navegacao {
+      position: fixed;
+      bottom: 2px;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .navegacao span {
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .titulo-container {
+      margin-top: -5px;
+      margin-right: 6px;
+    }
+    .titulo-imagem {
+      position: relative;
+      display: inline-block;
+    }
+    .titulo-imagem img {
+      width: 320px;
+      height: 120px;
+    }
+    .titulo-imagem span {
+      position: absolute;
+      top: 50%;
+      right: -25%;
+      transform: translate(-50%, -50%);
+      font-size: 23px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= TELA PRINCIPAL ================= -->
+<div id="tela-principal">
+  <!-- Título -->
+  <div class="titulo-container">
+    <div class="titulo-imagem">
+      <img src="../../icones/icone.titulo.png" alt="Título">
+      <span>BAIXE O APP DO JAÉ</span>
+    </div>
+  </div>
+
+  <!-- Botões de Download -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; width:auto; margin:5px auto;">
+    <!-- ANDROID -->
+    <a href="#" onclick="abrirQRCode('https://play.google.com/store/apps/details?id=br.com.billingpay.app.pf&pcampaignid=web_share','android'); return false;"       style="text-decoration:none;">
+      <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-14px;">
+        <img src="../../icones/icone.botao.png" alt="baixar no google play" style="width:410px; height:130px;">
+        <span style="position:absolute; top:51%; right:-12%; transform:translate(-50%, -50%); font-size:19px; font-weight:bold; color:white;">
+        BAIXAR NO GOOGLE PLAY</span>
+      </div>
+    </a>
+    <!-- IOS -->
+    <a href="#" onclick="abrirQRCode('https://apps.apple.com/br/app/ja%C3%A9-transporte/id6449981829','ios'); return false;" style="text-decoration:none;">
+      <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-44px;">
+        <img src="../../icones/icone.botao.png" alt="baixar no app store" style="width:410px; height:130px;">
+        <span style="position:absolute; top:51%; right:-4%; transform:translate(-50%, -50%); font-size:19px; font-weight:bold; color:white;">
+        BAIXAR NO APP STORE</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Menu Principal (esquerda) -->
+  <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+    <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+    <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+    <!-- Ícone casinha -->
+    <a href="../../menu.principal.html">
+      <img src="../../icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+    </a>
+  </div>
+
+  <!-- Menu Anterior (direita) -->
+  <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+    <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+    <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+    <!-- Ícone voltar -->
+    <a href="../menu.do.cartao.jae.html">
+      <img src="../../icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+    </a>
+  </div>
+</div>
+
+   <!-- ================= TELA QR ANDROID ================= -->
+   <div class="qrcode-container" id="tela-qr-android" aria-hidden="true">
+    <div class="qr-inner">
+    <h2 id="tituloQRAndroid">Escaneie o QR Code para<br>baixar o Jaé no Google Play</h2>
+    <canvas id="qrAndroid"></canvas>
+  </div>
+  <!-- Navegação -->
+  <div class="navegacao" id="navegacao-qr-android">
+    <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+      <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+      <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+      <a href="../../menu.principal.html">
+        <img src="../../icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+      </a>
+    </div>
+    <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+      <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+      <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+      <a href="baixe.o.app.do.jae.html" onclick="voltarParaPrincipal(); return false;">
+        <img src="../../icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+      </a>
+      </div>
+      </div>
+      </div>
+
+  <!-- ================= TELA QR IOS ================= -->
+  <div class="qrcode-container" id="tela-qr-ios" aria-hidden="true">
+    <div class="qr-inner">
+    <h2 id="tituloQRIOS">Escaneie o QR Code para<br>baixar o Jaé no App Store</h2>
+    <canvas id="qrIOS"></canvas>
+  </div>
+  <!-- Navegação -->
+  <div class="navegacao" id="navegacao-qr-ios">
+    <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+      <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+      <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+      <a href="../../menu.principal.html">
+        <img src="../../icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+      </a>
+    </div>
+    <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+      <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+      <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+      <a href="baixe.o.app.do.jae.html" onclick="voltarParaPrincipal(); return false;">
+        <img src="../../icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* volta pra tela principal sem recarregar a página */
+  function voltarParaPrincipal() {
+    document.getElementById('tela-qr-android').style.display = 'none';
+    document.getElementById('tela-qr-ios').style.display = 'none';
+    document.getElementById('tela-principal').style.display = 'block';
+  }
+
+  /* Abre a tela de QR específica (android | ios). Em dispositivos móveis vai direto pro link */
+  function abrirQRCode(url, tipo) {
+    const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = url;
+      return;
+    }
+
+    // esconder principal
+    document.getElementById('tela-principal').style.display = 'none';
+
+    // esconder todas as telas de QR primeiro
+    document.getElementById('tela-qr-android').style.display = 'none';
+    document.getElementById('tela-qr-ios').style.display = 'none';
+
+    // escolher alvo + canvas
+    let canvasEl;
+    if (tipo === 'android') {
+      document.getElementById('tela-qr-android').style.display = 'block';
+      canvasEl = document.getElementById('qrAndroid');
+    } else {
+      document.getElementById('tela-qr-ios').style.display = 'block';
+      canvasEl = document.getElementById('qrIOS');
+    }
+
+    // gerar novo QR
+    new QRious({
+      element: canvasEl,
+      value: url,
+      size: 250
+    });
+  }
+
+  // Script de atividade (mantém iframe "vivo")
+  const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+  eventos.forEach(evento => {
+    document.addEventListener(evento, () => {
+      parent.postMessage('atividade', '*');
+    });
+  });
+
+  // Adiciona monitoramento de scroll caso exista área rolável
+  const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+  if (divComScroll) {
+    divComScroll.addEventListener('scroll', () => {
+      parent.postMessage('atividade', '*');
+    });
+  }
+</script>
+</body>
+</html>
