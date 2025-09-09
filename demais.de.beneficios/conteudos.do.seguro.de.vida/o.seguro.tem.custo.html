@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Demais Benefícios/Seguro de Vida/O seguro tem custo?</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      background-color: transparent !important;
+    }
+
+    .tela {
+      width: 100%;
+      height: 100vh;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent !important;
+    }
+
+    #tela-principal {
+      display: block;
+    }
+
+    .conteudo {
+      margin: 30px auto;
+      line-height: 1.5;
+      width: 520px;
+      text-align: justify;
+      color: white;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 8px;
+      background-color: #00BFFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00BFFF;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #009acd;
+    }
+
+    canvas {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div id="tela-principal">
+    <!-- Imagem do Menu com texto sobreposto -->
+    <div style="margin-top:-5px; margin-right:1px;">
+      <div style="position:relative; display:inline-block;">
+        <img src="../../icones/icone.titulo.png" alt="Título" style="width:370px; height:120px;">
+        <span style="position:absolute; top:50%; right:-26%; transform:translate(-50%, -50%);
+                     font-size:23px; font-weight:bold; color:white;">O SEGURO TEM CUSTO?</span>
+      </div>
+    </div>
+
+    <!-- Bloco de texto com rolagem e padding à direita -->
+    <div style="margin: -23px auto -23px 126px; line-height:1.5; width:520px; text-align:justify; height:58vh; overflow:auto; padding-right:15px;">
+        <p style="font-family:Arial, sans-serif; font-size:20px; color:white; margin:5px 2; margin-bottom:10px;">
+        Sim, o seguro tem um custo para os colaboradores, sendo descontado o valor de R$ 0,10 em folha de pagamento. Essa pequena contribuição pode 
+        variar dependendo das políticas da empresa e dos termos do plano de seguro. Este valor é uma forma de participação dos colaboradores no custo 
+        do seguro, que pode oferecer benefícios significativos para eles e suas famílias em momentos difíceis.</p>
+        <div style="height:2px;"></div>
+        <p style="font-family:Arial, sans-serif; font-size:20px; color:white; margin:5px 2; text-align:center;">Conseguiu resolver o que queria?</p>
+    </div>
+
+<!-- Ícones de navegação MODIFICADOS EM LINHA RETA -->
+    <div id="rodape-navegacao" style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:center;">
+
+      <!-- Botão RESOLVIDO -->
+      <div style="position:relative; width:80px; height:80px; margin-left:85px;">
+        <a href="../../avaliar.html" onclick="localStorage.setItem('tituloPagina', document.title);">
+          <img src="../../icones/positivo.png" alt="Resolvido" style="width:270px; height:88px;">
+        </a>
+        <div id="texto-resolvido" style="position:absolute; top:35px; left:169%; transform:translateX(-50%); white-space:nowrap; pointer-events:none;">
+          <span style="font-size:15px; font-weight:bold; color:white;">SIM, CONSEGUI RESOLVER!</span>
+        </div>
+      </div>
+
+      <!-- Botão NÃO RESOLVIDO -->
+      <div style="position:relative; width:80px; height:80px; margin-right:313px;">
+        <div onclick="localStorage.setItem('tituloPagina', document.title); localStorage.setItem('nome', nome); window.location.href='../../deseja.atendimento.presencial.html';" style="cursor:pointer;">
+  <img src="../../icones/negativo.png" alt="Não Resolvido" style="width:270px; height:88px;">
+</div>
+        <div id="texto-nao-resolvido" style="position:absolute; top:35px; left:169%; transform:translateX(-50%); white-space:nowrap; pointer-events:none;">
+          <span style="font-size:15px; font-weight:bold; color:white;">NÃO, AINDA TENHO DÚVIDAS</span>
+        </div>
+      </div>
+    </div>
+
+      <!-- Menu Principal (esquerda) -->
+      <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
+      <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+      <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
+      <!-- Ícone casinha -->
+      <a href="../../menu.principal.html">
+      <img src="../../icones/casinha.png" alt="Home" 
+         style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
+     </a>
+     </div>
+
+     <!-- Menu Anterior (direita) -->
+     <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
+     <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
+     <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
+     <!-- Ícone voltar -->
+     <div onclick="window.history.go(-1)" style="position:relative; display:inline-block; cursor:pointer;">
+     <img src="../../icones/voltar.png" alt="Voltar" 
+         style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+  </div>
+</div>
+
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="../../database.js"></script>
+
+  <script>
+    const matricula = localStorage.getItem("matricula") || "N/A";
+
+    let nome = "Desconhecido";
+    let cargo = "Não encontrado";
+    let coordenacao = "Não encontrada";
+    let gerencia = "Não encontrada";
+    let uo = "Não informada";
+
+    if (typeof database !== 'undefined' && database[matricula]) {
+      const dados = database[matricula];
+      nome = dados.nome || nome;
+      cargo = dados.cargo || cargo;
+      coordenacao = dados.coordenacao || coordenacao;
+      gerencia = dados.gerencia || gerencia;
+      uo = dados.uo || uo;
+    }
+
+    const tituloPagina = document.title;
+
+    const firebaseConfigAtendimento = {
+      apiKey: "AIzaSyCTTUHbs5Sj5ySCf3l4mW8gwEmYgdidzq0",
+      authDomain: "relatorio-atendimentos.firebaseapp.com",
+      databaseURL: "https://relatorio-atendimentos-default-rtdb.firebaseio.com",
+      projectId: "relatorio-atendimentos",
+      storageBucket: "relatorio-atendimentos.firebasestorage.app",
+      messagingSenderId: "626822825046",
+      appId: "1:626822825046:web:63a49fd4ec30588485a7f7"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfigAtendimento);
+    }
+    const db = firebase.database();
+        
+  </script>
+
+<!-- Script de atividade -->
+
+<script>
+  const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+  eventos.forEach(evento => {
+    document.addEventListener(evento, () => {
+      parent.postMessage("atividade", "*");
+    });
+  });
+
+  // Adicionando scroll em elementos com barra de rolagem
+  const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+  if (divComScroll) {
+    divComScroll.addEventListener('scroll', () => {
+      parent.postMessage("atividade", "*");
+    });
+  }
+</script>
+
+
+</body>
+</html>

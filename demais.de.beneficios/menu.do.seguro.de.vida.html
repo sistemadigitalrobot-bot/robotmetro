@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguro de Vida</title>
+</head>
+<body style="margin:0; padding:0; font-family:Arial, sans-serif; text-align:center; overflow:hidden;">
+
+    <!-- Imagem do Menu com texto sobreposto -->
+    <div style="margin-top:-5px; margin-right:1px;">
+        <div style="position:relative; display:inline-block;">
+            <img src="../icones/icone.titulo.png" alt="Título" style="width:280px; height:120px;">
+            <span style="position:absolute; top:50%; right:-22%; transform:translate(-50%, -50%);
+                         font-size:23px; font-weight:bold; color:white;">SEGURO DE VIDA</span>
+        </div>
+    </div>
+
+    <!-- Itens do menu -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; width:auto; margin:5px auto;">
+
+        <!-- QUEM TEM DIREITO? -->
+        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-14px;">
+            <img src="../icones/icone.botao.png" alt="quem tem direito?" style="width:410px; height:130px;">
+            <a href="conteudos.do.seguro.de.vida/quem.tem.direito.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">QUEM TEM DIREITO?</span>
+            </a>
+        </div>
+
+        <!-- O QUÊ O SEGURO ABRANGE? -->
+        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-44px;">
+            <img src="../icones/icone.botao.png" alt="o que o seguro abrange?" style="width:410px; height:130px;">
+            <a href="conteudos.do.seguro.de.vida/o.que.o.seguro.abrange.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">O QUÊ O SEGURO ABRANGE?</span>
+            </a>
+        </div>
+
+        <!-- COMO ACIONAR O SEGURO? -->
+        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-14px;">
+            <img src="../icones/icone.botao.png" alt="como acionar o seguro?" style="width:410px; height:130px;">
+            <a href="conteudos.do.seguro.de.vida/como.acionar.o.seguro.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">COMO ACIONAR O SEGURO?</span>
+            </a>
+        </div>
+
+        <!-- O SEGURO TEM CUSTO? -->
+        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-44px;">
+            <img src="../icones/icone.botao.png" alt="o seguro tem custo?" style="width:410px; height:130px;">
+            <a href="conteudos.do.seguro.de.vida/o.seguro.tem.custo.html"
+               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">O SEGURO TEM CUSTO?</span>
+            </a>
+        </div>
+
+        <!-- INCLUIR BENEFICIÁRIOS -->
+        <div style="position:relative; display:inline-block; margin-top:-54px; margin-right:-355px;">
+            <img src="../icones/icone.botao.png" alt="incluir beneficiários" style="width:410px; height:130px;">
+            <a href="conteudos.do.seguro.de.vida/incluir.beneficiarios.html"
+               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
+                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
+                      text-decoration:none; cursor:pointer;">
+                <span style="font-size:19px; font-weight:bold; color:white;">INCLUIR BENEFICIÁRIOS</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Ícones de navegação -->
+    <div style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:flex-start;">
+
+        <!-- Menu Principal -->
+        <div style="text-align:left;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-left:12px;">MENU</span>
+                <span style="display:block; margin-left:-3px;">PRINCIPAL</span>
+            </div>
+            <a href="../menu.principal.html">
+                <img src="../icones/casinha.png" alt="Home" style="width:68px; height:68px; margin-top:4px; margin-left:-1px;">
+            </a>
+        </div>
+
+        <!-- Menu Anterior -->
+        <div style="text-align:right;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-right:55px;">MENU</span>
+                <span style="display:block; margin-right:38px;">ANTERIOR</span>
+            </div>
+            <a href="../menu.de.demais.beneficios.html">
+                <img src="../icones/voltar.png" alt="Voltar" style="width:68px; height:68px; margin-top:4px; margin-right:40px;">
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Script de atividade -->
+    <script>
+        const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+        eventos.forEach(evento => {
+            document.addEventListener(evento, () => {
+                parent.postMessage("atividade", "*");
+            });
+        });
+
+        const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+        if (divComScroll) {
+            divComScroll.addEventListener('scroll', () => {
+                parent.postMessage("atividade", "*");
+            });
+        }
+    </script>
+
+</body>
+</html>
