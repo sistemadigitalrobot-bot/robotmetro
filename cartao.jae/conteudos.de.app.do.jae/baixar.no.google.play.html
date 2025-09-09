@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Baixar o Jaé no Google Play</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: transparent;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .conteudo-central {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Título separado */
+    .titulo-qr {
+      position: relative;
+      top: -70px; /* Ajuste a posição do TÍTULO aqui */
+      margin-bottom: 10px;
+    }
+
+    /* QR Code separado */
+    .qrcode-container {
+      position: relative;
+      top: -59px; /* Ajuste a posição do QR CODE aqui */
+    }
+
+    /* Ícones do menu principal */
+    .menu-principal-container {
+      position: fixed;
+      bottom: 2px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .menu-principal-conteudo {
+      margin-right: 690px;
+      text-align: left;
+    }
+
+    .menu-principal-conteudo span {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      line-height: 1.2;
+      margin-top: -8px;
+      margin-bottom: -6px;
+    }
+
+    .menu-principal-conteudo img {
+      width: 68px;
+      height: 68px;
+      margin-top: 4px;
+      margin-left: -1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="conteudo-central" id="conteudo">
+
+    <!-- TÍTULO independente -->
+    <h2 class="titulo-qr">Escaneie o QR Code para<br>baixar o Jaé no Google Play</h2>
+
+    <!-- QR CODE independente -->
+    <div class="qrcode-container">
+      <canvas id="qr"></canvas>
+    </div>
+
+  </div>
+
+  <!-- Ícones de navegação com controle de posição de textos e imagens -->
+    <div style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:flex-start;">
+
+        <!-- Menu Principal -->
+        <div style="text-align:left;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-left:12px;">MENU</span>
+                <span style="display:block; margin-left:-3px;">PRINCIPAL</span>
+            </div>
+            <a href="../../menu.principal.html">
+                <img src="../../icones/casinha.png" alt="Home" style="width:68px; height:68px; margin-top:4px; margin-left:-1px;">
+            </a>
+        </div>
+
+        <!-- Menu Anterior (direita) -->
+        <div style="text-align:right;">
+            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
+                <span style="display:block; margin-right:55px;">MENU</span>
+                <span style="display:block; margin-right:38px;">ANTERIOR</span>
+            </div>
+            <a href="../menu.para.baixar.app.do.jae.html">
+                <img src="../../icones/voltar.png" alt="Voltar" style="width:68px; height:68px; margin-top:4px; margin-right:40px;">
+            </a>
+        </div>
+    </div>
+
+  <script>
+    const url = "https://play.google.com/store/apps/details?id=br.com.billingpay.app.pf&pcampaignid=web_share','android";
+
+    const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = url;
+    } else {
+      const qr = new QRious({
+        element: document.getElementById("qr"),
+        value: url,
+        size: 250
+      });
+    }
+  </script>
+
+  <!-- Script de atividade -->
+  <script>
+    const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+    eventos.forEach(evento => {
+      document.addEventListener(evento, () => {
+        parent.postMessage("atividade", "*");
+      });
+    });
+
+    const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+    if (divComScroll) {
+      divComScroll.addEventListener('scroll', () => {
+        parent.postMessage("atividade", "*");
+      });
+    }
+  </script>
+
+</body>
+</html>
