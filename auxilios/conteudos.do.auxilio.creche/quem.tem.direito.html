@@ -64,30 +64,34 @@
       /* CONTEÚDO */
       .conteudo-scroll {
         width: 520px;
-        height: 58vh;
-        margin-top: 120px;
+        height: 54vh;
+        margin-top: 95px;
+        margin-left: auto;
+        margin-right: auto;
         padding-right: 15px;
         line-height: 1.5;
         font-size: 20px;
+        position: relative;
+        left: 16px; /* empurra o bloco inteiro (texto + scroll) 40px para a direita */
       }
 
       /* BOTÃO RESOLVIDO */
-      .btn-resolvido img { width: 270px; height: 88px; }
-      .btn-resolvido span { font-size: 15px; top: 35px; left: 50%; transform: translateX(-50%); }
+      .btn-resolvido img { position: absolute; width: 270px; height: 88px; bottom: -8px; left: 220px; transform: translateX(-50%); }
+      .btn-resolvido span { position: absolute; font-size: 15px; top: -45px; left: 220px; transform: translateX(-50%); }
 
       /* BOTÃO NÃO RESOLVIDO */
-      .btn-nao-resolvido img { width: 270px; height: 88px; }
-      .btn-nao-resolvido span { font-size: 15px; top: 35px; left: 50%; transform: translateX(-50%); }
+      .btn-nao-resolvido img { position: absolute; width: 270px; height: 88px; bottom: -8px; right: 258px; transform: translateX(50%); }
+      .btn-nao-resolvido span { position: absolute; font-size: 15px; top: -45px; right: 40px; transform: translateX(-50%); }
 
       /* MENU PRINCIPAL */
-      .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
-      .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
-      .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+      .txt-menu      { font-size: 14px; bottom: 88px; left: 32px; margin: 0; color: white; font-weight: bold; position: absolute; display: block; } 
+      .txt-principal { font-size: 14px; bottom: 71px; left: 17px; margin: 0; color: white; font-weight: bold; position: absolute; display: block; }
+      .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 6px; position: absolute; z-index: 10; }
 
       /* MENU ANTERIOR */
-      .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
-      .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
-      .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+      .txt-menu2     { font-size: 14px; bottom: 88px; right: 35px; margin: 0; color: white; font-weight: bold; position: absolute; display: block; text-align: right; }
+      .txt-anterior  { font-size: 14px; bottom: 71px; right: 18px; margin: 0; color: white; font-weight: bold; position: absolute; display: block; text-align: right; }
+      .icone-voltar  { width: 68px; height: 68px; right: 20px; bottom: 6px; position: absolute; z-index: 10; }
     }
 
     /* ================= MOBILE ================= */
