@@ -104,10 +104,28 @@
         }
         /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
         @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
-          .botoes-scroll { 
-            height: 65vh; 
-            margin-top: 135px; 
-          }
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+             /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+            .botoes-scroll::-webkit-scrollbar {
+              width: 30px;
+            }
+            .botoes-scroll::-webkit-scrollbar-track {
+              background: rgba(255,255,255,0.25);
+            }
+            .botoes-scroll::-webkit-scrollbar-thumb {
+              background-color: rgba(255,255,255,0.1);
+              border-radius: 12px;
+            }
+
+            /* Firefox no mobile */
+            .botoes-scroll {
+              scrollbar-width: auto;
+              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+            }
 
             /* TÍTULO - FUNERAL */
             .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
@@ -252,4 +270,5 @@
         }
     </script>
 </body>
+
 </html>
