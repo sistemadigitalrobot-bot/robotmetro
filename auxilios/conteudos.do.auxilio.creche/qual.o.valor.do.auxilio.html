@@ -57,11 +57,7 @@
 
     /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
     @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
-      /* TÍTULO */
-      .titulo-container img { width: 460px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
-      .titulo-container span { font-size: 23px; top: 43px; left: 50%; transform: translateX(-50%); }
-
-      /* CONTEÚDO */
+      /* CONFIGURAÇÃO DO CONTEÚDO */
       .conteudo-scroll {
         width: 520px;
         height: 54vh;
@@ -72,9 +68,13 @@
         line-height: 1.5;
         font-size: 20px;
         position: relative;
-        left: 16px; /* empurra o bloco inteiro (texto + scroll) 40px para a direita */
+        left: 16px; /* empurra o bloco inteiro (texto + scroll)
       }
 
+      /* TÍTULO */
+      .titulo-container img { width: 460px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
+      .titulo-container span { font-size: 23px; top: 43px; left: 50%; transform: translateX(-50%); }
+      
       /* BOTÃO RESOLVIDO */
       .btn-resolvido img { position: absolute; width: 270px; height: 88px; bottom: -8px; left: 220px; transform: translateX(-50%); }
       .btn-resolvido span { position: absolute; font-size: 15px; top: -45px; left: 220px; transform: translateX(-50%); }
@@ -96,6 +96,7 @@
 
     /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
     @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+      /* CONFIGURAÇÃO DO CONTEÚDO */
       .conteudo-scroll { 
         height: 65vh; 
         margin-top: 160px; 
