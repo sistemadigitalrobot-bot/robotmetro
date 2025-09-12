@@ -151,6 +151,18 @@
       .texto-desktop { display: none; }
       .texto-mobile  { display: block; text-align: center; white-space: normal; }
     }
+
+    /* ================= CLASSE PARA O PARÁGRAFO AJUSTADO ================= */
+    .texto-ajustado {
+      font-size: 20px; /* desktop */
+      color: white;
+      margin: 5px 2px 10px;
+    }
+    @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+      .texto-ajustado {
+        font-size: 28px; /* mobile */
+      }
+    }
   </style>
 </head>
 <body>
@@ -169,7 +181,7 @@
         mês para o e-mail <span style="text-decoration: underline; 
         color: #00BFFF;">servicosrh@metrorio.com.br,</span> incluindo seu nome completo e matrícula. No assunto do e-mail, coloque 'Complemento Auxílio 
         Creche'. E não se esqueça: envie os anexos em formato PDF ou PNG.</p>
-        <p style="font-family:Arial, sans-serif; font-size:28px; color:white; margin:5px 2; margin-bottom:10px;">
+        <p class="texto-ajustado">
         O valor dessas despesas será somado à mensalidade que você já recebe e então será feito o cálculo de 85% em cima do valor total 
         (despesas extras + mensalidade). Se o resultado desse cálculo atingir ou ultrapassar o teto de R$748,46, esse valor máximo será considerado. 
         Queremos garantir que você receba o máximo de benefício possível dentro das nossas políticas, para que a educação do seu filho seja sempre 
