@@ -60,7 +60,7 @@
       /* CONFIGURAÇÃO DO CONTEÚDO */
       .conteudo-scroll {
         width: 520px;
-        height: calc(100vh - 180px);
+        height: 54vh;
         margin-top: 95px;
         margin-left: auto;
         margin-right: auto;
@@ -68,7 +68,7 @@
         line-height: 1.5;
         font-size: 20px;
         position: relative;
-        transform: translateX(16px); /* substitui left:16px sem criar scroll */
+        left: 16px; /* empurra o bloco inteiro (texto + scroll) */
       }
 
       /* TÍTULO */
@@ -163,10 +163,6 @@
       .texto-ajustado {
         font-size: 28px; /* mobile */
       }
-    }
-    
-    html, body {
-      overflow-x: hidden; /* corta qualquer sobra lateral */
     }
   </style>
 </head>
