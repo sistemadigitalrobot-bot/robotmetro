@@ -151,6 +151,18 @@
       .texto-desktop { display: none; }
       .texto-mobile  { display: block; text-align: center; white-space: normal; }
     }
+  
+    /* ================= CLASSE PARA O PARÁGRAFO AJUSTADO ================= */
+    .texto-ajustado {
+      font-size: 20px; /* desktop */
+      color: white;
+      margin: 5px 2px 10px;
+    }
+    @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+      .texto-ajustado {
+        font-size: 28px; /* mobile */
+      }
+    }
   </style>
 </head>
 <body>
