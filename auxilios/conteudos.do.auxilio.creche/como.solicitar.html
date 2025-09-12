@@ -151,6 +151,18 @@
       .texto-desktop { display: none; }
       .texto-mobile  { display: block; text-align: center; white-space: normal; }
     }
+ 
+    /* ================= CLASSE PARA O PARÁGRAFO AJUSTADO ================= */
+    .texto-ajustado {
+      font-size: 20px; /* desktop */
+      color: white;
+      margin: 5px 2px 10px;
+    }
+    @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+      .texto-ajustado {
+        font-size: 28px; /* mobile */
+      }
+    }
   </style>
 </head>
 <body>
@@ -167,7 +179,7 @@
         matrícula ou contrato escolar que comprove a inscrição do(a) seu filho(a) na instituição de ensino. Certifique-se de que o documento contenha 
         o nome completo do(a) aluno(a), dos responsáveis e o valor da mensalidade. Você pode enviar tudo isso para o e-mail <span style="text-decoration: 
         underline; color: #00BFFF;">servicosrh@metrorio.com.br</span> até o dia 10 de cada mês.</p>
-        <p style="font-family:Arial, sans-serif; font-size:28px; color:white; margin:5px 2; margin-bottom:10px;">
+        <p class="texto-ajustado">
         Uma vez que você tenha enviado esses documentos, não será necessário fazer isso todo mês. O valor calculado, equivalente a 85% do custo da 
         creche, será programado para pagamento junto com o seu salário nos próximos meses. Você só precisará enviar os comprovantes de pagamento dos 
         meses reembolsados durante a janela de prestação de contas e envio dos comprovantes, que ocorre em julho e janeiro. Para saber mais sobre esta 
