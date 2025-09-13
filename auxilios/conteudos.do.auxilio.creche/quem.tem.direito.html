@@ -26,10 +26,6 @@
       margin: 0 auto;
       text-align: justify;
       color: white;
-      padding-right: 15px;
-      line-height: 1.5;
-      font-size: 20px;
-      max-height: 58vh; /* fallback caso o JS ainda não rode */
     }
 
     .rodape {
@@ -61,9 +57,10 @@
 
     /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
     @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
-      /* CONFIGURAÇÃO DO CONTEÚDO (sem height fixo) */
+      /* CONFIGURAÇÃO DO CONTEÚDO */
       .conteudo-scroll {
         width: 520px;
+        height: 54vh;
         margin-top: 95px;
         margin-left: auto;
         margin-right: auto;
@@ -99,8 +96,9 @@
 
     /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
     @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
-      /* CONFIGURAÇÃO DO CONTEÚDO (sem height fixo) */
+      /* CONFIGURAÇÃO DO CONTEÚDO */
       .conteudo-scroll { 
+        height: 65vh; 
         margin-top: 160px; 
         width: 90%;
         font-size: 28px;
@@ -126,8 +124,8 @@
       }
 
       /* TÍTULO */
-      .titulo-container img { width: 780px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
-      .titulo-container span { font-size: 48px; top: 48px; right: -95px; transform: translateX(-50%); }
+      .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
+      .titulo-container span { font-size: 48px; top: 48px; right: -4px; transform: translateX(-50%); }
 
       /* BOTÃO RESOLVIDO */
       .btn-resolvido img { position:absolute; width:327px; height:177px; bottom: -35px; left: 283px; transform: translateX(-50%); }
@@ -154,7 +152,7 @@
       .texto-desktop { display: none; }
       .texto-mobile  { display: block; text-align: center; white-space: normal; }
     }
- 
+  
     /* ================= CLASSE PARA O PARÁGRAFO AJUSTADO ================= */
     .texto-ajustado {
       font-size: 20px; /* desktop */
@@ -169,16 +167,16 @@
   </style>
 </head>
 <body>
-    
+
   <!-- TÍTULO -->
   <div class="titulo-container">
     <img src="../../icones/icone.titulo.png" alt="Título">
     <span>QUEM TEM DIREITO?</span>
   </div>
 
-  <!-- CONTEÚDO (adicionada classe botoes-scroll para estilos de scrollbar mobile) -->
-  <div class="conteudo-scroll botoes-scroll">
-    <p class="texto-ajustado">O auxílio creche é direcionado aos nossos colaboradores ativos que têm filhos ou enteados com menos de 6 anos
+  <!-- CONTEÚDO -->
+  <div class="conteudo-scroll">
+    <p>O auxílio creche é direcionado aos nossos colaboradores ativos que têm filhos ou enteados com menos de 6 anos
      e 11 meses. De acordo com o acordo coletivo, a criança recebe esse auxílio até completar 7 anos. É importante 
      ressaltar que, se o seu cônjuge também trabalhar no MetrôRio, o benefício será concedido a apenas um dos colaboradores. 
      O Auxílio Creche é uma ajuda valiosa que oferecemos para auxiliar nas despesas relacionadas à creche e escola dos seus 
@@ -230,40 +228,7 @@
     </a>
   </div>
 
-  <!-- SCRIPT: ajusta dinamicamente o max-height para que o bloco encolha se o conteúdo couber -->
-  <script>
-    (function() {
-      function updateConteudoMaxHeight() {
-        const conteudo = document.querySelector('.conteudo-scroll');
-        const titulo = document.querySelector('.titulo-container');
-        const rodape = document.querySelector('.rodape');
-        if (!conteudo) return;
-
-        const headerH = titulo ? titulo.getBoundingClientRect().height : 0;
-        const footerH = rodape ? rodape.getBoundingClientRect().height : 0;
-        const gap = 24; // ajuste se precisar mais/menos espaço
-        const available = Math.max(window.innerHeight - headerH - footerH - gap, 120);
-
-        // usa maxHeight para permitir que o elemento encolha caso o conteúdo seja menor
-        conteudo.style.maxHeight = available + 'px';
-        conteudo.style.overflowY = 'auto';
-      }
-
-      ['resize','orientationchange'].forEach(ev => window.addEventListener(ev, updateConteudoMaxHeight, {passive:true}));
-      document.addEventListener('fullscreenchange', updateConteudoMaxHeight);
-      document.addEventListener('webkitfullscreenchange', updateConteudoMaxHeight);
-      document.addEventListener('mozfullscreenchange', updateConteudoMaxHeight);
-      document.addEventListener('msfullscreenchange', updateConteudoMaxHeight);
-
-      window.addEventListener('load', () => {
-        updateConteudoMaxHeight();
-        setTimeout(updateConteudoMaxHeight, 150);
-      });
-      document.addEventListener('DOMContentLoaded', updateConteudoMaxHeight);
-    })();
-  </script>
-
-  <!-- SCRIPT DE ATIVIDADE (mantido igual ao original) -->
+  <!-- SCRIPT DE ATIVIDADE -->
   <script>
     const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
     eventos.forEach(evento => {
