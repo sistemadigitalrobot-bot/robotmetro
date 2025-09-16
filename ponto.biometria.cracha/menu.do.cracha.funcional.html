@@ -2,129 +2,265 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Crachá Funcional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Crachá Funcional</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 650px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute; 
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            /* TÍTULO - CRACHÁ FUNCIONAL */
+            .titulo-container img { width: 320px; height: 120px; top: -5px; left: 373px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; top: 43px; left: 373px; transform: translateX(-50%); }
+
+            /* COMO SOLICITAR 2ª VIA? */
+            .btn-como-solicitar-2via img { width: 410px; height: 130px; top: -32px; left: -14px; }
+            .btn-como-solicitar-2via a   { width: 348px; height: 70px; top: 36px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-como-solicitar-2via a span { font-size: 19px; }
+
+            /* O CRACHÁ TEM CUSTO? */
+            .btn-o-cracha-tem-custo img { width: 410px; height: 130px; top: -32px; right: -20px; }
+            .btn-o-cracha-tem-custo a   { width: 348px; height: 70px; top: 36px; right: 181px; transform: translate(50%, -50%); }
+            .btn-o-cracha-tem-custo a span { font-size: 19px; }
+
+            /* USO FORA DO EXPEDIENTE */
+            .btn-uso-fora-do-expediente img { width: 410px; height: 130px; top: 53px; left: -14px; }
+            .btn-uso-fora-do-expediente a   { width: 348px; height: 70px; top: 121px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-uso-fora-do-expediente a span { font-size: 19px; }
+
+            /* USO NAS FÉRIAS */
+            .btn-uso-nas-ferias img { width: 410px; height: 130px; top: 53px; right: -20px; }
+            .btn-uso-nas-ferias a   { width: 348px; height: 70px; top: 121px; right: 181px; transform: translate(50%, -50%); }
+            .btn-uso-nas-ferias a span { font-size: 19px; }
+
+            /* AFASTAMENTO/LICENÇA? */
+            .btn-afastamento-licenca img { width: 410px; height: 130px; top: 137px; left: -14px; }
+            .btn-afastamento-licenca a   { width: 348px; height: 70px; top: 205px; left: 195px; transform: translate(-50%, -50%); }
+            .btn-afastamento-licenca a span { font-size: 19px; }
+
+            /* VALIDADE VENCIDA? */
+            .btn-validade-vencida img { width: 410px; height: 130px; top: 137px; right: -20px; }
+            .btn-validade-vencida a   { width: 348px; height: 70px; top: 205px; right: 181px; transform: translate(50%, -50%); }
+            .btn-validade-vencida a span { font-size: 19px; }
+
+            /* EMPRÉSTIMO DO CRACHÁ */
+            .btn-emprestimo-do-cracha img { width: 410px; height: 130px; top: 222px; left: 170px; }
+            .btn-emprestimo-do-cracha a   { width: 348px; height: 70px; top: 290px; right: 23px; transform: translate(-50%, -50%); }
+            .btn-emprestimo-do-cracha a span { font-size: 19px; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+            /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+           .botoes-scroll::-webkit-scrollbar {
+             width: 30px;
+           }
+           .botoes-scroll::-webkit-scrollbar-track {
+             background: rgba(255,255,255,0.25);
+           }
+           .botoes-scroll::-webkit-scrollbar-thumb {
+             background-color: rgba(255,255,255,0.1);
+             border-radius: 12px;
+           }
+
+           /* Firefox no mobile */
+           .botoes-scroll {
+             scrollbar-width: auto;
+             scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+           }
+
+            /* TÍTULO - CRACHÁ FUNCIONAL */
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; top: 48px; left: 473px; transform: translateX(-50%); }
+
+            /* COMO SOLICITAR 2ª VIA? */
+            .btn-como-solicitar-2via img { width: 680px; height: 180px; top: -20px; left: 473px; transform: translateX(-50%); }
+            .btn-como-solicitar-2via a   { width: 580px; height: 90px; top: 31px; left: 482px; transform: translateX(-50%); }
+            .btn-como-solicitar-2via a span { font-size: 33px; }
+
+            /* O CRACHÁ TEM CUSTO? */
+            .btn-o-cracha-tem-custo img { width: 680px; height: 180px; top: 120px; left: 473px; transform: translateX(-50%); }
+            .btn-o-cracha-tem-custo a   { width: 580px; height: 90px; top: 172px; left: 482px; transform: translateX(-50%); }
+            .btn-o-cracha-tem-custo a span { font-size: 33px; }
+
+            /* USO FORA DO EXPEDIENTE */
+            .btn-uso-fora-do-expediente img { width: 680px; height: 180px; top: 259px; left: 473px; transform: translateX(-50%); }
+            .btn-uso-fora-do-expediente a   { width: 580px; height: 90px; top: 308px; left: 480px; transform: translateX(-50%); }
+            .btn-uso-fora-do-expediente a span { font-size: 33px; }
+
+            /* USO NAS FÉRIAS */
+            .btn-uso-nas-ferias img { width: 680px; height: 180px; top: 397px; left: 473px; transform: translateX(-50%); }
+            .btn-uso-nas-ferias a   { width: 580px; height: 90px; top: 448px; left: 480px; transform: translateX(-50%); }
+            .btn-uso-nas-ferias a span { font-size: 33px; }
+
+            /* AFASTAMENTO/LICENÇA? */
+            .btn-afastamento-licenca img { width: 680px; height: 180px; top: 536px; left: 473px; transform: translateX(-50%); }
+            .btn-afastamento-licenca a   { width: 580px; height: 90px; top: 586px; left: 480px; transform: translateX(-50%); }
+            .btn-afastamento-licenca a span { font-size: 33px; }
+
+            /* VALIDADE VENCIDA? */
+            .btn-validade-vencida img { width: 680px; height: 180px; top: 674px; left: 473px; transform: translateX(-50%); }
+            .btn-validade-vencida a   { width: 580px; height: 90px; top: 724px; left: 482px; transform: translateX(-50%); }
+            .btn-validade-vencida a span { font-size: 33px; }
+
+            /* EMPRÉSTIMO DO CRACHÁ */
+            .btn-emprestimo-do-cracha img { width: 680px; height: 180px; top: 811px; left: 473px; transform: translateX(-50%); }
+            .btn-emprestimo-do-cracha a   { width: 580px; height: 90px; top: 861px; left: 482px; transform: translateX(-50%); }
+            .btn-emprestimo-do-cracha a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 24px; bottom: 129px; right: 70px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .txt-anterior  { font-size: 24px; bottom: 100px; right: 45px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .icone-voltar  { width: 96px; height: 96px; bottom: 5px; right: 55px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { position: fixed; bottom: 2px; width: 100%; padding: 0 20px; }
+        .rodape-conteudo { display: flex; align-items: center; justify-content: space-between; }
+    </style>
 </head>
-<body style="margin:0; padding:0; font-family:Arial, sans-serif; text-align:center; overflow:hidden;">
+<body>
 
-    <!-- Imagem do Menu com texto sobreposto -->
-    <div style="margin-top:-5px; margin-right:7px;">
-        <div style="position:relative; display:inline-block;">
-            <img src="../icones/icone.titulo.png" alt="Título" style="width:320px; height:120px;">
-            <span style="position:absolute; top:50%; right:-26%; transform:translate(-50%, -50%);
-                         font-size:23px; font-weight:bold; color:white;">CRACHÁ FUNCIONAL</span>
-        </div>
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="../icones/icone.titulo.png" alt="Título">
+        <span>CRACHÁ FUNCIONAL</span>
     </div>
 
-    <!-- Itens do menu -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; width:auto; margin:5px auto;">
-
-        <!-- COMO SOLICITAR 2ª VIA? -->
-        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-14px;">
-            <img src="../icones/icone.botao.png" alt="como solicitar 2ªvia?" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/como.solicitar.2via.html"
-               style="position:absolute; top:51%; left:51%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">COMO SOLICITAR 2ª VIA?</span>
-            </a>
-        </div>
-
-        <!-- O CRACHÁ TEM CUSTO? -->
-        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-44px;">
-            <img src="../icones/icone.botao.png" alt="o crachá tem custo?" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/o.cracha.tem.custo.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">O CRACHÁ TEM CUSTO?</span>
-            </a>
-        </div>
-
-        <!-- USO FORA DO EXPEDIENTE -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-14px;">
-            <img src="../icones/icone.botao.png" alt="uso fora do expediente" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/uso.fora.do.expediente.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">USO FORA DO EXPEDIENTE</span>
-            </a>
-        </div>
-
-        <!-- USO NAS FÉRIAS -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-44px;">
-            <img src="../icones/icone.botao.png" alt="uso nas férias" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/uso.nas.ferias.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">USO NAS FÉRIAS</span>
-            </a>
-        </div>
-
-        <!-- AFASTAMENTO/LICENÇA? -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-14px;">
-            <img src="../icones/icone.botao.png" alt="afastamento ou licença?" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/afastamento.licenca.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">AFASTAMENTO/LICENÇA?</span>
-            </a>
-        </div>
-
-        <!-- VALIDADE VENCIDA? -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-44px;">
-            <img src="../icones/icone.botao.png" alt="validade vencida?" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/validade.vencida.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">VALIDADE VENCIDA?</span>
-            </a>
-        </div>
-
-        <!-- EMPRÉSTIMO DO CRACHÁ -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-right:-355px;">
-            <img src="../icones/icone.botao.png" alt="empréstimo do crachá" style="width:410px; height:130px;">
-            <a href="conteudos.do.cracha.funcional/emprestimo.do.cracha.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">EMPRÉSTIMO DO CRACHÁ</span>
-            </a>
-        </div>
-
-    </div>
-
-    <!-- Ícones de navegação -->
-    <div style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:flex-start;">
-
-        <!-- Menu Principal -->
-        <div style="text-align:left;">
-            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
-                <span style="display:block; margin-left:12px;">MENU</span>
-                <span style="display:block; margin-left:-3px;">PRINCIPAL</span>
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-como-solicitar-2via">
+                <img src="../icones/icone.botao.png" alt="Como solicitar 2ªvia?">
+                <a href="conteudos.do.cracha.funcional/como.solicitar.2via.html"><span>COMO SOLICITAR 2ª VIA?</span></a>
             </div>
-            <a href="../menu.principal.html">
-                <img src="../icones/casinha.png" alt="Home" style="width:68px; height:68px; margin-top:4px; margin-left:-1px;">
-            </a>
-        </div>
 
-        <!-- Menu Anterior -->
-        <div style="text-align:right;">
-            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
-                <span style="display:block; margin-right:55px;">MENU</span>
-                <span style="display:block; margin-right:38px;">ANTERIOR</span>
+            <div class="botao btn-o-cracha-tem-custo">
+                <img src="../icones/icone.botao.png" alt="O crachá tem custo?">
+                <a href="conteudos.do.cracha.funcional/o.cracha.tem.custo.html"><span>O CRACHÁ TEM CUSTO?</span></a>
             </div>
-            <a href="../menu.do.ponto.bio.cracha.html">
-                <img src="../icones/voltar.png" alt="Voltar" style="width:68px; height:68px; margin-top:4px; margin-right:40px;">
-            </a>
-        </div>
 
+            <div class="botao btn-uso-fora-do-expediente">
+                <img src="../icones/icone.botao.png" alt="Uso fora do expediente">
+                <a href="conteudos.do.cracha.funcional/uso.fora.do.expediente.html"><span>USO FORA DO EXPEDIENTE</span></a>
+            </div>
+
+            <div class="botao btn-uso-nas-ferias">
+                <img src="../icones/icone.botao.png" alt="Uso nas férias">
+                <a href="conteudos.do.cracha.funcional/uso.nas.ferias.html"><span>USO NAS FÉRIAS</span></a>
+            </div>
+
+            <div class="botao btn-afastamento-licenca">
+                <img src="../icones/icone.botao.png" alt="Afastamento ou licença?">
+                <a href="conteudos.do.cracha.funcional/afastamento.licenca.html"><span>AFASTAMENTO/LICENÇA?</span></a>
+            </div>
+
+            <div class="botao btn-validade-vencida">
+                <img src="../icones/icone.botao.png" alt="Validade vencida?">
+                <a href="conteudos.do.cracha.funcional/validade.vencida.html"><span>VALIDADE VENCIDA?</span></a>
+            </div>
+
+            <div class="botao btn-emprestimo-do-cracha">
+                <img src="../icones/icone.botao.png" alt="Empréstimo do crachá">
+                <a href="conteudos.do.cracha.funcional/emprestimo.do.cracha.html"><span>EMPRÉSTIMO DO CRACHÁ</span></a>
+            </div>
+        </div>
     </div>
 
-    <!-- Script de atividade -->
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="rodape-conteudo">
+            <!-- MENU PRINCIPAL -->
+            <div>
+                <span class="txt-menu">MENU</span>
+                <span class="txt-principal">PRINCIPAL</span>
+                <a href="../menu.principal.html">
+                    <img class="icone-casinha" src="../icones/casinha.png" alt="Home">
+                </a>
+            </div>
+
+            <!-- MENU ANTERIOR -->
+            <div>
+                <span class="txt-menu2">MENU</span>
+                <span class="txt-anterior">ANTERIOR</span>
+                <a href="../menu.de.auxilios.html">
+                    <img class="icone-voltar" src="../icones/voltar.png" alt="Voltar">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE ATIVIDADE -->
     <script>
         const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
         eventos.forEach(evento => {
@@ -133,14 +269,12 @@
             });
         });
 
-        const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+        const divComScroll = document.querySelector('.botoes-scroll');
         if (divComScroll) {
             divComScroll.addEventListener('scroll', () => {
                 parent.postMessage("atividade", "*");
             });
         }
     </script>
-
 </body>
 </html>
-
