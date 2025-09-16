@@ -243,5 +243,48 @@
       });
     }
   </script>
+
+  <!-- FIREBASE + DATABASE -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="../../database.js"></script>
+
+  <!-- SCRIPT DE INTEGRAÇÃO -->
+  <script>
+    const matricula = localStorage.getItem("matricula") || "N/A";
+
+    let nome = "Desconhecido";
+    let cargo = "Não encontrado";
+    let coordenacao = "Não encontrada";
+    let gerencia = "Não encontrada";
+    let uo = "Não informada";
+
+    if (typeof database !== 'undefined' && database[matricula]) {
+      const dados = database[matricula];
+      nome = dados.nome || nome;
+      cargo = dados.cargo || cargo;
+      coordenacao = dados.coordenacao || coordenacao;
+      gerencia = dados.gerencia || gerencia;
+      uo = dados.uo || uo;
+    }
+
+    const tituloPagina = document.title;
+
+    const firebaseConfigAtendimento = {
+      apiKey: "AIzaSyCTTUHbs5Sj5ySCf3l4mW8gwEmYgdidzq0",
+      authDomain: "relatorio-atendimentos.firebaseapp.com",
+      databaseURL: "https://relatorio-atendimentos-default-rtdb.firebaseio.com",
+      projectId: "relatorio-atendimentos",
+      storageBucket: "relatorio-atendimentos.firebasestorage.app",
+      messagingSenderId: "626822825046",
+      appId: "1:626822825046:web:63a49fd4ec30588485a7f7"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfigAtendimento);
+    }
+    const db = firebase.database();
+  </script>
+
 </body>
 </html>
