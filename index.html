@@ -479,41 +479,83 @@
   const messageDiv = document.getElementById('message');
   const video1 = document.getElementById('video1');
   const video2 = document.getElementById('video2');
-
   const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  
+
+  // --- NOVAS VARIÁVEIS DE ESTADO ---
+  let etapa = 'matricula';          // controla a etapa atual
+  let matriculaAtual = null;
+
+  // teclado numérico
   keys.forEach(key => {
     key.addEventListener('pointerdown', () => {
-      if (key.id === 'clear') inputBox.value = '';
-      else if (key.id === 'backspace') inputBox.value = inputBox.value.slice(0, -1);
-      else inputBox.value += key.textContent;
+      if (key.id === 'clear') {
+        inputBox.value = '';
+        messageDiv.textContent = '';
+      }
+      else if (key.id === 'backspace') {
+        inputBox.value = inputBox.value.slice(0, -1);
+        messageDiv.textContent = '';
+      }
+      else {
+        // limita tamanho conforme etapa
+        if (etapa === 'senha' && inputBox.value.length >= 6) return;
+        if (etapa === 'matricula' && inputBox.value.length >= 8) return;
+        inputBox.value += key.textContent;
+        messageDiv.textContent = '';
+      }
     });
   });
-  
+
+  // --- BOTÃO CONFIRMAR ---
   document.getElementById('submitBtn').onclick = function () {
-    const matricula = inputBox.value.trim();
-    if (matricula && database[matricula]) {
-      localStorage.setItem("nome", database[matricula].nome);
-      localStorage.setItem("matricula", matricula);
-      localStorage.setItem("cargo", database[matricula].cargo || "");
-      localStorage.setItem("coordenacao", database[matricula].coordenacao || "");
-      localStorage.setItem("gerencia", database[matricula].gerencia || "");
-      document.getElementById('nomeUsuario').textContent = database[matricula].nome;
-      messageDiv.innerHTML = `Olá, ${database[matricula].nome},<br>você será direcionado(a) para a próxima página em 2 segundos.`;
+    if (etapa === 'matricula') {
+      const matricula = inputBox.value.trim();
+      if (!matricula || !database[matricula]) {
+        messageDiv.textContent = 'Matrícula incorreta';
+        messageDiv.style.color = '#FF0000';
+        return;
+      }
+      // matrícula válida → próxima etapa
+      matriculaAtual = matricula;
+      etapa = 'senha';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
+      inputBox.value = '';
+      inputBox.placeholder = '6 dígitos';
+      messageDiv.textContent = '';
+      return;
+    }
+
+    // etapa === 'senha'
+    const senha = inputBox.value.trim();
+    if (!senha || senha.length !== 6) {
+      messageDiv.textContent = 'Senha incorreta';
+      messageDiv.style.color = '#FF0000';
+      return;
+    }
+    if (database[matriculaAtual] && database[matriculaAtual].senha === senha) {
+      // salva dados no localStorage
+      localStorage.setItem("nome", database[matriculaAtual].nome);
+      localStorage.setItem("matricula", matriculaAtual);
+      localStorage.setItem("cargo", database[matriculaAtual].cargo || "");
+      localStorage.setItem("coordenacao", database[matriculaAtual].coordenacao || "");
+      localStorage.setItem("gerencia", database[matriculaAtual].gerencia || "");
+      document.getElementById('nomeUsuario').textContent = database[matriculaAtual].nome;
+      messageDiv.innerHTML = `Olá, ${database[matriculaAtual].nome},<br>você será direcionado(a) para a próxima página em 2 segundos.`;
       messageDiv.style.color = 'white';
       setTimeout(() => {
         document.getElementById('primeiraTela').style.display = 'none';
         document.getElementById('segundaTela').style.display = 'block';
         document.getElementById('content-frame').src = "menu.principal.html";
-        if (!isMobile) {
-        iniciarContagem();
-        }
+        if (!isMobile) iniciarContagem();
       }, 2000);
     } else {
-      messageDiv.textContent = 'Matrícula não encontrada - Tente novamente';
+      messageDiv.textContent = 'Senha incorreta';
       messageDiv.style.color = '#FF0000';
+      inputBox.value = '';
     }
   };
+
+  // --- VÍDEOS (mantido) ---
   function resetVideos() {
     video1.currentTime = 0;
     video2.currentTime = 0;
@@ -528,9 +570,11 @@
     }, 24000);
   }
   resetVideos();
+
+  // --- CONTAGEM DE INATIVIDADE (mantido) ---
   let intervalo;
   let tempoRestante;
-  const TEMPO_INATIVIDADE = 3600 * 1000;
+  const TEMPO_INATIVIDADE = 3600 * 1000; // 1h
   function iniciarContagem() {
     clearInterval(intervalo);
     tempoRestante = TEMPO_INATIVIDADE;
@@ -539,29 +583,33 @@
       if (tempoRestante <= 0) recarregar();
     }, 1000);
   }
+
   function recarregar() {
     clearInterval(intervalo);
     document.getElementById('segundaTela').style.display = 'none';
     document.getElementById('primeiraTela').style.display = 'flex';
+    etapa = 'matricula';
+    matriculaAtual = null;
+    inputBox.type = 'text';
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
   }
-  
-    if (!isMobile) {
+
+  if (!isMobile) {
     ['mousemove','mousedown','keydown','scroll','touchstart'].forEach(evt => {
       document.addEventListener(evt, () => tempoRestante = TEMPO_INATIVIDADE);
-   });
+    });
   }
+
+  // --- RELOAD APÓS 15 MIN (mantido) ---
   setTimeout(() => {
     const primeiraTelaVisivel = document.getElementById('primeiraTela').style.display !== 'none';
-    if (primeiraTelaVisivel) {
-      location.reload(true);
-    }
+    if (primeiraTelaVisivel) location.reload(true);
   }, 900000); // 15 minutos
-  
 </script>
 </body>
 </html>
