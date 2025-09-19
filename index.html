@@ -529,20 +529,38 @@
     key.addEventListener('pointerdown', () => {
       if (key.id === 'clear') {
         inputBox.value = '';
+        if (etapa === 'senha') inputBox.realValue = '';
         messageDiv.textContent = '';
       }
       else if (key.id === 'backspace') {
+        if (etapa === 'senha') {
+        if (inputBox.realValue) inputBox.realValue = inputBox.realValue.slice(0, -1);
+        inputBox.value = '*'.repeat(inputBox.realValue.length);
+      } else {
         inputBox.value = inputBox.value.slice(0, -1);
+      }
         messageDiv.textContent = '';
       }
       else {
         // limita tamanho conforme etapa
         if (etapa === 'senha' && inputBox.value.length >= 6) return;
         if (etapa === 'matricula' && inputBox.value.length >= 8) return;
+
+        if (etapa === 'senha') {
+        // guarda valor real da senha
+        if (!inputBox.realValue) inputBox.realValue = '';
+        inputBox.realValue += key.textContent;
+
+        // mostra asteriscos no input
+        inputBox.value = '*'.repeat(inputBox.realValue.length);
+     } else {
+        // matrícula: mostra números normalmente
         inputBox.value += key.textContent;
+     }
+
         messageDiv.textContent = '';
-      }
-    });
+     }
+   });
   });
 
   // --- BOTÃO CONFIRMAR ---
@@ -565,7 +583,7 @@
     }
 
     // etapa === 'senha'
-    const senha = inputBox.value.trim();
+    const senha = etapa === 'senha' ? (inputBox.realValue || '').trim() : inputBox.value.trim();
     if (!senha || senha.length !== 6) {
       messageDiv.textContent = 'Senha incorreta';
       messageDiv.style.color = '#FF0000';
