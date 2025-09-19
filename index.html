@@ -66,6 +66,8 @@
       outline: none;
     }
     #inputBox::placeholder { color: white; opacity: 1; }
+    
+    /* --- AJUSTE DO BOTÃO "Confirmar", EM VERSÃO DESKTOP --- */
     #submitBtn {
       background: #00BFFF;
       border: none;
@@ -77,6 +79,21 @@
       margin-top: 15px;
       padding: 14px 28px;
     }
+
+    /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO DESKTOP --- */
+    #backBtn {
+      background: #FF4500;   /* cor laranja só pra diferenciar */
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #FF4500;
+      font-size: 20px;
+      margin-top: 15px;
+      margin-left: 15px; /* pra ficar do lado do Confirmar */
+      padding: 14px 28px;
+    }
+
     #keyboardContainer { margin-top: 10px; margin-bottom: 20px; }
     .keyboard {
       display: grid;
@@ -302,8 +319,21 @@
         top: 160px;       
         left: -199px;    
        }
+
+      /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO MOBILE --- */
+      #backBtn {
+        width: 330px !important;   
+        height: 120px !important;   
+        font-size: 45px !important; 
+        border-radius: 18px !important;   
+        position: relative; 
+        top: 160px;       
+        left: 160px;  /* ajusta pra posição que você quiser */
+        background: #FF4500;
+        box-shadow: 0 0 15px #FF4500;
+        }
       
-      /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
+       /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
          #inputBox {
          width: 606px !important; /* largura do input */
          height: 120px !important; /* altura do input */
@@ -442,6 +472,7 @@
         <button class="key" id="backspace">←</button>
       </div>
       <button id="submitBtn">Confirmar</button>
+      <button id="backBtn">Voltar</button>
     </div>
     <div id="message"></div>
   </div>
@@ -610,6 +641,11 @@
     const primeiraTelaVisivel = document.getElementById('primeiraTela').style.display !== 'none';
     if (primeiraTelaVisivel) location.reload(true);
   }, 900000); // 15 minutos
+
+  // --- BOTÃO VOLTAR ---
+  document.getElementById('backBtn').onclick = function () {
+    location.href = "index.html";  // volta pra index
+  };
 </script>
 </body>
 </html>
