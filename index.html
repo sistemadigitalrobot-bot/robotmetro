@@ -525,6 +525,20 @@
   // --- NOVAS VARIÁVEIS DE ESTADO ---
   let etapa = 'matricula';          // controla a etapa atual
   let matriculaAtual = null;
+  let timeoutSenha; // controle do tempo na tela de senha
+
+  function iniciarTimeoutSenha() {
+    clearTimeout(timeoutSenha);
+    timeoutSenha = setTimeout(() => {
+      etapa = 'matricula';
+      inputBox.value = '';
+      inputBox.realValue = '';
+      inputBox.placeholder = 'Matrícula';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+      messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
+      messageDiv.style.color = '#FF0000';
+    }, 60000); // 60 segundos
+  }
 
   // teclado numérico
   keys.forEach(key => {
@@ -580,7 +594,9 @@
       document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
       inputBox.value = '';
       inputBox.placeholder = '6 dígitos';
+      inputBox.realValue = '';
       messageDiv.textContent = '';
+      iniciarTimeoutSenha(); // inicia o contador de 1 min
       return;
     }
 
@@ -592,6 +608,7 @@
       return;
     }
     if (database[matriculaAtual] && database[matriculaAtual].senha === senha) {
+      clearTimeout(timeoutSenha); // limpa timer
       // salva dados no localStorage
       localStorage.setItem("nome", database[matriculaAtual].nome);
       localStorage.setItem("matricula", matriculaAtual);
@@ -689,3 +706,4 @@
 </script>
 </body>
 </html>
+
