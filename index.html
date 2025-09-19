@@ -543,6 +543,7 @@
   // teclado numérico
   keys.forEach(key => {
     key.addEventListener('pointerdown', () => {
+      if (etapa === 'senha') iniciarTimeoutSenha(); // reseta tempo a cada digito
       if (key.id === 'clear') {
         inputBox.value = '';
         if (etapa === 'senha') inputBox.realValue = '';
@@ -662,6 +663,7 @@
 
   function recarregar() {
     clearInterval(intervalo);
+    clearTimeout(timeoutSenha); // limpa o timer de senha
     document.getElementById('segundaTela').style.display = 'none';
     document.getElementById('primeiraTela').style.display = 'flex';
     etapa = 'matricula';
@@ -691,7 +693,7 @@
   // --- BOTÃO VOLTAR ---
   document.getElementById('backBtn').onclick = function () {
   if (etapa === 'senha') {
-    // volta para etapa matrícula sem recarregar
+    clearTimeout(timeoutSenha); //  limpa o timer ao voltar
     etapa = 'matricula';
     inputBox.value = '';
     inputBox.realValue = ''; // reset também
@@ -706,4 +708,3 @@
 </script>
 </body>
 </html>
-
