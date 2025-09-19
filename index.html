@@ -693,6 +693,7 @@
   // --- BOTÃO VOLTAR ---
   document.getElementById('backBtn').onclick = function () {
   if (etapa === 'senha') {
+    // volta para matrícula
     clearTimeout(timeoutSenha); //  limpa o timer ao voltar
     etapa = 'matricula';
     inputBox.value = '';
@@ -701,10 +702,10 @@
     document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     messageDiv.textContent = '';
   } else {
-    // se já estiver na matrícula, aí sim recarrega tudo
-    location.href = "index.html";
+    // o botão "Voltar" na parte matrícula, não faz nenhuma função  
   }
 };
 </script>
 </body>
 </html>
+
