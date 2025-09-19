@@ -644,8 +644,18 @@
 
   // --- BOTÃO VOLTAR ---
   document.getElementById('backBtn').onclick = function () {
-    location.href = "index.html";  // volta pra index
-  };
+  if (etapa === 'senha') {
+    // volta para etapa matrícula sem recarregar
+    etapa = 'matricula';
+    inputBox.value = '';
+    inputBox.placeholder = 'Matrícula';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    messageDiv.textContent = '';
+  } else {
+    // se já estiver na matrícula, aí sim recarrega tudo
+    location.href = "index.html";
+  }
+};
 </script>
 </body>
 </html>
