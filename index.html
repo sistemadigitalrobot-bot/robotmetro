@@ -652,6 +652,7 @@
     inputBox.type = 'text';
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
+    inputBox.realValue = ''; // reset também
     document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
@@ -676,6 +677,7 @@
     // volta para etapa matrícula sem recarregar
     etapa = 'matricula';
     inputBox.value = '';
+    inputBox.realValue = ''; // reset também
     inputBox.placeholder = 'Matrícula';
     document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     messageDiv.textContent = '';
@@ -687,28 +689,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
