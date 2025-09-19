@@ -67,24 +67,6 @@
     }
     #inputBox::placeholder { color: white; opacity: 1; }
     
-    /* --- AJUSTE DO TEXTO "Digite a sua Matrícula", EM VERSÃO DESKTOP --- */
-    #tituloMatricula {
-      color: white;
-      font-size: 30px;
-      position: relative;
-      top: 50px;
-      left: 20px;
-    }
-
-    /* --- AJUSTE DO TEXTO "Digite a sua Senha", EM VERSÃO DESKTOP --- */
-    #tituloSenha {
-      color: white;
-      font-size: 30px;
-      position: relative;
-      top: 50px;
-      left: 20px;
-    }
-    
     /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO DESKTOP --- */
     #backBtn {
       position: absolute;
@@ -334,62 +316,7 @@
       align-items: center;
       gap: 20px; /* espaço entre texto e input */
       }
-
-      /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
-      #tituloMatricula {
-        font-size: 50px !important;
-        color: white;
-        top: 116px;
-        left: -60px;
-      }
-
-      /* --- AJUSTE DO TEXTO "Digite sua Senha" EM VERSÃO MOBILE --- */
-      #tituloSenha {
-        font-size: 50px !important;
-        color: white;
-        top: 116px;
-        left: -60px;
-      }
-
-      /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
-      #inputBox {
-        width: 606px !important; /* largura do input */
-        height: 120px !important; /* altura do input */
-        font-size: 45px !important; /* tamanho do texto digitado */
-        border-radius: 18px !important; /* cantos arredondados */
-        position: relative;  
-        top: 124px;   /* movimenta vertical sem empurrar o teclado */
-        left: -56px; /* movimenta horizontal sem empurrar o teclado */
-      }
-
-      #inputArea {
-        position: relative;
-      } 
-
-      /* --- AJUSTE DO AUMENTO DOS BOTÕES DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
-      .keyboard {
-        grid-template-columns: repeat(3, 120px) !important;      /* quadrados maiores */
-        column-gap: 95px;                                        /* espaçamento lateral (entre botões lado a lado) */
-        row-gap: 35px;                                           /* espaçamento vertical (entre fileiras de cima/baixo) */
-        justify-content: flex-start !important;
-        position: relative;
-        left: -87px;       /* você pode aumentar/diminuir esse valor para movimentar o teclado */
-        top: 139px;         /*  desce o teclado */
-      }
-      /* --- AJUSTE DO AUMENTO DOS NÚMEROS, DE DENTRO DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
-      .key {
-        width: 180px !important;      /* largura fixa */
-        height: 170px !important;     /* altura fixa */
-        font-size: 60px !important;   /* número maior */
-        border-radius: 18px !important;   /* cantos mais arredondados */
-      }
-      /* --- AJUSTE DO AUMENTO DO "Limpar" E A SETINHA(←), DE DENTRO DO TECLADO. EM VERSÃO MOBILE --- */
-      #clear, #backspace {
-        font-size: 48px !important;     /* aumenta o texto/símbolo */
-        width: 180px !important;        /* mesma largura dos numéricos */
-        height: 170px !important;       /* mesma altura dos numéricos */
-      }
-      
+     
       /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO MOBILE --- */
       #backBtn {
         position: absolute;
@@ -416,6 +343,30 @@
          box-shadow: 0 0 15px #00BFFF;
         }
       
+        /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
+        #inputBox {
+          width: 606px !important; /* largura do input */
+          height: 120px !important; /* altura do input */
+          font-size: 45px !important; /* tamanho do texto digitado */
+          border-radius: 18px !important; /* cantos arredondados */
+          position: relative;  
+          top: 124px;   /* movimenta vertical sem empurrar o teclado */
+          left: -56px; /* movimenta horizontal sem empurrar o teclado */
+        }
+
+
+        /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
+        h2 {
+         font-size: 50px !important;
+         position: relative;
+         top: 116px;    /* desce só o h2 */
+         left: -60px;  /* mexe na horizontal */
+        }
+
+        #inputArea {
+         position: relative;
+        }
+
      /* AJUSTE DO NOME DO "Olá, NOME DO COLABORADOR(A), você será direcionado(a)... EM VERSÃO MOBILE" */
       #message {
         position: absolute;
@@ -432,6 +383,29 @@
         left: -60px;
       }
 
+      /* --- AJUSTE DO AUMENTO DOS BOTÕES DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
+      .keyboard {
+        grid-template-columns: repeat(3, 120px) !important;      /* quadrados maiores */
+        column-gap: 95px;                                        /* espaçamento lateral (entre botões lado a lado) */
+        row-gap: 35px;                                           /* espaçamento vertical (entre fileiras de cima/baixo) */
+        justify-content: flex-start !important;
+        position: relative;
+        left: -87px;       /* você pode aumentar/diminuir esse valor para movimentar o teclado */
+        top: 139px;         /*  desce o teclado */
+      }
+      /* --- AJUSTE DO AUMENTO DOS NÚMEROS, DE DENTRO DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
+      .key {
+        width: 180px !important;      /* largura fixa */
+        height: 170px !important;     /* altura fixa */
+        font-size: 60px !important;   /* número maior */
+        border-radius: 18px !important;   /* cantos mais arredondados */
+      }
+      /* --- AJUSTE DO AUMENTO DO "Limpar" E A SETINHA(←), DE DENTRO DO TECLADO. EM VERSÃO MOBILE --- */
+      #clear, #backspace {
+        font-size: 48px !important;     /* aumenta o texto/símbolo */
+        width: 180px !important;        /* mesma largura dos numéricos */
+        height: 170px !important;       /* mesma altura dos numéricos */
+      }
       /* --- AJUSTE DO TEXTO "SAIR" E A "PORTINHA" EM VERSÃO MOBILE --- */
       #sairTexto {
         font-size: 26px;
@@ -490,11 +464,7 @@
   
   <img id="imgMobile1" src="imagens/fundo-mobile.jpg" alt="Fundo Mobile">
   <div id="inputArea">
-    <!-- Texto para matrícula -->
-    <h2 id="tituloMatricula">Digite sua Matrícula</h2>
-
-    <!-- Texto para senha -->
-    <h2 id="tituloSenha" style="display:none;">Digite sua Senha</h2>
+    <h2>Digite sua Matrícula</h2>
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
     <div id="keyboardContainer">
       <div class="keyboard">
@@ -564,8 +534,7 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.getElementById('tituloMatricula').style.display = 'block';
-      document.getElementById('tituloSenha').style.display = 'none';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 60000); // 60 segundos
@@ -623,8 +592,7 @@
       // matrícula válida → próxima etapa
       matriculaAtual = matricula;
       etapa = 'senha';
-      document.getElementById('tituloMatricula').style.display = 'none';
-      document.getElementById('tituloSenha').style.display = 'block';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
       inputBox.value = '';
       inputBox.placeholder = '6 dígitos';
       inputBox.realValue = '';
@@ -704,8 +672,7 @@
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
-    document.getElementById('tituloMatricula').style.display = 'block';
-    document.getElementById('tituloSenha').style.display = 'none';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
@@ -732,8 +699,7 @@
     inputBox.value = '';
     inputBox.realValue = ''; // reset também
     inputBox.placeholder = 'Matrícula';
-    document.getElementById('tituloMatricula').style.display = 'block';
-    document.getElementById('tituloSenha').style.display = 'none';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     messageDiv.textContent = '';
   } else {
     // o botão "Voltar" na parte matrícula, não faz nenhuma função  
@@ -742,5 +708,3 @@
 </script>
 </body>
 </html>
-
-
