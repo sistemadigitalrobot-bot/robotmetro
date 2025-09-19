@@ -564,7 +564,8 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+      document.getElementById('tituloMatricula').style.display = 'block';
+      document.getElementById('tituloSenha').style.display = 'none';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 60000); // 60 segundos
@@ -703,7 +704,8 @@
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
-    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    document.getElementById('tituloMatricula').style.display = 'block';
+    document.getElementById('tituloSenha').style.display = 'none';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
@@ -740,4 +742,5 @@
 </script>
 </body>
 </html>
+
 
