@@ -262,7 +262,6 @@
     @media (max-width: 1024px) {
       .keyboard { grid-template-columns: repeat(3, 100px); gap: 20px; }
       .key { padding: 25px; font-size: 28px; }
-      #inputArea { margin-left: 10px; margin-top: 20px; }
 
       /* --- AJUSTE DO RETÂNGULO AZUL ONDE APARECE OS TÓPICOS, EM VERSÃO MOBILE --- */
       .container {
@@ -334,14 +333,6 @@
         z-index: 10;
       }
 
-     /* Agrupa texto e input lado a lado */
-      .inputLine {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px; /* espaço entre texto e input */
-      }
-
       /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO MOBILE --- */
       #tituloMatriculaContainer {
         position: absolute;
@@ -366,21 +357,6 @@
         color: white;
       }
       
-      #inputArea {
-        position: relative;
-      }
-
-      /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
-        #inputBox {
-          width: 606px !important; /* largura do input */
-          height: 120px !important; /* altura do input */
-          font-size: 45px !important; /* tamanho do texto digitado */
-          border-radius: 18px !important; /* cantos arredondados */
-          position: relative;  
-          top: 124px;   /* movimenta vertical sem empurrar o teclado */
-          left: -56px; /* movimenta horizontal sem empurrar o teclado */
-        }
-
       /* --- AJUSTE DO AUMENTO DOS BOTÕES DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       .keyboard {
         grid-template-columns: repeat(3, 120px) !important;      /* quadrados maiores */
@@ -774,6 +750,7 @@
 </script>
 </body>
 </html>
+
 
 
 
