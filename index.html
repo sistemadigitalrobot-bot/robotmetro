@@ -66,6 +66,23 @@
       outline: none;
     }
     #inputBox::placeholder { color: white; opacity: 1; }
+
+    #tituloMatricula {
+      position: absolute;
+      top: 120px;   /* distância do topo */
+      left: 200px;  /* distância da esquerda */
+      font-size: 28px;
+      color: white;
+    }
+
+    #tituloSenha {
+      position: absolute;
+      top: 120px;   /* você pode dar outro valor se quiser */
+      left: 200px;
+      font-size: 24px;
+      color: white;
+      display: none; /* começa escondido */
+    }
     
     /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO DESKTOP --- */
     #backBtn {
@@ -317,6 +334,19 @@
       gap: 20px; /* espaço entre texto e input */
       }
 
+      #tituloMatricula {
+         top: 250px;  /* exemplo pro mobile */
+         left: 60px;
+         font-size: 50px;
+       }
+
+       #tituloSenha {
+         top: 250px;
+         left: 60px;
+         font-size: 45px;
+       }
+     }
+
       /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
         h2 {
          font-size: 50px !important;
@@ -464,7 +494,8 @@
   
   <img id="imgMobile1" src="imagens/fundo-mobile.jpg" alt="Fundo Mobile">
   <div id="inputArea">
-    <h2>Digite sua Matrícula</h2>
+    <h2 id="tituloMatricula">Digite sua Matrícula</h2>
+    <h2 id="tituloSenha" style="display:none;">Digite sua Senha</h2>
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
     <div id="keyboardContainer">
       <div class="keyboard">
@@ -534,7 +565,8 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+      document.getElementById('tituloSenha').style.display = 'none';
+      document.getElementById('tituloMatricula').style.display = 'block';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 30000); // 30 segundos
@@ -592,7 +624,8 @@
       // matrícula válida → próxima etapa
       matriculaAtual = matricula;
       etapa = 'senha';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
+      document.getElementById('tituloMatricula').style.display = 'none';
+      document.getElementById('tituloSenha').style.display = 'block';
       inputBox.value = '';
       inputBox.placeholder = '6 dígitos';
       inputBox.realValue = '';
@@ -673,7 +706,8 @@
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
-    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    document.getElementById('tituloSenha').style.display = 'none';
+    document.getElementById('tituloMatricula').style.display = 'block';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
@@ -700,7 +734,8 @@
     inputBox.value = '';
     inputBox.realValue = ''; // reset também
     inputBox.placeholder = 'Matrícula';
-    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    document.getElementById('tituloSenha').style.display = 'none';
+    document.getElementById('tituloMatricula').style.display = 'block';
     messageDiv.textContent = '';
   } else {
     // o botão "Voltar" na parte matrícula, não faz nenhuma função  
