@@ -49,23 +49,29 @@
     }
 
     /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO DESKTOP --- */
-    #tituloMatricula {
+    #tituloMatriculaContainer {
       position: absolute;
-      top: -20px;
-      left: 20px;
-      font-size: 24px;
-      color: white;
-      white-space: nowrap;
+      top: 40px;
+      left: 60px;
+      z-index: 20;
     }
 
-    /* --- AJUSTE DO TEXTO "Digite sua Senha", EM VERSÃO DESKTOP --- */
-    #tituloSenha {
-      position: absolute;
-      top: -20px;
-      left: 20px;
+    #tituloMatricula {
       font-size: 24px;
       color: white;
-      white-space: nowrap;
+    }
+    
+    /* --- AJUSTE DO TEXTO "Digite sua Senha", EM VERSÃO DESKTOP --- */
+    #tituloSenhaContainer {
+      position: absolute;
+      top: 120px;
+      left: 20px;
+      z-index: 20;
+    }
+
+    #tituloSenha {
+      font-size: 24px;
+      color: white;
     }
     
     #inputBox {
@@ -333,21 +339,27 @@
       }
 
       /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO MOBILE --- */
-      #tituloMatricula {
+      #tituloMatriculaContainer {
         position: absolute;
         top: 60px;
         left: 35px;
+        z-index: 20;
+      }  
+      #tituloMatricula {
         font-size: 50px;
-        white-space: nowrap;
+        color: white;
       }
 
       /* --- AJUSTE DO TEXTO "Digite sua Senha", EM VERSÃO MOBILE --- */
-      #tituloSenha {
+      #tituloSenhaContainer {
         position: absolute;
         top: 60px;
         left: 35px;
+        z-index: 20;
+      }  
+      #tituloSenha {
         font-size: 50px;
-        white-space: nowrap;
+        color: white;
       }
       
       #inputArea {
@@ -488,10 +500,16 @@
   </video>
   
   <img id="imgMobile1" src="imagens/fundo-mobile.jpg" alt="Fundo Mobile">
-  <div id="inputArea">
+  <!-- Containers NOVOS para os títulos -->
+  <div id="tituloMatriculaContainer">
     <h2 id="tituloMatricula">Digite sua Matrícula</h2>
-    <h2 id="tituloSenha" style="display:none;">Digite sua Senha</h2>
+  </div>
 
+  <div id="tituloSenhaContainer" style="display:none;">
+    <h2 id="tituloSenha">Digite sua Senha</h2>
+  </div>
+
+  <div id="inputArea">
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
     <div id="keyboardContainer">
       <div class="keyboard">
@@ -561,8 +579,8 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.getElementById('tituloMatricula').style.display = 'block';
-      document.getElementById('tituloSenha').style.display = 'none';
+      document.getElementById('tituloMatriculaContainer').style.display = 'block';
+      document.getElementById('tituloSenhaContainer').style.display = 'none';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 30000); // 30 segundos
@@ -706,8 +724,8 @@
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
     
-    document.getElementById('tituloMatricula').style.display = 'block';
-    document.getElementById('tituloSenha').style.display = 'none';
+    document.getElementById('tituloMatriculaContainer').style.display = 'block';
+    document.getElementById('tituloSenhaContainer').style.display = 'none';
     
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
@@ -737,8 +755,8 @@
     inputBox.placeholder = 'Matrícula';
     
     // mostra "Digite sua Matrícula", esconde "Digite sua Senha"
-    document.getElementById('tituloMatricula').style.display = 'block';
-    document.getElementById('tituloSenha').style.display = 'none';
+    document.getElementById('tituloMatriculaContainer').style.display = 'block';
+    document.getElementById('tituloSenhaContainer').style.display = 'none';
     
     messageDiv.textContent = '';
   } else {
@@ -748,6 +766,7 @@
 </script>
 </body>
 </html>
+
 
 
 
