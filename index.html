@@ -42,11 +42,22 @@
       pointer-events: none;
     }
     #video2 { display: none; }
-    #inputArea {
-      margin-left: 100px;
-      margin-top: -60px;
-      z-index: 1;
+    
+    /* Campo retângulo preto, aonde aparece os números da matrícula/senha */
+    #inputBoxContainer {
+      position: absolute;
+      top: 200px;   /* ajuste vertical */
+      left: 60px;   /* ajuste horizontal */
+      z-index: 10;
     }
+
+    /* Teclado numérico */
+    #keyboardContainer {
+      position: absolute;
+      top: 280px;   /* fica abaixo do campo */
+      left: 60px;
+      z-index: 10;
+     }
 
     /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO DESKTOP --- */
     #tituloMatriculaContainer {
@@ -120,7 +131,6 @@
       box-shadow: 0 0 15px #00BFFF;      
     }
 
-    #keyboardContainer { margin-top: 10px; margin-bottom: 20px; }
     .keyboard {
       display: grid;
       grid-template-columns: repeat(3, 80px);
@@ -318,16 +328,19 @@
       html, body { background-image: none !important; background: none !important; }
       #imgMobile1, #imgMobile2 { display: block !important; }
 
-     #inputArea {
-       position: relative;
-       max-width: 600px;        /* permite mais espaço lado a lado */
-       margin: 250px 0 0 55px !important;
-       text-align: center !important;
-       left: 0;
-       transform: none;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
+      #inputBoxContainer {
+        position: absolute;
+        top: 250px;   /* ajuste vertical */
+        left: 55px;   /* ajuste horizontal */
+        z-index: 10;
+      }
+
+      /* Teclado */
+      #keyboardContainer {
+        position: absolute;
+        top: 400px;   /* fica abaixo do campo */
+        left: 55px;
+        z-index: 10;
       }
 
      /* Agrupa texto e input lado a lado */
@@ -509,8 +522,12 @@
     <h2 id="tituloSenha">Digite sua Senha</h2>
   </div>
 
-  <div id="inputArea">
+  <!-- Campo de matrícula/senha -->
+  <div id="inputBoxContainer">
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
+  </div>
+
+    <!-- Teclado numérico -->
     <div id="keyboardContainer">
       <div class="keyboard">
         <button class="key">1</button>
@@ -766,6 +783,7 @@
 </script>
 </body>
 </html>
+
 
 
 
