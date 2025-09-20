@@ -41,23 +41,7 @@
       z-index: 0;
       pointer-events: none;
     }
-    #video2 { display: none; }
-    
-    /* Campo retângulo preto, aonde aparece os números da matrícula/senha */
-    #inputBoxContainer {
-      position: absolute;
-      top: 200px;   /* ajuste vertical */
-      left: 60px;   /* ajuste horizontal */
-      z-index: 10;
-    }
-
-    /* Teclado numérico */
-    #keyboardContainer {
-      position: absolute;
-      top: 280px;   /* fica abaixo do campo */
-      left: 60px;
-      z-index: 10;
-     }
+    #video2 { display: none; }     
 
     /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO DESKTOP --- */
     #tituloMatriculaContainer {
@@ -83,6 +67,22 @@
     #tituloSenha {
       font-size: 24px;
       color: white;
+    }
+
+    /* AJUSTE DO TEXTO DO CAMPO RETÂNGULO PRETO, AONDE APARECE OS NÚMEROS: MATRÍCULA/SENHA, EM VERSÃO DESKTOP --- */
+    #inputBoxContainer {
+      position: absolute;
+      top: 200px;   /* ajuste vertical */
+      left: 60px;   /* ajuste horizontal */
+      z-index: 10;
+    }
+
+    /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO DESKTOP --- */
+    #keyboardContainer {
+      position: absolute;
+      top: 280px;   /* fica abaixo do campo */
+      left: 60px;
+      z-index: 10;
     }
     
     #inputBox {
@@ -290,15 +290,6 @@
       html, body { background-image: none !important; background: none !important; }
       #imgMobile1, #imgMobile2 { display: block !important; }
 
-      #inputArea {
-        position: relative;
-        max-width: 360px;
-        margin: 250px 0 0 55px !important;
-        text-align: left !important;
-        left: 0;
-        transform: none;
-      }
-
       #submitBtn {
         height: 70px;
         font-size: 24px;
@@ -320,7 +311,6 @@
       object-fit: cover;
       z-index: 0;
     }
-    #inputArea { position: relative; z-index: 10; }
 
     /* Ajuste REAL para mobile (touch devices) */
     @media (hover: none) and (pointer: coarse) {
@@ -328,6 +318,7 @@
       html, body { background-image: none !important; background: none !important; }
       #imgMobile1, #imgMobile2 { display: block !important; }
 
+      /* AJUSTE DO TEXTO DO CAMPO RETÂNGULO PRETO, AONDE APARECE OS NÚMEROS: MATRÚCULA/SENHA, EM VERSÃO MOBILE --- */
       #inputBoxContainer {
         position: absolute;
         top: 250px;   /* ajuste vertical */
@@ -335,7 +326,7 @@
         z-index: 10;
       }
 
-      /* Teclado */
+      /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       #keyboardContainer {
         position: absolute;
         top: 400px;   /* fica abaixo do campo */
@@ -783,6 +774,7 @@
 </script>
 </body>
 </html>
+
 
 
 
