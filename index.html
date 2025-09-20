@@ -557,7 +557,8 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+      document.getElementById('tituloMatricula').style.display = 'block';
+      document.getElementById('tituloSenha').style.display = 'none';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 30000); // 30 segundos
@@ -743,4 +744,5 @@
 </script>
 </body>
 </html>
+
 
