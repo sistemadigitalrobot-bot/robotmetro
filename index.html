@@ -47,12 +47,7 @@
       margin-top: -60px;
       z-index: 1;
     }
-    h2 {
-      color: white;
-      margin-bottom: 5px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-      padding-left: 23px;
-    }
+
     #inputBox {
       width: 264px;
       height: 50px;
@@ -73,6 +68,7 @@
       left: 200px;  /* distância da esquerda */
       font-size: 28px;
       color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     }
 
     #tituloSenha {
@@ -81,6 +77,7 @@
       left: 200px;
       font-size: 24px;
       color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
       display: none; /* começa escondido */
     }
     
@@ -335,25 +332,19 @@
       }
 
       #tituloMatricula {
+         position: absolute;
          top: 250px;  /* exemplo pro mobile */
          left: 60px;
-         font-size: 50px;
+         font-size: 50px; !important;
        }
 
        #tituloSenha {
+         position: absolute;
          top: 250px;
          left: 60px;
-         font-size: 45px;
+         font-size: 45px; !important;
        }
      }
-
-      /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
-        h2 {
-         font-size: 50px !important;
-         position: relative;
-         top: 116px;    /* desce só o h2 */
-         left: -60px;  /* mexe na horizontal */
-        }
 
         #inputArea {
          position: relative;
@@ -744,3 +735,4 @@
 </script>
 </body>
 </html>
+
