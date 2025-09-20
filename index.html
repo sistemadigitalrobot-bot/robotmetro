@@ -47,7 +47,12 @@
       margin-top: -60px;
       z-index: 1;
     }
-
+    h2 {
+      color: white;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      padding-left: 23px;
+    }
     #inputBox {
       width: 264px;
       height: 50px;
@@ -61,25 +66,6 @@
       outline: none;
     }
     #inputBox::placeholder { color: white; opacity: 1; }
-
-    #tituloMatricula {
-      position: absolute;
-      top: 120px;   /* distância do topo */
-      left: 200px;  /* distância da esquerda */
-      font-size: 28px;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    }
-
-    #tituloSenha {
-      position: absolute;
-      top: 120px;   /* você pode dar outro valor se quiser */
-      left: 200px;
-      font-size: 24px;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-      display: none; /* começa escondido */
-    }
     
     /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO DESKTOP --- */
     #backBtn {
@@ -331,20 +317,13 @@
       gap: 20px; /* espaço entre texto e input */
       }
 
-      #tituloMatricula {
-         position: absolute;
-         top: 250px;  /* exemplo pro mobile */
-         left: 60px;
+      /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
+        h2 {
          font-size: 50px !important;
-       }
-
-       #tituloSenha {
-         position: absolute;
-         top: 250px;
-         left: 60px;
-         font-size: 45px !important;
-       }
-     }
+         position: relative;
+         top: 116px;    /* desce só o h2 */
+         left: -60px;  /* mexe na horizontal */
+        }
 
         #inputArea {
          position: relative;
@@ -485,8 +464,7 @@
   
   <img id="imgMobile1" src="imagens/fundo-mobile.jpg" alt="Fundo Mobile">
   <div id="inputArea">
-    <h2 id="tituloMatricula">Digite sua Matrícula</h2>
-    <h2 id="tituloSenha" style="display:none;">Digite sua Senha</h2>
+    <h2>Digite sua Matrícula</h2>
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
     <div id="keyboardContainer">
       <div class="keyboard">
@@ -556,8 +534,7 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.getElementById('tituloSenha').style.display = 'none';
-      document.getElementById('tituloMatricula').style.display = 'block';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 30000); // 30 segundos
@@ -615,8 +592,7 @@
       // matrícula válida → próxima etapa
       matriculaAtual = matricula;
       etapa = 'senha';
-      document.getElementById('tituloMatricula').style.display = 'none';
-      document.getElementById('tituloSenha').style.display = 'block';
+      document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
       inputBox.value = '';
       inputBox.placeholder = '6 dígitos';
       inputBox.realValue = '';
@@ -697,8 +673,7 @@
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
-    document.getElementById('tituloSenha').style.display = 'none';
-    document.getElementById('tituloMatricula').style.display = 'block';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
@@ -725,8 +700,7 @@
     inputBox.value = '';
     inputBox.realValue = ''; // reset também
     inputBox.placeholder = 'Matrícula';
-    document.getElementById('tituloSenha').style.display = 'none';
-    document.getElementById('tituloMatricula').style.display = 'block';
+    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
     messageDiv.textContent = '';
   } else {
     // o botão "Voltar" na parte matrícula, não faz nenhuma função  
@@ -735,5 +709,3 @@
 </script>
 </body>
 </html>
-
-
