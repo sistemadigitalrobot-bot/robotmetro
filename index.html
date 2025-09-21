@@ -660,7 +660,7 @@
         document.getElementById('segundaTela').style.display = 'block';
         document.getElementById('content-frame').src = "menu.principal.html";
         if (!isMobile) iniciarContagem();
-      }, 902000);
+      }, 2000);
     } else {
       messageDiv.textContent = 'Senha incorreta';
       messageDiv.style.color = '#FF0000';
@@ -688,7 +688,7 @@
   // --- CONTAGEM DE INATIVIDADE (mantido) ---
   let intervalo;
   let tempoRestante;
-  const TEMPO_INATIVIDADE = 3600 * 1000; // 1h
+  const TEMPO_INATIVIDADE = 60 * 1000; // 1h
   function iniciarContagem() {
     clearInterval(intervalo);
     tempoRestante = TEMPO_INATIVIDADE;
@@ -752,9 +752,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
