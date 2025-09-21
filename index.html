@@ -76,15 +76,7 @@
       left: 300px;   
       z-index: 10;
     }
-
-    /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO DESKTOP --- */
-    #keyboardContainer {
-      position: absolute;
-      top: 164px;   
-      left: 300px;
-      z-index: 10;
-    }
-    
+      
     #inputBox {
       width: 264px;
       height: 50px;
@@ -98,6 +90,14 @@
       outline: none;
     }
     #inputBox::placeholder { color: white; opacity: 1; }
+
+    /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO DESKTOP --- */
+    #keyboardContainer {
+      position: absolute;
+      top: 164px;   
+      left: 300px;
+      z-index: 10;
+    }
     
     /* --- AJUSTE DO BOTÃO "Voltar", EM VERSÃO DESKTOP --- */
     #backBtn {
@@ -292,13 +292,7 @@
       #submitBtn {
         height: 70px;
         font-size: 24px;
-      }
-      
-      #inputBox {
-        width: 320px !important;
-        height: 55px !important;
-        font-size: 28px;
-      }
+      }     
     }    
     #imgMobile1, #imgMobile2 {
       display: none;
@@ -344,14 +338,17 @@
       /* AJUSTE DO TEXTO DO CAMPO RETÂNGULO PRETO, AONDE APARECE OS NÚMEROS: MATRÍCULA/SENHA, EM VERSÃO MOBILE --- */
       #inputBoxContainer {
         position: absolute;
-        width: 806px !important;    
-        height: 180px !important; 
-        top: 550px;   
-        left: 250px; 
-        font-size: 45px !important;
-        border-radius: 18px !important;
+        top: 250px;   /* ajuste vertical */
+        left: 55px;   /* ajuste horizontal */
+        z-index: 10;
       }
 
+      #inputBox {
+        width: 606px !important;
+        height: 120px !important;
+        font-size: 45px;
+      }
+      
       /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       #keyboardContainer {
         position: absolute;
@@ -753,6 +750,7 @@
 </script>
 </body>
 </html>
+
 
 
 
