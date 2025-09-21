@@ -41,18 +41,50 @@
       z-index: 0;
       pointer-events: none;
     }
-    #video2 { display: none; }
-    #inputArea {
-      margin-left: 100px;
-      margin-top: -60px;
-      z-index: 1;
+    #video2 { display: none; }     
+
+    /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO DESKTOP --- */
+    #tituloMatriculaContainer {
+      position: absolute;
+      top: 30px;
+      left: 323px;
+      z-index: 20;
     }
-    h2 {
+
+    #tituloMatricula {
+      font-size: 24px;
       color: white;
-      margin-bottom: 5px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-      padding-left: 23px;
     }
+    
+    /* --- AJUSTE DO TEXTO "Digite sua Senha", EM VERSÃO DESKTOP --- */
+    #tituloSenhaContainer {
+      position: absolute;
+      top: 30px;
+      left: 339px;
+      z-index: 20;
+    }
+
+    #tituloSenha {
+      font-size: 24px;
+      color: white;
+    }
+
+    /* AJUSTE DO TEXTO DO CAMPO RETÂNGULO PRETO, AONDE APARECE OS NÚMEROS: MATRÍCULA/SENHA, EM VERSÃO DESKTOP --- */
+    #inputBoxContainer {
+      position: absolute;
+      top: 83px;   
+      left: 300px;   
+      z-index: 10;
+    }
+
+    /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO DESKTOP --- */
+    #keyboardContainer {
+      position: absolute;
+      top: 164px;   
+      left: 300px;
+      z-index: 10;
+    }
+    
     #inputBox {
       width: 264px;
       height: 50px;
@@ -72,8 +104,8 @@
       position: absolute;
       width: 110px;   
       height: 52px;
-      top: 470px;
-      left: -1px;
+      top: 500px;
+      left: 299px;
       font-size: 20px;
       background: #00BFFF;   
       border: none;
@@ -88,8 +120,8 @@
       position: absolute;
       width: 110px;   
       height: 52px;
-      top: 470px; 
-      left: 162px;
+      top: 500px; 
+      left: 462px;
       font-size: 20px;
       background: #00BFFF;
       border: none;
@@ -99,7 +131,6 @@
       box-shadow: 0 0 15px #00BFFF;      
     }
 
-    #keyboardContainer { margin-top: 10px; margin-bottom: 20px; }
     .keyboard {
       display: grid;
       grid-template-columns: repeat(3, 80px);
@@ -123,12 +154,12 @@
     /* AJUSTE DO NOME DO "Olá, NOME DO COLABORADOR(A), você será direcionado(a)... EM VERSÃO DESKTOP" */
     #message {
       position: absolute;  
-      width: 500px;          /* controla largura da caixa */
-      white-space: normal;   /* permite quebra de linha */
-      word-break: keep-all;  /* não quebra palavras no meio */
-      line-height: 1.2em;    /* espaçamento entre linhas */
-      top: 534px;
-      left: 0px;   
+      width: 500px;          
+      white-space: normal;   
+      word-break: keep-all;  
+      line-height: 1.2em;    
+      top: 564px;
+      left: 300px;   
       font-size: 14px;
       font-weight: bold;
       color: white;
@@ -231,7 +262,6 @@
     @media (max-width: 1024px) {
       .keyboard { grid-template-columns: repeat(3, 100px); gap: 20px; }
       .key { padding: 25px; font-size: 28px; }
-      #inputArea { margin-left: 10px; margin-top: 20px; }
 
       /* --- AJUSTE DO RETÂNGULO AZUL ONDE APARECE OS TÓPICOS, EM VERSÃO MOBILE --- */
       .container {
@@ -259,15 +289,6 @@
       html, body { background-image: none !important; background: none !important; }
       #imgMobile1, #imgMobile2 { display: block !important; }
 
-      #inputArea {
-        position: relative;
-        max-width: 360px;
-        margin: 250px 0 0 55px !important;
-        text-align: left !important;
-        left: 0;
-        transform: none;
-      }
-
       #submitBtn {
         height: 70px;
         font-size: 24px;
@@ -289,7 +310,6 @@
       object-fit: cover;
       z-index: 0;
     }
-    #inputArea { position: relative; z-index: 10; }
 
     /* Ajuste REAL para mobile (touch devices) */
     @media (hover: none) and (pointer: coarse) {
@@ -297,58 +317,52 @@
       html, body { background-image: none !important; background: none !important; }
       #imgMobile1, #imgMobile2 { display: block !important; }
 
-     #inputArea {
-       position: relative;
-       max-width: 600px;        /* permite mais espaço lado a lado */
-       margin: 250px 0 0 55px !important;
-       text-align: center !important;
-       left: 0;
-       transform: none;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
+      /* AJUSTE DO TEXTO DO CAMPO RETÂNGULO PRETO, AONDE APARECE OS NÚMEROS: MATRÚCULA/SENHA, EM VERSÃO MOBILE --- */
+      #inputBoxContainer {
+        position: absolute;
+        top: 250px;   /* ajuste vertical */
+        left: 55px;   /* ajuste horizontal */
+        z-index: 10;
       }
 
-     /* Agrupa texto e input lado a lado */
-      .inputLine {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px; /* espaço entre texto e input */
+      /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
+      #keyboardContainer {
+        position: absolute;
+        top: 400px;   /* fica abaixo do campo */
+        left: 55px;
+        z-index: 10;
       }
 
-      /* --- AJUSTE DO TEXTO "Digite sua Matrícula" EM VERSÃO MOBILE --- */
-        h2 {
-         font-size: 50px !important;
-         position: relative;
-         top: 116px;    /* desce só o h2 */
-         left: -60px;  /* mexe na horizontal */
-        }
+      /* --- AJUSTE DO TEXTO "Digite sua Matrícula", EM VERSÃO MOBILE --- */
+      #tituloMatriculaContainer {
+        position: absolute;
+        top: 60px;
+        left: 35px;
+        z-index: 20;
+      }  
+      #tituloMatricula {
+        font-size: 50px;
+        color: white;
+      }
 
-        #inputArea {
-         position: relative;
-        }
-
-      /* --- AJUSTE DO RETÂNGULO (CAMPO ONDE APARECE A MATRÍCULA), EM VERSÃO MOBILE --- */
-        #inputBox {
-          width: 606px !important; /* largura do input */
-          height: 120px !important; /* altura do input */
-          font-size: 45px !important; /* tamanho do texto digitado */
-          border-radius: 18px !important; /* cantos arredondados */
-          position: relative;  
-          top: 124px;   /* movimenta vertical sem empurrar o teclado */
-          left: -56px; /* movimenta horizontal sem empurrar o teclado */
-        }
-
+      /* --- AJUSTE DO TEXTO "Digite sua Senha", EM VERSÃO MOBILE --- */
+      #tituloSenhaContainer {
+        position: absolute;
+        top: 60px;
+        left: 35px;
+        z-index: 20;
+      }  
+      #tituloSenha {
+        font-size: 50px;
+        color: white;
+      }
+      
       /* --- AJUSTE DO AUMENTO DOS BOTÕES DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       .keyboard {
         grid-template-columns: repeat(3, 120px) !important;      /* quadrados maiores */
         column-gap: 95px;                                        /* espaçamento lateral (entre botões lado a lado) */
         row-gap: 35px;                                           /* espaçamento vertical (entre fileiras de cima/baixo) */
         justify-content: flex-start !important;
-        position: relative;
-        left: -87px;       /* você pode aumentar/diminuir esse valor para movimentar o teclado */
-        top: 139px;         /*  desce o teclado */
       }
       /* --- AJUSTE DO AUMENTO DOS NÚMEROS, DE DENTRO DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       .key {
@@ -400,8 +414,8 @@
         text-align: left;
         width: auto;           
         min-height: auto;      
-        white-space: nowrap;   /* força tudo até <br> na mesma linha */
-        word-break: keep-all;  
+        white-space: normal;
+        word-break: break-word;  
         top: 1365px;
         left: -60px;
       }
@@ -463,9 +477,21 @@
   </video>
   
   <img id="imgMobile1" src="imagens/fundo-mobile.jpg" alt="Fundo Mobile">
-  <div id="inputArea">
-    <h2>Digite sua Matrícula</h2>
+  <!-- Containers NOVOS para os títulos -->
+  <div id="tituloMatriculaContainer">
+    <h2 id="tituloMatricula">Digite sua Matrícula</h2>
+  </div>
+
+  <div id="tituloSenhaContainer" style="display:none;">
+    <h2 id="tituloSenha">Digite sua Senha</h2>
+  </div>
+
+  <!-- Campo de matrícula/senha -->
+  <div id="inputBoxContainer">
     <input id="inputBox" type="text" placeholder="Matrícula" readonly />
+  </div>
+
+    <!-- Teclado numérico -->
     <div id="keyboardContainer">
       <div class="keyboard">
         <button class="key">1</button>
@@ -481,6 +507,9 @@
         <button class="key" id="clear">Limpar</button>
         <button class="key" id="backspace">←</button>
       </div>
+    </div>
+
+      <!-- Botões fora do teclado -->
       <button id="submitBtn">Confirmar</button>
       <button id="backBtn">Voltar</button>
     </div>
@@ -534,7 +563,8 @@
       inputBox.value = '';
       inputBox.realValue = '';
       inputBox.placeholder = 'Matrícula';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+      document.getElementById('tituloMatriculaContainer').style.display = 'block';
+      document.getElementById('tituloSenhaContainer').style.display = 'none';
       messageDiv.textContent = 'Tempo expirado. Digite novamente sua matrícula.';
       messageDiv.style.color = '#FF0000';
     }, 30000); // 30 segundos
@@ -592,7 +622,11 @@
       // matrícula válida → próxima etapa
       matriculaAtual = matricula;
       etapa = 'senha';
-      document.querySelector('#inputArea h2').textContent = 'Digite sua Senha';
+      
+      // esconde "Digite sua Matrícula", mostra "Digite sua Senha"
+      document.getElementById('tituloMatriculaContainer').style.display = 'none';
+      document.getElementById('tituloSenhaContainer').style.display = 'block';
+      
       inputBox.value = '';
       inputBox.placeholder = '6 dígitos';
       inputBox.realValue = '';
@@ -673,7 +707,10 @@
     inputBox.value = '';
     inputBox.placeholder = 'Matrícula';
     inputBox.realValue = ''; // reset também
-    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    
+    document.getElementById('tituloMatriculaContainer').style.display = 'block';
+    document.getElementById('tituloSenhaContainer').style.display = 'none';
+    
     document.getElementById('content-frame').src = "menu.principal.html";
     messageDiv.textContent = '';
     resetVideos();
@@ -700,7 +737,11 @@
     inputBox.value = '';
     inputBox.realValue = ''; // reset também
     inputBox.placeholder = 'Matrícula';
-    document.querySelector('#inputArea h2').textContent = 'Digite sua Matrícula';
+    
+    // mostra "Digite sua Matrícula", esconde "Digite sua Senha"
+    document.getElementById('tituloMatriculaContainer').style.display = 'block';
+    document.getElementById('tituloSenhaContainer').style.display = 'none';
+    
     messageDiv.textContent = '';
   } else {
     // o botão "Voltar" na parte matrícula, não faz nenhuma função  
