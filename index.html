@@ -6,9 +6,6 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-
-  <!-- AJUSTE ADICIONADO: impede zoom automático ao digitar -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   
   <style>
     html, body {
@@ -91,9 +88,6 @@
       background: rgba(0,0,0,0.4);
       color: white;
       outline: none;
-
-       -webkit-text-size-adjust: 100%;
-      
     }
     #inputBox::placeholder { color: white; opacity: 1; }
 
@@ -351,17 +345,17 @@
       }
 
       #inputBox {
-        width: 80vw !important;      /* 80% da largura da tela */
-        height: 10vh !important;     /* 10% da altura da tela */
-        font-size: 6vw;
-        border-radius: 2vw !important;
+        width: 603px !important;
+        height: 120px !important;
+        font-size: 45px;
+        border-radius: 18px
       }
       
       /* AJUSTE DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       #keyboardContainer {
         position: absolute;
-        top: 50vh;
-        left: 10vw; 
+        top: 733px;   /* fica abaixo do campo */
+        left: 192px;
         z-index: 10;
       }
       
@@ -374,10 +368,10 @@
       }
       /* --- AJUSTE DO AUMENTO DOS NÚMEROS, DE DENTRO DO TECLADO NUMÉRICO, EM VERSÃO MOBILE --- */
       .key {
-        width: 20vw !important;      
-        height: 12vh !important;   
-        font-size: 8vw !important;  
-        border-radius: 3vw !important;
+        width: 180px !important;      
+        height: 170px !important;    
+        font-size: 60px !important;   
+        border-radius: 18px !important;   /* cantos mais arredondados */
       }
       /* --- AJUSTE DO AUMENTO DO "Limpar" E A SETINHA(←), DE DENTRO DO TECLADO. EM VERSÃO MOBILE --- */
       #clear, #backspace {
@@ -758,8 +752,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
