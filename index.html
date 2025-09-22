@@ -147,6 +147,12 @@
       cursor: pointer;
       box-shadow: 0 0 6px #00BFFF;
       transition: transform 0.1s ease;
+
+      /* Ajustes adicionados para impedir zoom/seleção por duplo toque */
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     .key:active { transform: scale(0.95); }
     #clear { font-size: 16px; padding: 12px; }
@@ -749,6 +755,13 @@
     // o botão "Voltar" na parte matrícula, não faz nenhuma função  
   }
 };
+
+// --- 🚫 BLOQUEIO DE DOUBLE-TAP ZOOM NO TECLADO ---
+  document.querySelectorAll('.key').forEach(btn => {
+    btn.addEventListener('dblclick', function(e) {
+      e.preventDefault(); // impede zoom no duplo toque
+    }, { passive: false });
+});  
 </script>
 </body>
 </html>
