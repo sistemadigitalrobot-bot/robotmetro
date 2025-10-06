@@ -2,107 +2,301 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Empréstimo Consignado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Empréstimo Consignado</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 650px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute; 
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            .botoes-scroll { 
+              height: 54vh; 
+              margin-top: 110px; 
+            }
+
+            /* BARRA DE ROLAGEM */
+            .botoes-scroll::-webkit-scrollbar {
+              width: 30px;
+            }
+            .botoes-scroll::-webkit-scrollbar-track {
+              background: rgba(255,255,255,0.25);
+            }
+            .botoes-scroll::-webkit-scrollbar-thumb {
+              background-color: rgba(255,255,255,0.1);
+              border-radius: 12px;
+            }
+            .botoes-scroll {
+              scrollbar-width: auto;
+              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+            }   
+
+            /* TÍTULO - EMPRÉSTIMO CONSIGNADO */
+            .titulo-container img { width: 423px; height: 120px; top: -5px; left: 373px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; top: 43px; left: 373px; transform: translateX(-50%); }
+
+            /* ONDE POSSO SOLICITAR? */
+            .btn-onde-posso-solicitar img { width: 410px; height: 130px; top: -32px; left: 170px; }
+            .btn-onde-posso-solicitar a   { width: 348px; height: 70px; top: 36px; right: 13px; transform: translate(-50%, -50%); }
+            .btn-onde-posso-solicitar a span { font-size: 19px; }
+
+            /* QUEM TEM DIREITO? */
+            .btn-quem-tem-direito img { width: 410px; height: 130px; top: 53px; left: 170px; }
+            .btn-quem-tem-direito a   { width: 348px; height: 70px; top: 121px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-quem-tem-direito a span { font-size: 19px; }
+
+            /* COMO SOLICITAR? */
+            .btn-como-solicitar img { width: 410px; height: 130px; top: 137px; left: 170px; }
+            .btn-como-solicitar a   { width: 348px; height: 70px; top: 205px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-como-solicitar a span { font-size: 19px; }
+
+            /* QUANTIDADE DE PARCELAS */
+            .btn-quantidade-de-parcelas img { width: 410px; height: 130px; top: 222px; left: 170px; }
+            .btn-quantidade-de-parcelas a   { width: 348px; height: 70px; top: 290px; right: 13px; transform: translate(-50%, -50%); }
+            .btn-quantidade-de-parcelas a span { font-size: 19px; }
+
+            /* QUAL A TAXA DE JUROS? */
+            .btn-qual-a-taxa-de-juros img { width: 410px; height: 130px; top: 307px; left: 170px; }
+            .btn-qual-a-taxa-de-juros a   { width: 348px; height: 70px; top: 375px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-qual-a-taxa-de-juros a span { font-size: 19px; }
+
+            /* COMO É FEITO O DESCONTO? */
+            .btn-como-e-feito-o-desconto img { width: 410px; height: 130px; top: 392px; left: 170px; }
+            .btn-como-e-feito-o-desconto a   { width: 348px; height: 70px; top: 460px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-como-e-feito-o-desconto a span { font-size: 19px; }
+
+            /* EM AFASTAMENTO, DEBITA? */
+            .btn-em-afastamento-debita img { width: 410px; height: 130px; top: 477px; left: 170px; }
+            .btn-em-afastamento-debita a   { width: 348px; height: 70px; top: 545px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-em-afastamento-debita a span { font-size: 19px; }
+
+            /* DESLIGAMENTO/FALECIMENTO */
+            .btn-desligamento-falecimento img { width: 410px; height: 130px; top: 562px; left: 170px; }
+            .btn-desligamento-falecimento a   { width: 348px; height: 70px; top: 630px; right: 14px; transform: translate(-50%, -50%); }
+            .btn-desligamento-falecimento a span { font-size: 19px; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+            /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+           .botoes-scroll::-webkit-scrollbar {
+             width: 30px;
+           }
+           .botoes-scroll::-webkit-scrollbar-track {
+             background: rgba(255,255,255,0.25);
+           }
+           .botoes-scroll::-webkit-scrollbar-thumb {
+             background-color: rgba(255,255,255,0.1);
+             border-radius: 12px;
+           }
+
+           /* Firefox no mobile */
+           .botoes-scroll {
+             scrollbar-width: auto;
+             scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+           }
+
+            /* TÍTULO - EMPRÉSTIMO CONSIGNADO */
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; top: 48px; right: -60px; transform: translateX(-50%); }
+
+            /* ONDE POSSO SOLICITAR? */
+            .btn-onde-posso-solicitar img { width: 680px; height: 180px; top: -20px; left: 473px; transform: translateX(-50%); }
+            .btn-onde-posso-solicitar a   { width: 580px; height: 90px; top: 31px; left: 482px; transform: translateX(-50%); }
+            .btn-onde-posso-solicitar a span { font-size: 33px; }
+
+            /* QUEM TEM DIREITO? */
+            .btn-quem-tem-direito img { width: 680px; height: 180px; top: 120px; left: 473px; transform: translateX(-50%); }
+            .btn-quem-tem-direito a   { width: 580px; height: 90px; top: 172px; left: 482px; transform: translateX(-50%); }
+            .btn-quem-tem-direito a span { font-size: 33px; }
+
+            /* COMO SOLICITAR? */
+            .btn-como-solicitar img { width: 680px; height: 180px; top: 259px; left: 473px; transform: translateX(-50%); }
+            .btn-como-solicitar a   { width: 580px; height: 90px; top: 308px; left: 480px; transform: translateX(-50%); }
+            .btn-como-solicitar a span { font-size: 33px; }
+
+            /* QUANTIDADE DE PARCELAS */
+            .btn-quantidade-de-parcelas img { width: 680px; height: 180px; top: 397px; left: 473px; transform: translateX(-50%); }
+            .btn-quantidade-de-parcelas a   { width: 580px; height: 90px; top: 448px; left: 480px; transform: translateX(-50%); }
+            .btn-quantidade-de-parcelas a span { font-size: 33px; }
+
+            /* QUAL A TAXA DE JUROS? */
+            .btn-qual-a-taxa-de-juros img { width: 680px; height: 180px; top: 536px; left: 473px; transform: translateX(-50%); }
+            .btn-qual-a-taxa-de-juros a   { width: 580px; height: 90px; top: 586px; left: 480px; transform: translateX(-50%); }
+            .btn-qual-a-taxa-de-juros a span { font-size: 33px; }
+
+            /* COMO É FEITO O DESCONTO? */
+            .btn-como-e-feito-o-desconto img { width: 680px; height: 180px; top: 674px; left: 473px; transform: translateX(-50%); }
+            .btn-como-e-feito-o-desconto a   { width: 580px; height: 90px; top: 724px; left: 482px; transform: translateX(-50%); }
+            .btn-como-e-feito-o-desconto a span { font-size: 33px; }
+
+            /* EM AFASTAMENTO, DEBITA? */
+            .btn-em-afastamento-debita img { width: 680px; height: 180px; top: 811px; left: 473px; transform: translateX(-50%); }
+            .btn-em-afastamento-debita a   { width: 580px; height: 90px; top: 861px; left: 482px; transform: translateX(-50%); }
+            .btn-em-afastamento-debita a span { font-size: 33px; }
+
+            /* DESLIGAMENTO/FALECIMENTO */
+            .btn-desligamento-falecimento img { width: 680px; height: 180px; top: 950px; left: 473px; transform: translateX(-50%); }
+            .btn-desligamento-falecimento a   { width: 580px; height: 90px; top: 999px; left: 482px; transform: translateX(-50%); }
+            .btn-desligamento-falecimento a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 24px; bottom: 129px; right: 70px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .txt-anterior  { font-size: 24px; bottom: 100px; right: 45px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .icone-voltar  { width: 96px; height: 96px; bottom: 5px; right: 55px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { position: fixed; bottom: 2px; width: 100%; padding: 0 20px; }
+        .rodape-conteudo { display: flex; align-items: center; justify-content: space-between; }
+    </style>
 </head>
-<body style="margin:0; padding:0; font-family:Arial, sans-serif; text-align:center; overflow:hidden;">
+<body>
 
-    <!-- Imagem do Menu com texto sobreposto -->
-    <div style="margin-top:-5px; margin-right:2px;">
-        <div style="position:relative; display:inline-block;">
-            <img src="../icones/icone.titulo.png" alt="Título" style="width:423px; height:120px;">
-            <span style="position:absolute; top:50%; right:-26%; transform:translate(-50%, -50%);
-                         font-size:23px; font-weight:bold; color:white;">EMPRÉSTIMO CONSIGNADO</span>
-        </div>
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="../icones/icone.titulo.png" alt="Título">
+        <span>EMPRÉSTIMO CONSIGNADO</span>
     </div>
 
-    <!-- Itens com imagens e áreas clicáveis reduzidas -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; width:auto; margin:5px auto;">
-
-        <!-- ONDE POSSO SOLICITAR? -->
-        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-14px;">
-            <img src="../icones/icone.botao.png" alt="onde posso solicitar?" style="width:410px; height:130px;">
-            <a href="conteudos.do.emprestimo.consignado/onde.posso.solicitar.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">ONDE POSSO SOLICITAR?</span>
-            </a>
-        </div>
-
-        <!-- QUEM TEM DIREITO? -->
-        <div style="position:relative; display:inline-block; margin-top:-45px; margin-left:-44px;">
-            <img src="../icones/icone.botao.png" alt="quem tem direito?" style="width:410px; height:130px;">
-            <a href="conteudos.do.emprestimo.consignado/quem.tem.direito.html"
-               style="position:absolute; top:51%; right:-36%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">QUEM TEM DIREITO?</span>
-            </a>
-        </div>
-
-        <!-- COMO SOLICITAR? -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-14px;">
-            <img src="../icones/icone.botao.png" alt="como solicitar?" style="width:410px; height:130px;">
-            <a href="conteudos.do.emprestimo.consignado/como.solicitar.html"
-               style="position:absolute; top:51%; right:-36%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">COMO SOLICITAR?</span>
-            </a>
-        </div>
-
-        <!-- QUANTIDADE DE PARCELAS -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-left:-44px;">
-            <img src="../icones/icone.botao.png" alt="quantidade de parcelas" style="width:410px; height:130px;">
-            <a href="conteudos.do.emprestimo.consignado/quantidade.de.parcelas.html"
-               style="position:absolute; top:51%; right:-35%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">QUANTIDADE DE PARCELAS</span>
-            </a>
-        </div>
-
-        <!-- DEMAIS OPÇÕES -->
-        <div style="position:relative; display:inline-block; margin-top:-54px; margin-right:-355px;">
-            <img src="../icones/icone.botao.png" alt="demais opções" style="width:410px; height:130px;">
-            <a href="menu.do.emprestimo.consignado.pg2.html"
-               style="position:absolute; top:51%; left:50%; transform:translate(-50%, -50%);
-                      width:348px; height:70px; display:flex; align-items:center; justify-content:center;
-                      text-decoration:none; cursor:pointer;">
-                <span style="font-size:19px; font-weight:bold; color:white;">DEMAIS OPÇÕES</span>
-            </a>
-        </div>
-
-    </div>
-
-    <!-- Ícones de navegação com controle de posição de textos e imagens -->
-    <div style="position:fixed; bottom:2px; width:100%; padding:0 20px; display:flex; justify-content:space-between; align-items:flex-start;">
-
-        <!-- Menu Principal -->
-        <div style="text-align:left;">
-            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
-                <span style="display:block; margin-left:12px;">MENU</span>
-                <span style="display:block; margin-left:-3px;">PRINCIPAL</span>
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-onde-posso-solicitar">
+                <img src="../icones/icone.botao.png" alt="Onde posso solicitar?">
+                <a href="conteudos.do.emprestimo.consignado/onde.posso.solicitar.html"><span>ONDE POSSO SOLICITAR?</span></a>
             </div>
-            <a href="../menu.principal.html">
-                <img src="../icones/casinha.png" alt="Home" style="width:68px; height:68px; margin-top:4px; margin-left:-1px;">
-            </a>
-        </div>
 
-        <!-- Menu Anterior (direita) -->
-        <div style="text-align:right;">
-            <div style="font-size:14px; font-weight:bold; color:white; line-height:1.2; margin-top:-8px; margin-bottom:-6px;">
-                <span style="display:block; margin-right:55px;">MENU</span>
-                <span style="display:block; margin-right:38px;">ANTERIOR</span>
+            <div class="botao btn-quem-tem-direito">
+                <img src="../icones/icone.botao.png" alt="Quem tem direito?">
+                <a href="conteudos.do.emprestimo.consignado/quem.tem.direito.html"><span>QUEM TEM DIREITO?</span></a>
             </div>
-            <a href="../menu.da.folha.de.pagamento.html">
-                <img src="../icones/voltar.png" alt="Voltar" style="width:68px; height:68px; margin-top:4px; margin-right:40px;">
-            </a>
-        </div>
 
+            <div class="botao btn-como-solicitar">
+                <img src="../icones/icone.botao.png" alt="Como solicitar?">
+                <a href="conteudos.do.emprestimo.consignado/como.solicitar.html"><span>COMO SOLICITAR?</span></a>
+            </div>
+
+            <div class="botao btn-quantidade-de-parcelas">
+                <img src="../icones/icone.botao.png" alt="Quantidade de parcelas">
+                <a href="conteudos.do.emprestimo.consignado/quantidade.de.parcelas.html"><span>QUANTIDADE DE PARCELAS</span></a>
+            </div>
+
+            <div class="botao btn-qual-a-taxa-de-juros">
+                <img src="../icones/icone.botao.png" alt="Qual a taxa de juros?">
+                <a href="conteudos.do.emprestimo.consignado/qual.a.taxa.de.juros.html"><span>QUAL A TAXA DE JUROS?</span></a>
+            </div>
+
+            <div class="botao btn-como-e-feito-o-desconto">
+                <img src="../icones/icone.botao.png" alt="Como é feito o desconto?">
+                <a href="conteudos.do.emprestimo.consignado/como.e.feito.o.desconto.html"><span>COMO É FEITO O DESCONTO?</span></a>
+            </div>
+
+            <div class="botao btn-em-afastamento-debita">
+                <img src="../icones/icone.botao.png" alt="Em afastamento, debita?">
+                <a href="conteudos.do.emprestimo.consignado/em.afastamento.debita.html"><span>EM AFASTAMENTO, DEBITA?</span></a>
+            </div>
+
+            <div class="botao btn-desligamento-ou-falecimento">
+                <img src="../icones/icone.botao.png" alt="Desligamento ou falecimento">
+                <a href="conteudos.do.emprestimo.consignado/desligamento.ou.falecimento.html"><span>DESLIGAMENTO/FALECIMENTO</span></a>
+            </div>
+        </div>
     </div>
 
-    <!-- Script de atividade -->
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="rodape-conteudo">
+            <!-- MENU PRINCIPAL -->
+            <div>
+                <span class="txt-menu">MENU</span>
+                <span class="txt-principal">PRINCIPAL</span>
+                <a href="../menu.principal.html">
+                    <img class="icone-casinha" src="../icones/casinha.png" alt="Home">
+                </a>
+            </div>
+
+            <!-- MENU ANTERIOR -->
+            <div>
+                <span class="txt-menu2">MENU</span>
+                <span class="txt-anterior">ANTERIOR</span>
+                <a href="../menu.da.folha.de.pagamento.html">
+                    <img class="icone-voltar" src="../icones/voltar.png" alt="Voltar">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE ATIVIDADE -->
     <script>
         const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
         eventos.forEach(evento => {
@@ -111,13 +305,12 @@
             });
         });
 
-        const divComScroll = document.querySelector('div[style*="overflow:auto"]');
+        const divComScroll = document.querySelector('.botoes-scroll');
         if (divComScroll) {
             divComScroll.addEventListener('scroll', () => {
                 parent.postMessage("atividade", "*");
             });
         }
     </script>
-
 </body>
 </html>
