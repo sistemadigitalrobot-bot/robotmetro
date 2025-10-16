@@ -33,16 +33,16 @@
             overflow-y: scroll;
             overflow-x: hidden;
             margin-top: 110px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.5) transparent;
             display: flex;
             justify-content: center;
+            scrollbar-gutter: stable both-edges;
         }
-        .botoes-scroll::-webkit-scrollbar { width: 6px; 
-        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; position: absolute; right: 0; z-index: 10; }
         .botoes-scroll::-webkit-scrollbar-thumb {
             background-color: rgba(255,255,255,0.5);
             border-radius: 10px;
+            background-clip: padding-box;
+            border: 3px solid transparent;
         }
 
         .grid-botoes { 
@@ -84,17 +84,41 @@
         /* ================= AJUSTE FINAL PARA O CHROME ================= */
         @supports (-webkit-appearance: none) {
           .botoes-scroll {
-            overflow-y: overlay: auto;
+            overflow-y: auto;
+            position: relative;
+            scrollbar-gutter: stable both-edges;
           }
-          .grid-botoes {
-            transform: none;
-          }
+            
+        /* Barra de rolagem sobreposta (Chrome/Edge/Safari) */
+          .botoes-scroll::-webkit-scrollbar {
+            width: 12px;
+            position: absolute;
+            right: 0;
+            z-index: 10;
         }
+
+          .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            background-clip: padding-box;
+            border: 3px solid transparent;
+        }
+           .grid-botoes {
+             transform: none;
+        }
+      } 
+
+        /* Firefox e demais navegadores */
+            .botoes-scroll {
+              scrollbar-color: rgba(255,255,255,0.5) transparent;
+              scrollbar-width: thin;
+      }
 
         /* GARANTE QUE A SCROLLBAR NÃO DESLOQUE CONTEÚDO */
         html {
-            scrollbar-gutter: stable;
+          scrollbar-gutter: stable both-edges;
         }
+      }
 
         /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
         @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
