@@ -54,6 +54,10 @@
         .botao a span { 
           font-weight: bold; 
           color: white; 
+          white-space: nowrap;
+          text-align: center;
+          display: inline-block;
+          width: 100%;
         }
 
         /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
@@ -81,7 +85,7 @@
 
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
             .titulo-container img { width: 450px; height: 120px; top: -5px; left: 373px; transform: translateX(-50%); }
-            .titulo-container span { font-size: 23px; top: 43px; left: 373px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
             /* TIPOS DE PREVIDÊNCIA */
             .btn-tipos-de-previdencia img { width: 410px; height: 130px; top: -32px; left: 170px; }
@@ -168,10 +172,20 @@
              scrollbar-width: auto;
              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
            }
+            
+            .botao a span {
+              font-weight: bold;
+              color: white;
+              font-size: 19px;
+              white-space: nowrap;
+              text-align: center;
+              display: inline-block;
+              width: 100%;
+            }
 
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
             .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
-            .titulo-container span { font-size: 48px; top: 48px; right: -60px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
             /* TIPOS DE PREVIDÊNCIA */
             .btn-tipos-de-previdencia img { width: 680px; height: 180px; top: -20px; left: 473px; transform: translateX(-50%); }
