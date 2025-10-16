@@ -13,6 +13,14 @@
             overflow: hidden;
         }
 
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img {
+            display: block;
+        }
+
         /* TÍTULO */
         .titulo-container img,
         .titulo-container span { position: absolute; }
@@ -27,6 +35,8 @@
             margin-top: 110px;
             scrollbar-width: thin;
             scrollbar-color: rgba(255,255,255,0.5) transparent;
+            display: flex;
+            justify-content: center;
         }
         .botoes-scroll::-webkit-scrollbar { width: 6px; 
         }
@@ -37,13 +47,16 @@
 
         .grid-botoes { 
           position: relative; 
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           width: 100%; 
           min-height: 650px; }
 
         .botao img {
           position: absolute;
           left: 50%;
-          transform: translateX(calc(-50% - 1px));
+          transform: translateX(-50%);
         }
         
         .botao a { 
@@ -59,7 +72,7 @@
         .botao a span { 
           position: absolute;
           left: 50%;
-          transform: translateX(calc(-50% - 1px));
+          transform: translateX(-50%);
           text-align: center;
           white-space: nowrap;
           font-weight: bold; 
@@ -92,8 +105,8 @@
             }   
 
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
-            .titulo-container img { width: 450px; height: 120px; top: -5px; left: 50%; transform: translateX(calc(-50% - 1px)); }
-            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(calc(-50% - 1px)); white-space: nowrap; }
+            .titulo-container img { width: 450px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
             /* TIPOS DE PREVIDÊNCIA */
             .btn-tipos-de-previdencia img { width: 410px; height: 130px; top: -32px; left: 50%; transform: translateX(-50%); }
@@ -182,27 +195,20 @@
            }
 
             .botao img {
-              position: absolute;
               left: 50%;
-              transform: translateX(calc(-50% - 1px)); 
+              transform: translateX(-50%); 
            }
             
             .botao a span {
               position: absolute;
               left: 50%;
-              transform: translateX(calc(-50% - 1px));
-              text-align: center;
-              white-space: nowrap;
-              font-weight: bold;
-              color: white;
+              transform: translateX(-50%);
               font-size: 33px;      
-              display: inline-block;
-              width: 100%;
             }
 
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
-            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 50%; transform: translateX(calc(-50% - 1px)); }
-            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(calc(-50% - 1px)); white-space: nowrap; }
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
             /* TIPOS DE PREVIDÊNCIA */
             .btn-tipos-de-previdencia img { width: 680px; height: 180px; top: -20px; left: 50%; transform: translateX(-50%); }
@@ -375,5 +381,6 @@
     </script>
 </body>
 </html>
+
 
 
