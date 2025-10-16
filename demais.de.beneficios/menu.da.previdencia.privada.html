@@ -83,11 +83,11 @@
 
         /* ================= AJUSTE FINAL PARA O CHROME ================= */
         @supports (-webkit-appearance: none) {
-          .botao img,
-          .botao a,
-          .botao a span {
-            left: 50%;
-            transform: translateX(-50%) translateZ(0);
+          .botoes-scroll {
+            overflow-y: overlay; /* barra de rolagem sobreposta (não empurra conteúdo) */
+          }
+          .grid-botoes {
+            transform: translateX(calc(-1 * (100vw - 100%)/2)); /* realinha o centro no Chrome */
           }
         }
 
@@ -391,3 +391,4 @@
     </script>
 </body>
 </html>
+
