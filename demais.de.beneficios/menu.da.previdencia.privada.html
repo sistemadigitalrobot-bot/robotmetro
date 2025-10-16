@@ -84,11 +84,16 @@
         /* ================= AJUSTE FINAL PARA O CHROME ================= */
         @supports (-webkit-appearance: none) {
           .botoes-scroll {
-            overflow-y: overlay; /* barra de rolagem sobreposta (não empurra conteúdo) */
+            overflow-y: overlay: auto;
           }
           .grid-botoes {
-            transform: translateX(calc(-1 * (100vw - 100%)/2)); /* realinha o centro no Chrome */
+            transform: none;
           }
+        }
+
+        /* GARANTE QUE A SCROLLBAR NÃO DESLOQUE CONTEÚDO */
+        html {
+            scrollbar-gutter: stable;
         }
 
         /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
@@ -391,4 +396,3 @@
     </script>
 </body>
 </html>
-
