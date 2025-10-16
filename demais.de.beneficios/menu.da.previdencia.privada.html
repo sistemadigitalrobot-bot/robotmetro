@@ -13,14 +13,6 @@
             overflow: hidden;
         }
 
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        img {
-            display: block;
-        }
-
         /* TÍTULO */
         .titulo-container img,
         .titulo-container span { position: absolute; }
@@ -33,32 +25,22 @@
             overflow-y: scroll;
             overflow-x: hidden;
             margin-top: 110px;
-            display: flex;
-            justify-content: center;
-            scrollbar-gutter: stable both-edges;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
         }
-        .botoes-scroll::-webkit-scrollbar { width: 6px; position: absolute; right: 0; z-index: 10; }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
         .botoes-scroll::-webkit-scrollbar-thumb {
             background-color: rgba(255,255,255,0.5);
             border-radius: 10px;
-            background-clip: padding-box;
-            border: 3px solid transparent;
         }
 
         .grid-botoes { 
           position: relative; 
-          display: flex;
-          flex-direction: column;
-          align-items: center;
           width: 100%; 
           min-height: 650px; }
 
-        .botao img {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        
+        .botao img,
         .botao a { 
           position: absolute; 
         }
@@ -70,55 +52,9 @@
           cursor: pointer;
         }
         .botao a span { 
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          text-align: center;
-          white-space: nowrap;
           font-weight: bold; 
-          color: white;        
-          display: inline-block;
-          width: 100%;
+          color: white; 
         }
-
-        /* ================= AJUSTE FINAL PARA O CHROME ================= */
-        @supports (-webkit-appearance: none) {
-          .botoes-scroll {
-            overflow-y: auto;
-            position: relative;
-            scrollbar-gutter: stable both-edges;
-          }
-            
-        /* Barra de rolagem sobreposta (Chrome/Edge/Safari) */
-          .botoes-scroll::-webkit-scrollbar {
-            width: 12px;
-            position: absolute;
-            right: 0;
-            z-index: 10;
-        }
-
-          .botoes-scroll::-webkit-scrollbar-thumb {
-            background-color: rgba(255,255,255,0.5);
-            border-radius: 10px;
-            background-clip: padding-box;
-            border: 3px solid transparent;
-        }
-           .grid-botoes {
-             transform: none;
-        }
-      } 
-
-        /* Firefox e demais navegadores */
-            .botoes-scroll {
-              scrollbar-color: rgba(255,255,255,0.5) transparent;
-              scrollbar-width: thin;
-      }
-
-        /* GARANTE QUE A SCROLLBAR NÃO DESLOQUE CONTEÚDO */
-        html {
-          scrollbar-gutter: stable both-edges;
-        }
-      }
 
         /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
         @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
@@ -144,57 +80,57 @@
             }   
 
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
-            .titulo-container img { width: 450px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
-            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+            .titulo-container img { width: 450px; height: 120px; top: -5px; left: 373px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; top: 43px; left: 373px; transform: translateX(-50%); }
 
             /* TIPOS DE PREVIDÊNCIA */
-            .btn-tipos-de-previdencia img { width: 410px; height: 130px; top: -32px; left: 50%; transform: translateX(-50%); }
-            .btn-tipos-de-previdencia a   { width: 348px; height: 70px; top: 36px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-tipos-de-previdencia img { width: 410px; height: 130px; top: -32px; left: 170px; }
+            .btn-tipos-de-previdencia a   { width: 348px; height: 70px; top: 36px; right: 13px; transform: translate(-50%, -50%); }
             .btn-tipos-de-previdencia a span { font-size: 19px; }
 
             /* VALORES DE CONTRIBUIÇÃO */
-            .btn-valores-de-contribuicao img { width: 410px; height: 130px; top: 53px; left: 50%; transform: translateX(-50%); }
-            .btn-valores-de-contribuicao a   { width: 348px; height: 70px; top: 121px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-valores-de-contribuicao img { width: 410px; height: 130px; top: 53px; left: 170px; }
+            .btn-valores-de-contribuicao a   { width: 348px; height: 70px; top: 121px; right: 14px; transform: translate(-50%, -50%); }
             .btn-valores-de-contribuicao a span { font-size: 19px; }
 
             /* QUEM TEM DIREITO? */
-            .btn-quem-tem-direito img { width: 410px; height: 130px; top: 137px; left: 50%; transform: translateX(-50%); }
-            .btn-quem-tem-direito a   { width: 348px; height: 70px; top: 205px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-quem-tem-direito img { width: 410px; height: 130px; top: 137px; left: 170px; }
+            .btn-quem-tem-direito a   { width: 348px; height: 70px; top: 205px; right: 14px; transform: translate(-50%, -50%); }
             .btn-quem-tem-direito a span { font-size: 19px; }
 
             /* COMO FAÇO A ADESÃO? */
-            .btn-como-faco-a-adesao img { width: 410px; height: 130px; top: 222px; left: 50%; transform: translateX(-50%); }
-            .btn-como-faco-a-adesao a   { width: 348px; height: 70px; top: 290px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-como-faco-a-adesao img { width: 410px; height: 130px; top: 222px; left: 170px; }
+            .btn-como-faco-a-adesao a   { width: 348px; height: 70px; top: 290px; right: 13px; transform: translate(-50%, -50%); }
             .btn-como-faco-a-adesao a span { font-size: 19px; }
 
             /* MODALIDADES */
-            .btn-modalidades img { width: 410px; height: 130px; top: 307px; left: 50%; transform: translateX(-50%); }
-            .btn-modalidades a   { width: 348px; height: 70px; top: 375px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-modalidades img { width: 410px; height: 130px; top: 307px; left: 170px; }
+            .btn-modalidades a   { width: 348px; height: 70px; top: 375px; right: 14px; transform: translate(-50%, -50%); }
             .btn-modalidades a span { font-size: 19px; }
 
             /* VALORES SÃO REAJUSTADOS? */
-            .btn-valores-sao-reajustados img { width: 410px; height: 130px; top: 392px; left: 50%; transform: translateX(-50%); }
-            .btn-valores-sao-reajustados a   { width: 348px; height: 70px; top: 460px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-valores-sao-reajustados img { width: 410px; height: 130px; top: 392px; left: 170px; }
+            .btn-valores-sao-reajustados a   { width: 348px; height: 70px; top: 460px; right: 14px; transform: translate(-50%, -50%); }
             .btn-valores-sao-reajustados a span { font-size: 19px; }
 
             /* EM CASO DE AFASTAMENTO */
-            .btn-em-caso-de-afastamento img { width: 410px; height: 130px; top: 477px; left: 50%; transform: translateX(-50%); }
-            .btn-em-caso-de-afastamento a   { width: 348px; height: 70px; top: 545px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-em-caso-de-afastamento img { width: 410px; height: 130px; top: 477px; left: 170px; }
+            .btn-em-caso-de-afastamento a   { width: 348px; height: 70px; top: 545px; right: 14px; transform: translate(-50%, -50%); }
             .btn-em-caso-de-afastamento a span { font-size: 19px; }
 
             /* PORTABILIDADE DO PLANO */
-            .btn-portabilidade-do-plano img { width: 410px; height: 130px; top: 562px; left: 50%; transform: translateX(-50%); }
-            .btn-portabilidade-do-plano a   { width: 348px; height: 70px; top: 630px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-portabilidade-do-plano img { width: 410px; height: 130px; top: 562px; left: 170px; }
+            .btn-portabilidade-do-plano a   { width: 348px; height: 70px; top: 630px; right: 14px; transform: translate(-50%, -50%); }
             .btn-portabilidade-do-plano a span { font-size: 19px; }
 
             /* RESGATE DO PLANO */
-            .btn-resgate-do-plano img { width: 410px; height: 130px; top: 647px; left: 50%; transform: translateX(-50%); }
-            .btn-resgate-do-plano a   { width: 348px; height: 70px; top: 715px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-resgate-do-plano img { width: 410px; height: 130px; top: 647px; left: 170px; }
+            .btn-resgate-do-plano a   { width: 348px; height: 70px; top: 715px; right: 14px; transform: translate(-50%, -50%); }
             .btn-resgate-do-plano a span { font-size: 19px; }
 
             /* É POSSÍVEL CANCELAR? */
-            .btn-e-possivel-cancelar img { width: 410px; height: 130px; top: 732px; left: 50%; transform: translateX(-50%); }
-            .btn-e-possivel-cancelar a   { width: 348px; height: 70px; top: 800px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-e-possivel-cancelar img { width: 410px; height: 130px; top: 732px; left: 170px; }
+            .btn-e-possivel-cancelar a   { width: 348px; height: 70px; top: 800px; right: 14px; transform: translate(-50%, -50%); }
             .btn-e-possivel-cancelar a span { font-size: 19px; }
 
             /* MENU PRINCIPAL */
@@ -233,70 +169,58 @@
              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
            }
 
-            .botao img {
-              left: 50%;
-              transform: translateX(-50%); 
-           }
-            
-            .botao a span {
-              position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
-              font-size: 33px;      
-            }
-
             /* TÍTULO - PREVIDÊNCIA PRIVADA */
-            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 50%; transform: translateX(-50%); }
-            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 472px; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; top: 48px; right: -60px; transform: translateX(-50%); }
 
             /* TIPOS DE PREVIDÊNCIA */
-            .btn-tipos-de-previdencia img { width: 680px; height: 180px; top: -20px; left: 50%; transform: translateX(-50%); }
-            .btn-tipos-de-previdencia a   { width: 580px; height: 90px; top: 31px; left: 50%; transform: translateX(-50%); }
+            .btn-tipos-de-previdencia img { width: 680px; height: 180px; top: -20px; left: 473px; transform: translateX(-50%); }
+            .btn-tipos-de-previdencia a   { width: 580px; height: 90px; top: 31px; left: 482px; transform: translateX(-50%); }
             .btn-tipos-de-previdencia a span { font-size: 33px; }
 
             /* VALORES DE CONTRIBUIÇÃO */
-            .btn-valores-de-contribuicao img { width: 680px; height: 180px; top: 120px; left: 50%; transform: translateX(-50%); }
-            .btn-valores-de-contribuicao a   { width: 580px; height: 90px; top: 172px; left: 50%; transform: translateX(-50%); }
+            .btn-valores-de-contribuicao img { width: 680px; height: 180px; top: 120px; left: 473px; transform: translateX(-50%); }
+            .btn-valores-de-contribuicao a   { width: 580px; height: 90px; top: 172px; left: 482px; transform: translateX(-50%); }
             .btn-valores-de-contribuicao a span { font-size: 33px; }
 
             /* QUEM TEM DIREITO? */
-            .btn-quem-tem-direito img { width: 680px; height: 180px; top: 259px; left: 50%; transform: translateX(-50%); }
-            .btn-quem-tem-direito a   { width: 580px; height: 90px; top: 308px; left: 50%; transform: translateX(-50%); }
+            .btn-quem-tem-direito img { width: 680px; height: 180px; top: 259px; left: 473px; transform: translateX(-50%); }
+            .btn-quem-tem-direito a   { width: 580px; height: 90px; top: 308px; left: 480px; transform: translateX(-50%); }
             .btn-quem-tem-direito a span { font-size: 33px; }
 
             /* COMO FAÇO A ADESÃO? */
-            .btn-como-faco-a-adesao img { width: 680px; height: 180px; top: 397px; left: 50%; transform: translateX(-50%); }
-            .btn-como-faco-a-adesao a   { width: 580px; height: 90px; top: 448px; left: 50%; transform: translateX(-50%); }
+            .btn-como-faco-a-adesao img { width: 680px; height: 180px; top: 397px; left: 473px; transform: translateX(-50%); }
+            .btn-como-faco-a-adesao a   { width: 580px; height: 90px; top: 448px; left: 480px; transform: translateX(-50%); }
             .btn-como-faco-a-adesao a span { font-size: 33px; }
 
             /* MODALIDADES */
-            .btn-modalidades img { width: 680px; height: 180px; top: 536px; left: 50%; transform: translateX(-50%); }
-            .btn-modalidades a   { width: 580px; height: 90px; top: 586px; left: 50%; transform: translateX(-50%); }
+            .btn-modalidades img { width: 680px; height: 180px; top: 536px; left: 473px; transform: translateX(-50%); }
+            .btn-modalidades a   { width: 580px; height: 90px; top: 586px; left: 480px; transform: translateX(-50%); }
             .btn-modalidades a span { font-size: 33px; }
 
             /* VALORES SÃO REAJUSTADOS? */
-            .btn-valores-sao-reajustados img { width: 680px; height: 180px; top: 674px; left: 50%; transform: translateX(-50%); }
-            .btn-valores-sao-reajustados a   { width: 580px; height: 90px; top: 724px; left: 50%; transform: translateX(-50%); }
+            .btn-valores-sao-reajustados img { width: 680px; height: 180px; top: 674px; left: 473px; transform: translateX(-50%); }
+            .btn-valores-sao-reajustados a   { width: 580px; height: 90px; top: 724px; left: 482px; transform: translateX(-50%); }
             .btn-valores-sao-reajustados a span { font-size: 33px; }
 
             /* EM CASO DE AFASTAMENTO */
-            .btn-em-caso-de-afastamento img { width: 680px; height: 180px; top: 811px; left: 50%; transform: translateX(-50%); }
-            .btn-em-caso-de-afastamento a   { width: 580px; height: 90px; top: 861px; left: 50%; transform: translateX(-50%); }
+            .btn-em-caso-de-afastamento img { width: 680px; height: 180px; top: 811px; left: 473px; transform: translateX(-50%); }
+            .btn-em-caso-de-afastamento a   { width: 580px; height: 90px; top: 861px; left: 482px; transform: translateX(-50%); }
             .btn-em-caso-de-afastamento a span { font-size: 33px; }
 
             /* PORTABILIDADE DO PLANO */
-            .btn-portabilidade-do-plano img { width: 680px; height: 180px; top: 950px; left: 50%; transform: translateX(-50%); }
-            .btn-portabilidade-do-plano a   { width: 580px; height: 90px; top: 999px; left: 50%; transform: translateX(-50%); }
+            .btn-portabilidade-do-plano img { width: 680px; height: 180px; top: 950px; left: 473px; transform: translateX(-50%); }
+            .btn-portabilidade-do-plano a   { width: 580px; height: 90px; top: 999px; left: 482px; transform: translateX(-50%); }
             .btn-portabilidade-do-plano a span { font-size: 33px; }
 
             /* RESGATE DO PLANO */
-            .btn-resgate-do-plano img { width: 680px; height: 180px; top: 1088px; left: 50%; transform: translateX(-50%); }
-            .btn-resgate-do-plano a   { width: 580px; height: 90px; top: 1138px; left: 50%; transform: translateX(-50%); }
+            .btn-resgate-do-plano img { width: 680px; height: 180px; top: 1088px; left: 473px; transform: translateX(-50%); }
+            .btn-resgate-do-plano a   { width: 580px; height: 90px; top: 1138px; left: 482px; transform: translateX(-50%); }
             .btn-resgate-do-plano a span { font-size: 33px; }
 
             /* É POSSÍVEL CANCELAR? */
-            .btn-e-possivel-cancelar img { width: 680px; height: 180px; top: 1227px; left: 50%; transform: translateX(-50%); }
-            .btn-e-possivel-cancelar a   { width: 580px; height: 90px; top: 1277px; left: 50%; transform: translateX(-50%); }
+            .btn-e-possivel-cancelar img { width: 680px; height: 180px; top: 1227px; left: 473px; transform: translateX(-50%); }
+            .btn-e-possivel-cancelar a   { width: 580px; height: 90px; top: 1277px; left: 482px; transform: translateX(-50%); }
             .btn-e-possivel-cancelar a span { font-size: 33px; }
 
             /* MENU PRINCIPAL */
