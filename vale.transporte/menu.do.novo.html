@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Vale Transporte</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 650px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute; 
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            .botoes-scroll { 
+              height: 54vh; 
+              margin-top: 110px; 
+            }
+
+            /* BARRA DE ROLAGEM */
+            .botoes-scroll::-webkit-scrollbar {
+              width: 30px;
+            }
+            .botoes-scroll::-webkit-scrollbar-track {
+              background: rgba(255,255,255,0.25);
+            }
+            .botoes-scroll::-webkit-scrollbar-thumb {
+              background-color: rgba(255,255,255,0.1);
+              border-radius: 12px;
+            }
+            .botoes-scroll {
+              scrollbar-width: auto;
+              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+            }   
+
+            /* TÍTULO - VALE-TRANSPORTE */
+            .titulo-container img { width: 365px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+            /* QUAL O VALOR DO DESCONTO? */
+            .btn-qual-o-valor-do-desconto img { width: 410px; height: 130px; top: -32px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-qual-o-valor-do-desconto a   { width: 348px; height: 70px; top: 36px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-qual-o-valor-do-desconto a span { font-size: 19px; white-space: nowrap; }
+
+            /* QUANTOS DIAS DE CRÉDITO? */
+            .btn-quantos-dias-de-credito img { width: 410px; height: 130px; top: 53px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-quantos-dias-de-credito a   { width: 348px; height: 70px; top: 121px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-quantos-dias-de-credito a span { font-size: 19px; white-space: nowrap; }
+
+            /* É CONCEDIDO NAS FÉRIAS? */
+            .btn-e-concedido-nas-ferias img { width: 410px; height: 130px; top: 138px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-e-concedido-nas-ferias a   { width: 348px; height: 70px; top: 206px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-e-concedido-nas-ferias a span { font-size: 19px; white-space: nowrap; }
+
+            /* AFASTAMENTO / LICENÇA? */
+            .btn-afastamento-licenca img { width: 410px; height: 130px; top: 223px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-afastamento-licenca a   { width: 348px; height: 70px; top: 291px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-afastamento-licenca a span { font-size: 19px; white-space: nowrap; }
+
+            /* É DESCONTADO EM FALTAS? */
+            .btn-e-descontado-em-faltas img { width: 410px; height: 130px; top: 308px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-e-descontado-em-faltas a   { width: 348px; height: 70px; top: 376px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-e-descontado-em-faltas a span { font-size: 19px; white-space: nowrap; }
+
+            /* DESCONTO EM RESCISÃO */
+            .btn-desconto-em-rescisao img { width: 410px; height: 130px; top: 393px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-desconto-em-rescisao a   { width: 348px; height: 70px; top: 461px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-desconto-em-rescisao a span { font-size: 19px; white-space: nowrap; }
+
+            /* PERDA DO CARTÃO */
+            .btn-perda-do-cartao img { width: 410px; height: 130px; top: 478px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-perda-do-cartao a   { width: 348px; height: 70px; top: 546px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-perda-do-cartao a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO CONSULTAR O SALDO? */
+            .btn-como-consultar-o-saldo img { width: 410px; height: 130px; top: 563px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-consultar-o-saldo a   { width: 348px; height: 70px; top: 631px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-consultar-o-saldo a span { font-size: 19px; white-space: nowrap; }
+
+            /* MEU VT ESTÁ BLOQUEADO */
+            .btn-meu-vt-esta-bloqueado img { width: 410px; height: 130px; top: 648px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-meu-vt-esta-bloqueado a   { width: 348px; height: 70px; top: 716px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-meu-vt-esta-bloqueado a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO CANCELAR / SUSPENDER */
+            .btn-como-cancelar-suspender img { width: 410px; height: 130px; top: 733px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-cancelar-suspender a   { width: 348px; height: 70px; top: 801px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-cancelar-suspender a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO ALTERAR A PASSAGEM */
+            .btn-como-alterar-a-passagem img { width: 410px; height: 130px; top: 818px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-alterar-a-passagem a   { width: 348px; height: 70px; top: 886px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-alterar-a-passagem a span { font-size: 19px; white-space: nowrap; }
+
+            /* SOLICITAÇÃO DE VT AVULSO */
+            .btn-solicitacao-de-vt-avulso img { width: 410px; height: 130px; top: 903px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-solicitacao-de-vt-avulso a   { width: 348px; height: 70px; top: 971px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-solicitacao-de-vt-avulso a span { font-size: 19px; white-space: nowrap; }
+
+            /* CARTÃO JAÉ */
+            .btn-cartao-jae img { width: 410px; height: 130px; top: 903px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-cartao-jae a   { width: 348px; height: 70px; top: 971px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-cartao-jae a span { font-size: 19px; white-space: nowrap; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+            /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+           .botoes-scroll::-webkit-scrollbar {
+             width: 30px;
+           }
+           .botoes-scroll::-webkit-scrollbar-track {
+             background: rgba(255,255,255,0.25);
+           }
+           .botoes-scroll::-webkit-scrollbar-thumb {
+             background-color: rgba(255,255,255,0.1);
+             border-radius: 12px;
+           }
+
+           /* Firefox no mobile */
+           .botoes-scroll {
+             scrollbar-width: auto;
+             scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+           }
+
+            /* TÍTULO - REFEIÇÃO / ALIMENTAÇÃO */
+            .titulo-container img { width: 805px; height: 180px; top: -15px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+            /* QUAL O VALOR? */
+            .btn-qual-o-valor img { width: 680px; height: 180px; top: -20px; left: 50%; transform: translateX(-50%); }
+            .btn-qual-o-valor a   { width: 580px; height: 90px; top: 31px; left: 50%; transform: translateX(-50%); }
+            .btn-qual-o-valor a span { font-size: 33px; }
+
+            /* COMO SOLICITAR 2ª VIA? */
+            .btn-como-solicitar-2via img { width: 680px; height: 180px; top: 119px; left: 50%; transform: translateX(-50%); }
+            .btn-como-solicitar-2via a   { width: 580px; height: 90px; top: 170px; left: 50%; transform: translateX(-50%); }
+            .btn-como-solicitar-2via a span { font-size: 33px; }
+
+            /* COMO ALTERAR A SENHA? */
+            .btn-como-alterar-a-senha img { width: 680px; height: 180px; top: 258px; left: 50%; transform: translateX(-50%); }
+            .btn-como-alterar-a-senha a   { width: 580px; height: 90px; top: 309px; left: 50%; transform: translateX(-50%); }
+            .btn-como-alterar-a-senha a span { font-size: 33px; }
+
+            /* COMO CONSULTO O SALDO? */
+            .btn-como-consulto-o-saldo img { width: 680px; height: 180px; top: 397px; left: 50%; transform: translateX(-50%); }
+            .btn-como-consulto-o-saldo a   { width: 580px; height: 90px; top: 448px; left: 50%; transform: translateX(-50%); }
+            .btn-como-consulto-o-saldo a span { font-size: 33px; }
+
+            /* EXISTE APP DA TICKET? */
+            .btn-existe-app-da-ticket img { width: 680px; height: 180px; top: 536px; left: 50%; transform: translateX(-50%); }
+            .btn-existe-app-da-ticket a   { width: 580px; height: 90px; top: 587px; left: 50%; transform: translateX(-50%); }
+            .btn-existe-app-da-ticket a span { font-size: 33px; }
+
+            /* QUEM TEM DIREITO? */
+            .btn-quem-tem-direito img { width: 680px; height: 180px; top: 675px; left: 50%; transform: translateX(-50%); }
+            .btn-quem-tem-direito a   { width: 580px; height: 90px; top: 726px; left: 50%; transform: translateX(-50%); }
+            .btn-quem-tem-direito a span { font-size: 33px; }
+
+            /* POSSO DIVIDIR O VA/VR? */
+            .btn-posso-dividir-o-va-vr img { width: 680px; height: 180px; top: 814px; left: 50%; transform: translateX(-50%); }
+            .btn-posso-dividir-o-va-vr a   { width: 580px; height: 90px; top: 865px; left: 50%; transform: translateX(-50%); }
+            .btn-posso-dividir-o-va-vr a span { font-size: 33px; }
+
+            /* É DESCONTADO DO SALÁRIO? */
+            .btn-e-descontado-do-salario img { width: 680px; height: 180px; top: 953px; left: 50%; transform: translateX(-50%); }
+            .btn-e-descontado-do-salario a   { width: 580px; height: 90px; top: 1004px; left: 50%; transform: translateX(-50%); }
+            .btn-e-descontado-do-salario a span { font-size: 33px; }
+
+            /* É CONCEDIDO NAS FÉRIAS? */
+            .btn-e-concedido-nas-ferias img { width: 680px; height: 180px; top: 1092px; left: 50%; transform: translateX(-50%); }
+            .btn-e-concedido-nas-ferias a   { width: 580px; height: 90px; top: 1143px; left: 50%; transform: translateX(-50%); }
+            .btn-e-concedido-nas-ferias a span { font-size: 33px; }
+
+            /* EM CASO DE AFASTAMENTO? */
+            .btn-em-caso-de-afastamento img { width: 680px; height: 180px; top: 1231px; left: 50%; transform: translateX(-50%); }
+            .btn-em-caso-de-afastamento a   { width: 580px; height: 90px; top: 1282px; left: 50%; transform: translateX(-50%); }
+            .btn-em-caso-de-afastamento a span { font-size: 33px; }
+
+            /* EM CASO DE LICENÇA? */
+            .btn-em-caso-de-licenca img { width: 680px; height: 180px; top: 1370px; left: 50%; transform: translateX(-50%); }
+            .btn-em-caso-de-licenca a   { width: 580px; height: 90px; top: 1421px; left: 50%; transform: translateX(-50%); }
+            .btn-em-caso-de-licenca a span { font-size: 33px; }
+
+            /* A RECARGA NÃO ENTROU? */
+            .btn-a-recarga-nao-entrou img { width: 680px; height: 180px; top: 1509px; left: 50%; transform: translateX(-50%); }
+            .btn-a-recarga-nao-entrou a   { width: 580px; height: 90px; top: 1560px; left: 50%; transform: translateX(-50%); }
+            .btn-a-recarga-nao-entrou a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { position: fixed; bottom: 2px; width: 100%; padding: 0 20px; }
+        .rodape-conteudo { display: flex; align-items: center; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="../icones/icone.titulo.png" alt="Título">
+        <span>REFEIÇÃO / ALIMENTAÇÃO</span>
+    </div>
+
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-qual-o-valor">
+                <img src="../icones/icone.botao.png" alt="Qual o valor?">
+                <a href="conteudos.do.refeicao.alimentacao/qual.o.valor.html"><span>QUAL O VALOR?</span></a>
+            </div>
+
+            <div class="botao btn-como-solicitar-2via">
+                <img src="../icones/icone.botao.png" alt="Como solicitar 2ª via?">
+                <a href="conteudos.do.refeicao.alimentacao/como.solicitar.2via.html"><span>COMO SOLICITAR 2ª VIA?</span></a>
+            </div>
+
+            <div class="botao btn-como-alterar-a-senha">
+                <img src="../icones/icone.botao.png" alt="Como alterar a senha?">
+                <a href="conteudos.do.refeicao.alimentacao/como.alterar.a.senha.html"><span>COMO ALTERAR A SENHA?</span></a>
+            </div>
+
+            <div class="botao btn-como-consulto-o-saldo">
+                <img src="../icones/icone.botao.png" alt="Como consulto o saldo?">
+                <a href="conteudos.do.refeicao.alimentacao/como.consulto.o.saldo.html"><span>COMO CONSULTO O SALDO?</span></a>
+            </div>
+
+            <div class="botao btn-existe-app-da-ticket">
+                <img src="../icones/icone.botao.png" alt="Existe app da ticket?">
+                <a href="conteudos.do.refeicao.alimentacao/existe.app.da.ticket.html"><span>EXISTE APP DA TICKET?</span></a>
+            </div>
+
+            <div class="botao btn-quem-tem-direito">
+                <img src="../icones/icone.botao.png" alt="Quem tem direito?">
+                <a href="conteudos.do.refeicao.alimentacao/quem.tem.direito.html"><span>QUEM TEM DIREITO?</span></a>
+            </div>
+
+            <div class="botao btn-posso-dividir-o-va-vr">
+                <img src="../icones/icone.botao.png" alt="Posso dividir o va, vr?">
+                <a href="conteudos.do.refeicao.alimentacao/posso.dividir.o.va.vr.html"><span>POSSO DIVIDIR O VA/VR?</span></a>
+            </div>
+
+            <div class="botao btn-e-descontado-do-salario">
+                <img src="../icones/icone.botao.png" alt="É descontado do salário?">
+                <a href="conteudos.do.refeicao.alimentacao/e.descontado.do.salario.html"><span>É DESCONTADO DO SALÁRIO?</span></a>
+            </div>
+
+            <div class="botao btn-e-concedido-nas-ferias">
+                <img src="../icones/icone.botao.png" alt="É concedido nas férias?">
+                <a href="conteudos.do.refeicao.alimentacao/e.concedido.nas.ferias.html"><span>É CONCEDIDO NAS FÉRIAS?</span></a>
+            </div>
+
+            <div class="botao btn-em-caso-de-afastamento">
+                <img src="../icones/icone.botao.png" alt="Em caso de afastamento?">
+                <a href="conteudos.do.refeicao.alimentacao/em.caso.de.afastamento.html"><span>EM CASO DE AFASTAMENTO?</span></a>
+            </div>
+
+            <div class="botao btn-em-caso-de-licenca">
+                <img src="../icones/icone.botao.png" alt="Em caso de licença?">
+                <a href="conteudos.do.refeicao.alimentacao/em.caso.de.licenca.html"><span>EM CASO DE LICENÇA?</span></a>
+            </div>
+
+            <div class="botao btn-a-recarga-nao-entrou">
+                <img src="../icones/icone.botao.png" alt="A recarga não entrou?">
+                <a href="conteudos.do.refeicao.alimentacao/a.recarga.nao.entrou.html"><span>A RECARGA NÃO ENTROU?</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="rodape-conteudo">
+            <!-- MENU PRINCIPAL -->
+            <div>
+                <span class="txt-menu">MENU</span>
+                <span class="txt-principal">PRINCIPAL</span>
+                <a href="../menu.principal.html">
+                    <img class="icone-casinha" src="../icones/casinha.png" alt="Home">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE ATIVIDADE -->
+    <script>
+        const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+        eventos.forEach(evento => {
+            document.addEventListener(evento, () => {
+                parent.postMessage("atividade", "*");
+            });
+        });
+
+        const divComScroll = document.querySelector('.botoes-scroll');
+        if (divComScroll) {
+            divComScroll.addEventListener('scroll', () => {
+                parent.postMessage("atividade", "*");
+            });
+        }
+    </script>
+</body>
+</html>
