@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Plano Odontológico</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px; 
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 650px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute; 
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            .botoes-scroll { 
+              height: 54vh; 
+              margin-top: 110px; 
+            }
+
+            /* BARRA DE ROLAGEM */
+            .botoes-scroll::-webkit-scrollbar {
+              width: 30px;
+            }
+            .botoes-scroll::-webkit-scrollbar-track {
+              background: rgba(255,255,255,0.25);
+            }
+            .botoes-scroll::-webkit-scrollbar-thumb {
+              background-color: rgba(255,255,255,0.1);
+              border-radius: 12px;
+            }
+            .botoes-scroll {
+              scrollbar-width: auto;
+              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+            }   
+
+            /* TÍTULO - PLANO ODONTOLÓGICO */
+            .titulo-container img { width: 450px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+            /* QUAL É A OPERADORA? */
+            .btn-qual-e-a-operadora img { width: 410px; height: 130px; top: -32px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-qual-e-a-operadora a   { width: 348px; height: 70px; top: 36px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-qual-e-a-operadora a span { font-size: 19px; white-space: nowrap; }
+
+            /* QUAIS SÃO OS PLANOS? */
+            .btn-quais-sao-os-planos img { width: 410px; height: 130px; top: 53px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-quais-sao-os-planos a   { width: 348px; height: 70px; top: 121px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-quais-sao-os-planos a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO FAÇO A ADESÃO? */
+            .btn-como-faco-a-adesao img { width: 410px; height: 130px; top: 138px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-faco-a-adesao a   { width: 348px; height: 70px; top: 206px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-faco-a-adesao a span { font-size: 19px; white-space: nowrap; }
+
+            /* A ADESÃO É OBRIGATÓRIA? */
+            .btn-a-adesao-e-obrigatoria img { width: 410px; height: 130px; top: 223px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-a-adesao-e-obrigatoria a   { width: 348px; height: 70px; top: 291px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-a-adesao-e-obrigatoria a span { font-size: 19px; white-space: nowrap; }
+
+            /* INCLUSÃO DE DEPENDENTES */
+            .btn-inclusao-de-dependentes img { width: 410px; height: 130px; top: 308px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-inclusao-de-dependentes a   { width: 348px; height: 70px; top: 376px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-inclusao-de-dependentes a span { font-size: 19px; white-space: nowrap; }
+
+            /* POSSO MUDAR DE PLANO? */
+            .btn-posso-mudar-de-plano img { width: 410px; height: 130px; top: 393px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-posso-mudar-de-plano a   { width: 348px; height: 70px; top: 461px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-posso-mudar-de-plano a span { font-size: 19px; white-space: nowrap; }
+
+            /* HÁ REAJUSTE NO PLANO? */
+            .btn-ha-reajuste-no-plano img { width: 410px; height: 130px; top: 478px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-ha-reajuste-no-plano a   { width: 348px; height: 70px; top: 546px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-ha-reajuste-no-plano a span { font-size: 19px; white-space: nowrap; }
+
+            /* HÁ COPARTICIPAÇÃO? */
+            .btn-ha-coparticipacao img { width: 410px; height: 130px; top: 563px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-ha-coparticipacao a   { width: 348px; height: 70px; top: 631px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-ha-coparticipacao a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO SOLICITO REEMBOLSO? */
+            .btn-como-solicito-reembolso img { width: 410px; height: 130px; top: 648px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-solicito-reembolso a   { width: 348px; height: 70px; top: 716px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-solicito-reembolso a span { font-size: 19px; white-space: nowrap; }
+
+            /* COLABORADORES DESLIGADOS */
+            .btn-colaboradores-desligados img { width: 410px; height: 130px; top: 733px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-colaboradores-desligados a   { width: 348px; height: 70px; top: 801px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-colaboradores-desligados a span { font-size: 19px; white-space: nowrap; }
+
+            /* COMO EXCLUIR DEPENDENTE? */
+            .btn-como-excluir-dependente img { width: 410px; height: 130px; top: 818px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-como-excluir-dependente a   { width: 348px; height: 70px; top: 886px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-como-excluir-dependente a span { font-size: 19px; white-space: nowrap; }
+
+            /* CARTEIRINHAS */
+            .btn-carteirinhas img { width: 410px; height: 130px; top: 903px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-carteirinhas a   { width: 348px; height: 70px; top: 971px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-carteirinhas a span { font-size: 19px; white-space: nowrap; }
+
+            /* PERÍODO DE PERMANÊNCIA */
+            .btn-periodo-de-permanencia img { width: 410px; height: 130px; top: 988px; left: calc(50% + 9px); transform: translateX(-50%); }
+            .btn-periodo-de-permanencia a   { width: 348px; height: 70px; top: 1056px; left: calc(50% + 9px); transform: translate(-50%, -50%); 
+             display: flex; align-items: center; justify-content: center; text-align: center; }
+            .btn-periodo-de-permanencia a span { font-size: 19px; white-space: nowrap; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+            /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+           .botoes-scroll::-webkit-scrollbar {
+             width: 30px;
+           }
+           .botoes-scroll::-webkit-scrollbar-track {
+             background: rgba(255,255,255,0.25);
+           }
+           .botoes-scroll::-webkit-scrollbar-thumb {
+             background-color: rgba(255,255,255,0.1);
+             border-radius: 12px;
+           }
+
+           /* Firefox no mobile */
+           .botoes-scroll {
+             scrollbar-width: auto;
+             scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+           }
+
+            /* TÍTULO - PLANO ODONTOLÓGICO */
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+            /* QUAL É A OPERADORA? */
+            .btn-qual-e-a-operadora img { width: 680px; height: 180px; top: -20px; left: 50%; transform: translateX(-50%); }
+            .btn-qual-e-a-operadora a   { width: 580px; height: 90px; top: 31px; left: 50%; transform: translateX(-50%); }
+            .btn-qual-e-a-operadora a span { font-size: 33px; }
+
+            /* QUAIS SÃO OS PLANOS? */
+            .btn-quais-sao-os-planos img { width: 680px; height: 180px; top: 119px; left: 50%; transform: translateX(-50%); }
+            .btn-quais-sao-os-planos a   { width: 580px; height: 90px; top: 170px; left: 50%; transform: translateX(-50%); }
+            .btn-quais-sao-os-planos a span { font-size: 33px; }
+
+            /* COMO FAÇO A ADESÃO? */
+            .btn-como-faco-a-adesao img { width: 680px; height: 180px; top: 258px; left: 50%; transform: translateX(-50%); }
+            .btn-como-faco-a-adesao a   { width: 580px; height: 90px; top: 309px; left: 50%; transform: translateX(-50%); }
+            .btn-como-faco-a-adesao a span { font-size: 33px; }
+
+            /* A ADESÃO É OBRIGATÓRIA? */
+            .btn-a-adesao-e-obrigatoria img { width: 680px; height: 180px; top: 397px; left: 50%; transform: translateX(-50%); }
+            .btn-a-adesao-e-obrigatoria a   { width: 580px; height: 90px; top: 448px; left: 50%; transform: translateX(-50%); }
+            .btn-a-adesao-e-obrigatoria a span { font-size: 33px; }
+
+            /* INCLUSÃO DE DEPENDENTES */
+            .btn-inclusao-de-dependentes img { width: 680px; height: 180px; top: 536px; left: 50%; transform: translateX(-50%); }
+            .btn-inclusao-de-dependentes a   { width: 580px; height: 90px; top: 587px; left: 50%; transform: translateX(-50%); }
+            .btn-inclusao-de-dependentes a span { font-size: 33px; }
+
+            /* POSSO MUDAR DE PLANO? */
+            .btn-posso-mudar-de-plano img { width: 680px; height: 180px; top: 675px; left: 50%; transform: translateX(-50%); }
+            .btn-posso-mudar-de-plano a   { width: 580px; height: 90px; top: 726px; left: 50%; transform: translateX(-50%); }
+            .btn-posso-mudar-de-plano a span { font-size: 33px; }
+
+            /* HÁ REAJUSTE NO PLANO? */
+            .btn-ha-reajuste-no-plano img { width: 680px; height: 180px; top: 814px; left: 50%; transform: translateX(-50%); }
+            .btn-ha-reajuste-no-plano a   { width: 580px; height: 90px; top: 865px; left: 50%; transform: translateX(-50%); }
+            .btn-ha-reajuste-no-plano a span { font-size: 33px; }
+
+            /* HÁ COPARTICIPAÇÃO? */
+            .btn-ha-coparticipacao img { width: 680px; height: 180px; top: 953px; left: 50%; transform: translateX(-50%); }
+            .btn-ha-coparticipacao a   { width: 580px; height: 90px; top: 1004px; left: 50%; transform: translateX(-50%); }
+            .btn-ha-coparticipacao a span { font-size: 33px; }
+
+            /* COMO SOLICITO REEMBOLSO? */
+            .btn-como-solicito-reembolso img { width: 680px; height: 180px; top: 1092px; left: 50%; transform: translateX(-50%); }
+            .btn-como-solicito-reembolso a   { width: 580px; height: 90px; top: 1143px; left: 50%; transform: translateX(-50%); }
+            .btn-como-solicito-reembolso a span { font-size: 33px; }
+
+            /* COLABORADORES DESLIGADOS */
+            .btn-colaboradores-desligados img { width: 680px; height: 180px; top: 1231px; left: 50%; transform: translateX(-50%); }
+            .btn-colaboradores-desligados a   { width: 580px; height: 90px; top: 1282px; left: 50%; transform: translateX(-50%); }
+            .btn-colaboradores-desligados a span { font-size: 33px; }
+
+            /* COMO EXCLUIR DEPENDENTE? */
+            .btn-como-excluir-dependente img { width: 680px; height: 180px; top: 1370px; left: 50%; transform: translateX(-50%); }
+            .btn-como-excluir-dependente a   { width: 580px; height: 90px; top: 1421px; left: 50%; transform: translateX(-50%); }
+            .btn-como-excluir-dependente a span { font-size: 33px; }
+
+            /* CARTEIRINHAS */
+            .btn-carteirinhas img { width: 680px; height: 180px; top: 1509px; left: 50%; transform: translateX(-50%); }
+            .btn-carteirinhas a   { width: 580px; height: 90px; top: 1560px; left: 50%; transform: translateX(-50%); }
+            .btn-carteirinhas a span { font-size: 33px; }
+
+            /* PERÍODO DE PERMANÊNCIA */
+            .btn-periodo-de-permanencia img { width: 680px; height: 180px; top: 1648px; left: 50%; transform: translateX(-50%); }
+            .btn-periodo-de-permanencia a   { width: 580px; height: 90px; top: 1699px; left: 50%; transform: translateX(-50%); }
+            .btn-periodo-de-permanencia a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 24px; bottom: 129px; right: 70px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .txt-anterior  { font-size: 24px; bottom: 100px; right: 45px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .icone-voltar  { width: 96px; height: 96px; bottom: 5px; right: 55px; position: absolute; z-index: 10; }
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { position: fixed; bottom: 2px; width: 100%; padding: 0 20px; }
+        .rodape-conteudo { display: flex; align-items: center; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="../icones/icone.titulo.png" alt="Título">
+        <span>PLANO ODONTOLÓGICO</span>
+    </div>
+
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-qual-e-a-operadora">
+                <img src="../icones/icone.botao.png" alt="Qual é a operadora?">
+                <a href="conteudos.do.plano.odontologico/qual.e.a.operadora.html"><span>QUAL É A OPERADORA?</span></a>
+            </div>
+
+            <div class="botao btn-quais-sao-os-planos">
+                <img src="../icones/icone.botao.png" alt="Quais são os planos?">
+                <a href="conteudos.do.plano.odontologico/quais.sao.os.planos.html"><span>QUAIS SÃO OS PLANOS?</span></a>
+            </div>
+
+            <div class="botao btn-como-faco-a-adesao">
+                <img src="../icones/icone.botao.png" alt="Como faço a adesão?">
+                <a href="conteudos.do.plano.odontologico/como.faco.a.adesao.html"><span>COMO FAÇO A ADESÃO?</span></a>
+            </div>
+
+            <div class="botao btn-a-adesao-e-obrigatoria">
+                <img src="../icones/icone.botao.png" alt="A adesão é obrigatória?">
+                <a href="conteudos.do.plano.odontologico/a.adesao.e.obrigatoria.html"><span>A ADESÃO É OBRIGATÓRIA?</span></a>
+            </div>
+
+            <div class="botao btn-inclusao-de-dependentes">
+                <img src="../icones/icone.botao.png" alt="Inclusão de dependentes">
+                <a href="conteudos.do.plano.odontologico/inclusao.de.dependentes.html"><span>INCLUSÃO DE DEPENDENTES</span></a>
+            </div>
+
+            <div class="botao btn-posso-mudar-de-plano">
+                <img src="../icones/icone.botao.png" alt="Posso mudar de plano?">
+                <a href="conteudos.do.plano.odontologico/posso.mudar.de.plano.html"><span>POSSO MUDAR DE PLANO?</span></a>
+            </div>
+
+            <div class="botao btn-ha-reajuste-no-plano">
+                <img src="../icones/icone.botao.png" alt="Há reajuste no plano?">
+                <a href="conteudos.do.plano.odontologico/ha.reajuste.no.plano.html"><span>HÁ REAJUSTE NO PLANO?</span></a>
+            </div>
+
+            <div class="botao btn-ha-coparticipacao">
+                <img src="../icones/icone.botao.png" alt="Há coparticipação?">
+                <a href="conteudos.do.plano.odontologico/ha.coparticipacao.html"><span>HÁ COPARTICIPAÇÃO?</span></a>
+            </div>
+
+            <div class="botao btn-como-solicito-reembolso">
+                <img src="../icones/icone.botao.png" alt="Como solicitar reembolso?">
+                <a href="conteudos.do.plano.odontologico/como.solicito.reembolso.html"><span>COMO SOLICITO REEMBOLSO?</span></a>
+            </div>
+
+            <div class="botao btn-colaboradores-desligados">
+                <img src="../icones/icone.botao.png" alt="Colaboradores desligados">
+                <a href="conteudos.do.plano.odontologico/colaboradores.desligados.html"><span>COLABORADORES DESLIGADOS</span></a>
+            </div>
+
+            <div class="botao btn-como-excluir-dependente">
+                <img src="../icones/icone.botao.png" alt="Como excluir dependente?">
+                <a href="conteudos.do.plano.odontologico/como.excluir.dependente.html"><span>COMO EXCLUIR DEPENDENTE?</span></a>
+            </div>
+
+            <div class="botao btn-carteirinhas">
+                <img src="../icones/icone.botao.png" alt="Carteirinhas">
+                <a href="conteudos.do.plano.odontologico/carteirinhas.html"><span>CARTEIRINHAS</span></a>
+            </div>
+
+            <div class="botao btn-periodo-de-permanencia">
+                <img src="../icones/icone.botao.png" alt="Período de permanência">
+                <a href="conteudos.do.plano.odontologico/periodo.de.permanencia.html"><span>PERÍODO DE PERMANÊNCIA</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="rodape-conteudo">
+            <!-- MENU PRINCIPAL -->
+            <div>
+                <span class="txt-menu">MENU</span>
+                <span class="txt-principal">PRINCIPAL</span>
+                <a href="../menu.principal.html">
+                    <img class="icone-casinha" src="../icones/casinha.png" alt="Home">
+                </a>
+            </div>
+
+            <!-- MENU ANTERIOR -->
+            <div>
+                <span class="txt-menu2">MENU</span>
+                <span class="txt-anterior">ANTERIOR</span>
+                <a href="../menu.de.assistencia.medica.html">
+                    <img class="icone-voltar" src="../icones/voltar.png" alt="Voltar">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE ATIVIDADE -->
+    <script>
+        const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+        eventos.forEach(evento => {
+            document.addEventListener(evento, () => {
+                parent.postMessage("atividade", "*");
+            });
+        });
+
+        const divComScroll = document.querySelector('.botoes-scroll');
+        if (divComScroll) {
+            divComScroll.addEventListener('scroll', () => {
+                parent.postMessage("atividade", "*");
+            });
+        }
+    </script>
+</body>
+
+</html>
