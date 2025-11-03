@@ -1,68 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Deseja Atendimento Presencial?</title>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-  <script src="database.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
-      background-color: transparent !important;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deseja Atendimento Presencial?</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="database.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        /* TÍTULO */
+        .titulo-container img,
+        .titulo-container span { position: absolute; }
+        .titulo-container span { font-weight: bold; color: white; }
+
+        /* CONTAINER DE BOTÕES COM SCROLL */
+        .botoes-scroll {
+            position: relative;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top: 110px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+        }
+        .botoes-scroll::-webkit-scrollbar { width: 6px;
+        }
+        .botoes-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .grid-botoes { 
+          position: relative; 
+          width: 100%; 
+          min-height: 400px; }
+
+        .botao img,
+        .botao a { 
+          position: absolute;
+        }
+        .botao a {
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          text-decoration: none; 
+          cursor: pointer;
+        }
+        .botao a span { 
+          font-weight: bold; 
+          color: white; 
+        }
+
+        /* ====== MENSAGEM FINAL ====== */
+        .mensagem-final {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 600px;
+          text-align: center;
+          color: white;
+          font-family: Arial, sans-serif;
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS DESKTOP ================= */
+        @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+            /* TÍTULO - DESEJA ATENDIMENTO PRESENCIAL? */
+            .titulo-container img { width: 560px; height: 120px; top: -5px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 23px; text-align: center; top: 43px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+                    
+            /* BOTÃO SIM */
+            .btn-sim img { width: 100px; height: 130px; top: 25px; left: 50%; transform: translateX(-50%); }
+            .btn-sim a   { width: 38px; height: 70px; top: 93px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-sim a span { font-size: 19px; }
+
+            /* BOTÃO NÃO */
+            .btn-nao img { width: 100px; height: 130px; top: 181px; left: 50%; transform: translateX(-50%); }
+            .btn-nao a   { width: 38px; height: 70px; top: 250px; left: 50%; transform: translate(-50%, -50%); }
+            .btn-nao a span { font-size: 19px; }
+
+            /* MENU PRINCIPAL */
+            .txt-menu      { font-size: 14px; margin-left: 12px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .txt-principal { font-size: 14px; margin-left: -3px; top: -69px; color: white; font-weight: bold; position: relative; display:block; }
+            .icone-casinha { width: 68px; height: 68px; left: 19px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 14px; margin-right: 55px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .txt-anterior  { font-size: 14px; margin-right: 38px; top: -69px; color: white; font-weight: bold; position: relative; display:block; text-align:right; }
+            .icone-voltar  { width: 68px; height: 68px; right: 60px; bottom: 4px; position: absolute; z-index: 10; }
+
+            /* AJUSTE DO TÍTULO DA MENSAGEM "Prezado(a) Colaborador(a)" */
+            .titulo-mensagem { font-size: 24px; text-align: center; top: 20px; }
+      
+            /* AJUSTE DA MENSAGEM DO TEXTO "Solicitamos, por gentileza," */
+            .texto-mensagem { font-size: 22px; text-align: justify; margin: 20px 0; line-height: 1.6; }
+
+            /* AJUSTE DA MENSAGEM DE AGRADECIMENTO "Agradecemos pela atenção" */
+            .agradecimento { font-size: 22px; text-align: center; margin: 20px 0; line-height: 1.6;; } 
+
+            /* AJUSTE DA MENSAGEM FINAL */
+            .mensagem-final { width: 600px; top: 10%; left: 50%; position: absolute; text-align: center; color: white; font-family: Arial, sans-serif; 
+            transform: translate(-50%); }          
+        }
+
+        /* ================= ÁREA PARA AJUSTAR EM DISPOSITIVOS MOBILE ================= */
+        @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+            .botoes-scroll { 
+              height: 65vh; 
+              margin-top: 135px; 
+            }
+
+             /* BARRA DE ROLAGEM MAIS VISÍVEL NO MOBILE */
+            .botoes-scroll::-webkit-scrollbar {
+              width: 30px;
+            }
+            .botoes-scroll::-webkit-scrollbar-track {
+              background: rgba(255,255,255,0.25);
+            }
+            .botoes-scroll::-webkit-scrollbar-thumb {
+              background-color: rgba(255,255,255,0.1);
+              border-radius: 12px;
+            }
+
+            /* Firefox no mobile */
+            .botoes-scroll {
+              scrollbar-width: auto;
+              scrollbar-color: rgba(255,255,255,0.8) rgba(255,255,255,0.2);
+            }
+
+            /* TÍTULO - DESEJA ATENDIMENTO PRESENCIAL? */
+            .titulo-container img { width: 740px; height: 180px; top: -15px; left: 50%; transform: translateX(-50%); }
+            .titulo-container span { font-size: 48px; text-align: center; top: 48px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+            /* BOTÃO SIM */
+            .btn-sim img { width: 680px; height: 180px; top: -20px; left: 50%; transform: translateX(-50%); }
+            .btn-sim a   { width: 580px; height: 90px; top: 31px; left: 50%; transform: translateX(-50%); }
+            .btn-sim a span { font-size: 33px; }
+
+            /* BOTÃO NÃO */
+            .btn-nao img { width: 680px; height: 180px; top: 258px; left: 50%; transform: translateX(-50%); }
+            .btn-nao a   { width: 580px; height: 90px; top: 309px; left: 50%; transform: translateX(-50%); }
+            .btn-nao a span { font-size: 33px; }
+
+            /* MENU PRINCIPAL */
+            .rodape-conteudo { position: relative; height: 120px; }
+            .txt-menu      { font-size: 24px; left: 30px; bottom: 129px; color: white; font-weight: bold; position: absolute; }
+            .txt-principal { font-size: 24px; left: 7px;  bottom: 100px; color: white; font-weight: bold; position: absolute; }
+            .icone-casinha { width: 96px; height: 96px; bottom: 5px; left: 15px; position: absolute; z-index: 10; }
+
+            /* MENU ANTERIOR */
+            .txt-menu2     { font-size: 24px; bottom: 129px; right: 70px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .txt-anterior  { font-size: 24px; bottom: 100px; right: 45px; color: white; font-weight: bold; position: absolute; text-align: right; }
+            .icone-voltar  { width: 96px; height: 96px; bottom: 5px; right: 55px; position: absolute; z-index: 10; }
+
+            /* AJUSTE DO TÍTULO DA MENSAGEM "Prezado(a) Colaborador(a)" */
+            .titulo-mensagem { font-size: 44px; text-align: center; top: 20px; }
+      
+            /* AJUSTE DA MENSAGEM DO TEXTO "Solicitamos, por gentileza," */
+            .texto-mensagem { font-size: 44px; text-align: justify; margin: 20px 0; line-height: 1.6; }
+
+            /* AJUSTE DA MENSAGEM DE AGRADECIMENTO "Agradecemos pela atenção" */
+            .agradecimento { font-size: 44px; text-align: center; margin: 20px 0; line-height: 1.6;; } 
+
+            /* AJUSTE DA MENSAGEM FINAL */
+            .mensagem-final { width: 600px; top: 10%; left: 50%; position: absolute; text-align: center; color: white; font-family: Arial, sans-serif; 
+            transform: translate(-50%); }          
+        }
+
+        /* ================= RODAPÉ BASE ================= */
+        .rodape { 
+          position: fixed; 
+          bottom: 2px; 
+          width: 100%; 
+          padding: 0 20px; 
+        }
+        .rodape-conteudo {
+          display: flex; 
+          align-items: center;
+          justify-content: space-between; 
+        }
+    </style>
 </head>
 <body>
 
-<div id="tela-principal">
-  <div style="margin-top:-5px; margin-left:10px;">
-    <div style="position:relative; display:inline-block;">
-      <img src="icones/icone.titulo.png" alt="Menu" style="width:560px; height:120px;">
-      <span style="position:absolute; top:50%; right:-28%; transform:translate(-50%, -50%); 
-                   font-size:23px; font-weight:bold; color:white;">DESEJA ATENDIMENTO PRESENCIAL?</span>
-    </div>
-  </div>
-
-  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; margin-top:20px;">
-    <div onclick="registrarAtendimentoPresencial()" style="position:relative; display:inline-block; cursor:pointer;">
-      <img src="icones/icone.botao.png" alt="Quero atendimento" style="width:100px; height:130px;">
-      <span style="position:absolute; top:51%; right:14%; transform:translate(-50%, -50%); 
-                   font-size:19px; font-weight:bold; color:white;">SIM</span>
+    <!-- TÍTULO -->
+    <div class="titulo-container">
+        <img src="icones/icone.titulo.png" alt="Título">
+        <span>DESEJA ATENDIMENTO PRESENCIAL?</span>
     </div>
 
-    <div onclick="registrarNegativa()" style="position:relative; display:inline-block; cursor:pointer;">
-      <img src="icones/icone.botao.png" alt="Não quero atendimento" style="width:100px; height:130px;">
-      <span style="position:absolute; top:51%; right:7%; transform:translate(-50%, -50%); 
-                   font-size:19px; font-weight:bold; color:white;">NÃO</span>
+    <!-- BOTÕES -->
+    <div class="botoes-scroll">
+        <div class="grid-botoes">
+            <div class="botao btn-sim" onclick="registrarAtendimentoPresencial()">
+                <img src="icones/icone.botao.png" alt="Sim">
+                <a><span>SIM</span></a>
+            </div>
+
+            <div class="botao btn-nao" onclick="registrarNegativa()">
+                <img src="icones/icone.botao.png" alt="Não">
+                <a><span>NÃO</span></a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Menu Principal -->
-  <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
-    <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
-    <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
-    <a href="menu.principal.html">
-      <img src="icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
-    </a>
-  </div>
+    <!-- RODAPÉ -->
+<div class="rodape">
+  <div class="rodape-conteudo">
+    <!-- MENU PRINCIPAL -->
+    <div>
+      <span class="txt-menu">MENU</span>
+      <span class="txt-principal">PRINCIPAL</span>
+      <a href="menu.principal.html">
+        <img class="icone-casinha" src="icones/casinha.png" alt="Home">
+      </a>
+    </div>
 
-  <!-- Menu Anterior -->
-  <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
-    <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
-    <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
-    <div onclick="window.history.go(-2)" style="position:relative; display:inline-block; cursor:pointer;">
-      <img src="icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+    <!-- MENU ANTERIOR -->
+    <div>
+      <span class="txt-menu2">MENU</span>
+      <span class="txt-anterior">ANTERIOR</span>
+      <div onclick="window.history.go(-1)" style="cursor:pointer;">
+        <img class="icone-voltar" src="icones/voltar.png" alt="Voltar">
+      </div>
     </div>
   </div>
 </div>
 
-<script>
+    <script>
+  // --- CONFIGURAÇÃO DO FIREBASE ---
   const firebaseConfigAtendimento = {
     apiKey: "AIzaSyCTTUHbs5Sj5ySCf3l4mW8gwEmYgdidzq0",
     authDomain: "relatorio-atendimentos.firebaseapp.com",
@@ -86,6 +260,7 @@
   const gerencia = localStorage.getItem("gerencia") || "";
   const tituloPagina = localStorage.getItem("tituloPagina") || "";
 
+  // --- FUNÇÃO DO BOTÃO SIM ---
   function registrarAtendimentoPresencial() {
     const agora = new Date();
     const data = agora.toLocaleDateString('pt-BR') + " " + agora.toLocaleTimeString('pt-BR');
@@ -103,37 +278,51 @@
     };
 
     db.ref("atendimentos/" + id).set(dados, () => {
+      // --- Substitui a tela principal pela mensagem ---
       document.body.innerHTML = `
-        <div style="margin: 0 auto; width: 600px; text-align:center; color:white; font-size:25px; font-family:Arial, sans-serif;">
-          <p style="text-align:center; margin-top: 45px;">Prezado(a) Colaborador(a),</p>
-          <div style="text-align:justify; margin-bottom: 25px;">
+        <div class="mensagem-final">
+          <p class="titulo-mensagem">Prezado(a) Colaborador(a),</p>
+          <div class="texto-mensagem">
             <p>
-              Solicitamos, por gentileza, que compareça à recepção do RH nos dias de atendimento presencial, que são às segundas, quartas
-              e sextas-feiras, nos horários das 8h às 12h e das 13h30 às 17h.
+              Solicitamos, por gentileza, que compareça à recepção do RH nos dias de atendimento presencial,
+              que são às segundas, quartas e sextas-feiras, nos horários das 8h às 12h e das 13h30 às 17h.
             </p>
           </div>
-          <p style="text-align:center;">Agradecemos pela atenção.</p>
+          <p class="agradecimento">Agradecemos pela atenção.</p>
         </div>
 
-        <div style="position:fixed; left:40px; bottom:40px; text-align:left;">
-          <div style="position:relative; left:-8px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
-          <div style="position:relative; left:-23px; top:40px; font-size:14px; font-weight:bold; color:white;">PRINCIPAL</div>
-          <a href="menu.principal.html">
-            <img src="icones/casinha.png" alt="Home" style="position:relative; width:68px; height:68px; top:38px; left:-21px;">
-          </a>
-        </div>
-
-        <div style="position:fixed; right:40px; bottom:40px; text-align:right;">
-          <div style="position:relative; right:-5px; top:40px; font-size:14px; font-weight:bold; color:white;">MENU</div>
-          <div style="position:relative; right:-22px; top:40px; font-size:14px; font-weight:bold; color:white;">ANTERIOR</div>
-          <div onclick="window.history.go(-2)" style="position:relative; display:inline-block; cursor:pointer;">
-            <img src="icones/voltar.png" alt="Voltar" style="position:relative; width:68px; height:68px; top:38px; right:-20px;">
+        <!-- Menu principal e anterior -->
+        <div class="rodape">
+          <div class="rodape-conteudo">
+            <div>
+              <span class="txt-menu">MENU</span>
+              <span class="txt-principal">PRINCIPAL</span>
+              <a href="menu.principal.html">
+                <img class="icone-casinha" src="icones/casinha.png" alt="Home">
+              </a>
+            </div>
+            <div>
+              <span class="txt-menu2">MENU</span>
+              <span class="txt-anterior">ANTERIOR</span>
+              <div onclick="window.history.go(-2)" style="cursor:pointer;">
+                <img class="icone-voltar" src="icones/voltar.png" alt="Voltar">
+              </div>
+            </div>
           </div>
         </div>
       `;
+
+      // --- REATIVA O SCRIPT DE ATIVIDADE APÓS TROCAR A TELA ---
+      const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
+      eventos.forEach(evento => {
+        document.addEventListener(evento, () => {
+          parent.postMessage("atividade", "*");
+        });
+      });
     });
   }
 
+  // --- FUNÇÃO DO BOTÃO NÃO ---
   function registrarNegativa() {
     const agora = new Date();
     const data = agora.toLocaleDateString('pt-BR') + " " + agora.toLocaleTimeString('pt-BR');
@@ -153,24 +342,5 @@
     });
   }
 </script>
-
-<!-- Script de atividade -->
-<script>
-  const eventos = ['mousemove', 'mousedown', 'keydown', 'touchstart'];
-  eventos.forEach(evento => {
-    document.addEventListener(evento, () => {
-      parent.postMessage("atividade", "*");
-    });
-  });
-
-  // Adicionando scroll em elementos com barra de rolagem
-  const divComScroll = document.querySelector('div[style*="overflow:auto"]');
-  if (divComScroll) {
-    divComScroll.addEventListener('scroll', () => {
-      parent.postMessage("atividade", "*");
-    });
-  }
-</script>
-
 </body>
 </html>
